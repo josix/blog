@@ -70,12 +70,14 @@ const SEO = ({ description, lang, meta, title }) => {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"></link>
+    </Helmet>
   )
 }
 
 SEO.defaultProps = {
-  lang: `en`,
+  lang: `zh-Hant`,
   meta: [],
   description: ``,
 }

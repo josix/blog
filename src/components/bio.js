@@ -11,7 +11,14 @@ import Image from "gatsby-image"
 
 import { rhythm } from "../utils/typography"
 
-const Bio = () => {
+const styles = {
+  socialMediaIcon: {
+    margin: 5,
+    marginRight: rhythm(1 / 5),
+  }
+}
+
+const Bio = ({webDescription}) => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
@@ -23,46 +30,63 @@ const Bio = () => {
       }
       site {
         siteMetadata {
+          description
           author {
             name
             summary
           }
           social {
             twitter
+            github
+            email
           }
         }
       }
     }
   `)
 
-  const { author, social } = data.site.siteMetadata
+  const { author, social, description } = data.site.siteMetadata
   return (
     <div
       style={{
         display: `flex`,
-        marginBottom: rhythm(2.5),
+        marginBottom: rhythm(1),
+        flexDirection: 'column',
       }}
     >
-      <Image
-        fixed={data.avatar.childImageSharp.fixed}
-        alt={author.name}
+      <div
         style={{
-          marginRight: rhythm(1 / 2),
-          marginBottom: 0,
-          minWidth: 50,
-          borderRadius: `100%`,
-        }}
-        imgStyle={{
-          borderRadius: `50%`,
-        }}
-      />
-      <p>
-        Written by <strong>{author.name}</strong> {author.summary}
-        {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
+          display: `flex`,
+          alignItems: 'center',
+          margin: rhythm(1 / 2),
+        }}>
+        <Image
+          fixed={data.avatar.childImageSharp.fixed}
+          alt={author.name}
+          style={{
+            marginRight: rhythm(1 / 2),
+            minWidth: 50,
+            borderRadius: `100%`,
+          }}
+          imgStyle={{
+            borderRadius: `50%`,
+          }}
+        />
+        <a style={styles.socialMediaIcon} href={`https://twitter.com/${social.twitter}`}>
+          <i class="fab fa-twitter"></i>
         </a>
+        <a style={styles.socialMediaIcon} href={`https://github.com/${social.github}`}>
+          <i class="fab fa-github"></i>
+        </a>
+        <a style={styles.socialMediaIcon} href={`mailto:${social.email}`}>
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+      <p>
+        Hi, I'm <strong>{author.name}</strong>，{author.summary}
       </p>
+      {webDescription && <p>{description}</p>}
+
     </div>
   )
 }
