@@ -6,7 +6,7 @@ module.exports = {
       summary: ` I love 🐱 🍜 ☕️ 🍸 🏓,。興趣是沒事把玩各式各樣的 FOSS ，喜愛專研技術、參與社群交流，有著各種天馬行空的 Idea 想去實現`,
     },
     description: `這裡是我的技術與碎念部落格，你可以找到一些 Python / Web Dev / Data Science 的學習筆記跟一些人生雜談，只要我有學習我會將我所學到的知識記錄到這裡`,
-    siteUrl: `https://josixisoj.tw/`,
+    siteUrl: `https://josix.tw/`,
     social: {
       twitter: `josixisoj`,
       github: `josix`,
@@ -62,16 +62,22 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Josix's Blog`,
+        short_name: `Josix`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#333333`,
         display: `minimal-ui`,
         icon: `content/assets/blog-icon.png`,
       },
     },
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `josix-blog`
+      }
+    },
     {
       resolve: `gatsby-plugin-typography`,
       options: {

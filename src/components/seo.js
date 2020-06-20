@@ -71,7 +71,17 @@ const SEO = ({ description, lang, meta, title }) => {
         },
       ].concat(meta)}
     >
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"></link>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"></link>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG_ID}`}></script>
+      <script>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', "${process.env.GATSBY_GTAG_ID}");
+        `}
+      </script>
+
     </Helmet>
   )
 }
