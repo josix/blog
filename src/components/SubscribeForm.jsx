@@ -38,7 +38,7 @@ const styles = {
   },
   submit: {
     width: '60%',
-    maxWidth: 60,
+    maxWidth: 100,
     margin: 10,
     whiteSpace: 'normal',
     wordWrap: 'break-word',
@@ -105,7 +105,7 @@ const SubscribeForm = () => {
           </div>
           {errorText && <div style={styles.errorText} dangerouslySetInnerHTML={errorText} />}
           <div style={styles.submitRow}>
-            <input type="submit" style={styles.submit} value="訂閱" />
+            <input type="submit" style={styles.submit} value="Subscribe" />
           </div>
       </form>
     </div>
