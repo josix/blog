@@ -10,11 +10,11 @@ const styles = {
     alignItems: 'center',
   },
   title: {
-    border: "2px dashed #979898c2",
+    border: "1.2px solid rgba(126, 128, 128, 0.76)",
     textAlign: "center",
     padding: 10,
     fontSize: 17,
-    margin: 8,
+    margin: 20,
   },
   form: {
     width: '70%',
