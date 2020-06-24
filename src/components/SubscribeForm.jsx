@@ -14,7 +14,7 @@ const styles = {
     textAlign: "center",
     padding: 10,
     fontSize: 17,
-    margin: 8,
+    margin: 20,
   },
   form: {
     width: '70%',

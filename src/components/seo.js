@@ -29,6 +29,7 @@ const SEO = ({ description, lang, meta, title }) => {
     `
   )
 
+  console.log(site.siteMetadata.image)
   const metaDescription = description || site.siteMetadata.description
 
   return (
@@ -61,7 +62,7 @@ const SEO = ({ description, lang, meta, title }) => {
         },
         {
           property: `og:image`,
-          content: site.siteMetadata.image,
+          content: `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`,
         },
         {
           name: `twitter:card`,
@@ -77,7 +78,7 @@ const SEO = ({ description, lang, meta, title }) => {
         },
         {
           name: `twitter:image`,
-          content: site.siteMetadata.image,
+          content: `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`,
         },
         {
           name: `twitter:description`,
