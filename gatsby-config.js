@@ -7,7 +7,7 @@ module.exports = {
       summary: ` 興趣是沒事把玩各式各樣的 FOSS ，喜愛專研技術、參與社群交流，有著各種天馬行空的 Idea 想去實現`,
     },
     description: `這裡是我的技術與碎念部落格，你可以找到一些 Python / Web Dev / Data Science 的學習筆記跟一些人生雜談，只要我有學習我會將我所學到的知識記錄到這裡`,
-    siteUrl: `https://josix.tw/`,
+    siteUrl: `https://josixisoj.netlify.app/`,
     social: {
       twitter: `josixisoj`,
       github: `josix`,
