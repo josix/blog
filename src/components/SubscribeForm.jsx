@@ -10,7 +10,7 @@ const styles = {
     alignItems: 'center',
   },
   title: {
-    border: "1.5px solid rgba(126, 128, 128, 0.76)",
+    border: "1.2px solid rgba(126, 128, 128, 0.76)",
     textAlign: "center",
     padding: 10,
     fontSize: 17,

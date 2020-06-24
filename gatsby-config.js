@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Josix is Only Joking`,
-    image: `content/assets/blog-icon.png`,
+    image: `blog-icon.png`,
     author: {
       name: `Josix`,
       summary: ` 興趣是沒事把玩各式各樣的 FOSS ，喜愛專研技術、參與社群交流，有著各種天馬行空的 Idea 想去實現`,
