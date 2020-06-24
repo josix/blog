@@ -38,11 +38,12 @@ const styles = {
   },
   submit: {
     width: '60%',
-    maxWidth: 200,
+    maxWidth: 60,
     margin: 10,
     whiteSpace: 'normal',
     wordWrap: 'break-word',
     borderRadius: 5,
+    fontSize: 15,
     borderColor: "rgb(70, 144, 215)",
     backgroundColor: 'rgb(70, 144, 215)',
     color: "#ffffff",
@@ -104,7 +105,7 @@ const SubscribeForm = () => {
           </div>
           {errorText && <div style={styles.errorText} dangerouslySetInnerHTML={errorText} />}
           <div style={styles.submitRow}>
-            <input type="submit" style={styles.submit} value="Send Me an Update" />
+            <input type="submit" style={styles.submit} value="訂閱" />
           </div>
       </form>
     </div>
