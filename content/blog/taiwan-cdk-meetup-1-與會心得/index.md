@@ -43,9 +43,8 @@ const proxy = dbInstance.addProxy('proxy', {
     vpc,
 });
 ```
-   -  Lambda Filesystem (Issue@[\#8475](https://github.com/aws/aws-cdk/issues/8595), PR@[\#8602](https://github.com/aws/aws-cdk/pull/8602))，此功能將在 AWS-CDK v1.50.0 更新，使用 Lambda EFS Filesystem，你可以 mount 你的 EFS Filesystem 到你的 Lambda Function 環境中，並且可以讓其他資源如 EC2, ECS 等也可以存取該資料，另外也可以放入需要大量空間需求的資料科學相關套件，提供 Lambda Function 使用，提高了 Lambda Function 的整合性及更多的使用其境，其他詳細資訊可以看這篇[部落格](https://aws.amazon.com/tw/blogs/aws/new-a-shared-file-system-for-your-lambda-functions/)。有關 AWS-CDK Lambda Filesystem 的使用，可見這段[程式碼](https://github.com/aws/aws-cdk/tree/master/packages/%40aws-cdk/aws-lambda#filesystem-access)。
-   - API Gateway HTTP API Custom Domain，
-
+   -  Lambda Filesystem (Issue@[\#8475](https://github.com/aws/aws-cdk/issues/8595), PR@[\#8602](https://github.com/aws/aws-cdk/pull/8602))，此功能將在 AWS-CDK v1.50.0 更新，使用 Lambda EFS Filesystem，你可以 mount 你的 EFS Filesystem 到你 Lambda Function 將會使用的環境中，並且可以讓其他資源如 EC2, ECS 等也可以存取該資料，另外也可以放入需要大量空間需求的資料科學相關套件，提供 Lambda Function 使用，提高了 Lambda Function 的整合性及更多的使用其境，其他詳細資訊可以看這篇[部落格](https://aws.amazon.com/tw/blogs/aws/new-a-shared-file-system-for-your-lambda-functions/)。有關 AWS-CDK Lambda Filesystem 的使用，可以看這段[程式碼](https://github.com/aws/aws-cdk/tree/master/packages/%40aws-cdk/aws-lambda#filesystem-access)。
+   - API Gateway HTTP API Custom Domain，(Issue@[\#8475](https://github.com/aws/aws-cdk/issues/7847), PR@[\#8602](https://github.com/aws/aws-cdk/pull/8027))，透過這個功能，預設你可以透過 ACM (Amazon Certificate Manager) 服務所提供的憑證並且使用 addDomain method 來為自己的 API Gateway 設定客製化網域，並且也也可以使用 addStage method 來為你的產品不同階段設計不同的 API 接口，更方便開發調用。有關如何在 AWS-CDK 上設定 APIGateway Custom Domain 可以看這段[程式碼](https://github.com/aws/aws-cdk/tree/master/packages/%40aws-cdk/aws-apigatewayv2#custom-domain)
 \- 
 
 ## 相關資源
