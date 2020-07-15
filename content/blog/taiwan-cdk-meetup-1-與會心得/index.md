@@ -21,15 +21,34 @@ description: 2020/07/07 是台灣 AWS CDK 社群的第一次聚會，此次聚�
 
 1. [AWS CDK 與 CDK8S 最新更新回顧](https://hackmd.io/@pahud/taiwan-cdk-meetup-01-pahud/) (Pahud)
 
-   在這場分享，Pahud 一開始便提到了舉辦 Meetup 的最主要的原因就是講者可以與 Operator、 Developer 可以直接互動分享外彼此互相交流是最好的學習方式。除此以外有關 CDK 上，分享了近期 CDK 的更新其中也包含了他的貢獻：
+   在這場分享，Pahud 一開始便提到了舉辦 Meetup 的最主要的原因就是講者可以與 Operator、 Developer 可以直接互動分享外彼此互相交流是最好的學習方式。除此以外與 CDK 有關的內容有近期 CDK 的更新，而其中也包含了他的貢獻：
 
-   \- RDS Proxy (Issue@[\#8475](https://github.com/aws/aws-cdk/issues/8475))，在AWS-CDK [v1.49.0](https://github.com/aws/aws-cdk/releases/tag/v1.49.0) 加入的新功能，此次更新後在創建 RDS 的 Instance 後你可以使用
+   \- RDS Proxy (Issue@[\#8475](https://github.com/aws/aws-cdk/issues/8475), PR@[\#8476](https://github.com/aws/aws-cdk/pull/8476))，在AWS-CDK [v1.49.0](https://github.com/aws/aws-cdk/releases/tag/v1.49.0) 加入的新功能，此次更新後，RDS 的 Instance 便可以使用 addProxy method 增加新的 Proxy，有關 RDS Proxy 可以用來管理服務與 RDS 之間所建立的連線，避免在 Serverless 的架構下，過多開啟與關閉與資料庫之間的連線，導致 RDS 資源消耗快速，進而導致故障，這邊可以參考更多有關 [RDS Proxy ](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy.html)的資訊。有關 RDS Proxy 的使用，可見下方程式碼：
 
-   \- Lambda Filesystem，
+```typescript
+import * as cdk from '@aws-cdk/core';
+import * as ec2 from '@aws-cdk/aws-ec2';
+import * as rds from '@aws-cdk/aws-rds';
+import * as secrets from '@aws-cdk/aws-secretsmanager';
 
-   \- API Gateway HTTP API Custom Domain，
+const vpc: ec2.IVpc = ...;
+const securityGroup: ec2.ISecurityGroup = ...;
+const secret: secrets.ISecret = ...;
+const dbInstance: rds.IDatabaseInstance = ...;
 
-   \- 
+const proxy = dbInstance.addProxy('proxy', {
+    connectionBorrowTimeout: cdk.Duration.seconds(30),
+    maxConnectionsPercent: 50,
+    secret,
+    vpc,
+});
+```
+
+\- Lambda Filesystem，
+
+\- API Gateway HTTP API Custom Domain，
+
+\- 
 
 ## 相關資源
 
