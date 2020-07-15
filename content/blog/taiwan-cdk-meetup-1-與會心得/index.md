@@ -19,7 +19,7 @@ description: 2020/07/07 是台灣 AWS CDK 社群的第一次聚會，此次聚�
 
 此次的聚會分別有五場分享，很可惜的是最後一場因為比較早走沒有記錄到，前四場的筆記分別如下：
 
-1. [AWS CDK 與 CDK8S 最新更新回顧](https://hackmd.io/@pahud/taiwan-cdk-meetup-01-pahud/) (Pahud)
+### [AWS CDK 與 CDK8S 最新更新回顧](https://hackmd.io/@pahud/taiwan-cdk-meetup-01-pahud/) (Pahud)
 
    在這場分享，Pahud 一開始便提到了舉辦 Meetup 的最主要的原因就是講者可以與 Operator、 Developer 可以直接互動分享外彼此互相交流是最好的學習方式。除此以外與 CDK 有關的內容有近期 CDK 的更新，而其中也包含了他的貢獻：
 
