@@ -3,7 +3,7 @@ title: "Taiwan CDK Meetup #1 回顧"
 date: 2020-07-14T15:04:37.980Z
 description: 2020/07/07 是台灣 AWS CDK 社群的第一次聚會，此次聚會邀請了五位講者分享使用 CDK (Cloud
   Development Kit) 在不同應用情境下藉由基礎架構即程式碼 (Infrastructure as Code，IaC)
-  設計雲端基礎架構的心得，及可能會接觸到的一些坑
+  設計雲端基礎架構的心得，及可能會接觸到的一些坑。
 ---
 ## 緣起
 
@@ -23,7 +23,7 @@ description: 2020/07/07 是台灣 AWS CDK 社群的第一次聚會，此次聚�
 
    在這場分享，Pahud 一開始便提到了舉辦 Meetup 的最主要的原因就是講者可以與 Operator、 Developer 可以直接互動分享外彼此互相交流是最好的學習方式。除此以外與 CDK 有關的內容有近期 CDK 的更新，而其中也包含了他的貢獻：
 
-   \- RDS Proxy (Issue@[\#8475](https://github.com/aws/aws-cdk/issues/8475), PR@[\#8476](https://github.com/aws/aws-cdk/pull/8476))，在AWS-CDK [v1.49.0](https://github.com/aws/aws-cdk/releases/tag/v1.49.0) 加入的新功能，此次更新後，RDS 的 Instance 便可以使用 addProxy method 增加新的 Proxy，有關 RDS Proxy 可以用來管理服務與 RDS 之間所建立的連線，避免在 Serverless 的架構下，過多開啟與關閉與資料庫之間的連線，導致 RDS 資源消耗快速，進而導致故障，這邊可以參考更多有關 [RDS Proxy ](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy.html)的資訊。有關 RDS Proxy 的使用，可見下方程式碼：
+  -  RDS Proxy (Issue@[\#8475](https://github.com/aws/aws-cdk/issues/8475), PR@[\#8476](https://github.com/aws/aws-cdk/pull/8476))，在 AWS-CDK v1.49.0 加入的新功能，此次更新後，RDS  Instance 便可以使用 addProxy method 增加新的 Proxy，RDS Proxy 可以用來管理服務與 RDS 之間所建立的連線，避免在 Serverless 的架構下，過多開啟與關閉與資料庫之間的連線將導致 RDS 資源消耗快速，進而造成故障，這邊可以參考更多有關 [RDS Proxy ](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy.html)的資訊。有關 AWS-CDK RDS Proxy 的使用，可見下方程式碼：
 
 ```typescript
 import * as cdk from '@aws-cdk/core';
@@ -43,10 +43,8 @@ const proxy = dbInstance.addProxy('proxy', {
     vpc,
 });
 ```
-
-\- Lambda Filesystem，
-
-\- API Gateway HTTP API Custom Domain，
+   -  Lambda Filesystem (Issue@[\#8475](https://github.com/aws/aws-cdk/issues/8595), PR@[\#8602](https://github.com/aws/aws-cdk/pull/8602))，此功能將在 AWS-CDK v1.50.0 更新，使用 Lambda EFS Filesystem，你可以 mount 你的 EFS Filesystem 到你的 Lambda Function 環境中，並且可以讓其他資源如 EC2, ECS 等也可以存取該資料，另外也可以放入需要大量空間需求的資料科學相關套件，提供 Lambda Function 使用，提高了 Lambda Function 的整合性及更多的使用其境，其他詳細資訊可以看這篇[部落格](https://aws.amazon.com/tw/blogs/aws/new-a-shared-file-system-for-your-lambda-functions/)。有關 AWS-CDK Lambda Filesystem 的使用，可見這段[程式碼](https://github.com/aws/aws-cdk/tree/master/packages/%40aws-cdk/aws-lambda#filesystem-access)。
+   - API Gateway HTTP API Custom Domain，
 
 \- 
 
