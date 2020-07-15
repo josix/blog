@@ -19,7 +19,7 @@ description: 2020/07/07 是台灣 AWS CDK 社群的第一次聚會，此次聚�
 
 此次的聚會分別有五場分享，很可惜的是最後一場因為比較早走沒有記錄到，前四場的筆記分別如下：
 
-### [AWS CDK 與 CDK8S 最新更新回顧](https://hackmd.io/@pahud/taiwan-cdk-meetup-01-pahud/) (Pahud)
+### [AWS CDK 與 CDK8S 最新更新回顧](https://hackmd.io/@pahud/taiwan-cdk-meetup-01-pahud/) (@Pahud)
 
    在這場分享，Pahud 一開始便提到了舉辦 Meetup 的最主要的原因就是講者可以與 Operator、 Developer 可以直接互動分享外彼此互相交流是最好的學習方式。除此以外與 CDK 有關的內容有近期 CDK 的更新，而其中也包含了他的貢獻：
 
@@ -46,6 +46,14 @@ const proxy = dbInstance.addProxy('proxy', {
    -  Lambda Filesystem (Issue@[\#8475](https://github.com/aws/aws-cdk/issues/8595), PR@[\#8602](https://github.com/aws/aws-cdk/pull/8602))，此功能將在 AWS-CDK v1.50.0 更新，使用 Lambda EFS Filesystem，你可以 mount 你的 EFS Filesystem 到你 Lambda Function 將會使用的環境中，並且可以讓其他資源如 EC2, ECS 等也可以存取該資料，另外也可以放入需要大量空間需求的資料科學相關套件，提供 Lambda Function 使用，提高了 Lambda Function 的整合性及更多的使用其境，其他詳細資訊可以看這篇[部落格](https://aws.amazon.com/tw/blogs/aws/new-a-shared-file-system-for-your-lambda-functions/)。有關 AWS-CDK Lambda Filesystem 的使用，可以看這段[程式碼](https://github.com/aws/aws-cdk/tree/master/packages/%40aws-cdk/aws-lambda#filesystem-access)。
    - API Gateway HTTP API Custom Domain，(Issue@[\#8475](https://github.com/aws/aws-cdk/issues/7847), PR@[\#8602](https://github.com/aws/aws-cdk/pull/8027))，透過這個功能，預設你可以透過 ACM (Amazon Certificate Manager) 服務所提供的憑證並且使用 addDomain method 來為自己的 API Gateway 設定客製化網域，並且也也可以使用 addStage method 來為你的產品不同階段設計不同的 API 接口，更方便開發調用。有關如何在 AWS-CDK 上設定 APIGateway Custom Domain 可以看這段[程式碼](https://github.com/aws/aws-cdk/tree/master/packages/%40aws-cdk/aws-apigatewayv2#custom-domain)
   - 除了 AWS-CDK 以外，在前幾個月也發佈了 CDK8S (CDK for k8s)，如同 AWS-CDK，CDK8S 讓你可以使用你熟悉的語言來開發你的 Kubernetes 應用，透過物件抽象化後的 API 讓你避免寫出繁雜的 YAML 檔，並可以更方便複製這樣的設定到任何機器上進行部署。
+
+### [新手 operator 寫 CDK 之旅](https://github.com/josix/taiwan-meetup-july2020/blob/master/02-ricochen/rookie-operators-cdk-journey.pdf) (@ricochen)
+
+Rico 來自 Bincentive，在這場分享中分享過去她在學習 CDK 所使用過的資源，在初期不熟悉專案還無法進行貢獻時，對於新手來說最好的學習方式就是模仿，Rico 將資源分類（Workshop, Example, Documents, Community, Talk...）列出讓大家[參考](https://github.com/cdkmeetup/taiwan-meetup-july2020/tree/master/02-ricochen)，很可惜的我玩過得還不多，只有玩過 AWS-CDK Workshop，從中相當好理解 AWS-CDK 的觀念以及中心思想，並且可以快速建出自己的第一個架構及服務，對於新手來說會相當有成就感。另外，AWS Summit 中給的 Talk 也介紹老相當多的觀念，非常推薦，也非常謝謝 Rico 的分享！
+
+### [堆疊架構時該思考的事](https://github.com/josix/taiwan-meetup-july2020/blob/master/03-joelzhong/cdk.pdf)(@joelzhong)
+
+
 
 ## 相關資源
 
