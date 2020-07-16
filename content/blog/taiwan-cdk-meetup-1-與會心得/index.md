@@ -82,7 +82,8 @@ export class MyBucketStack extends cdk.Stack {
 ``` 
 - 如何對 CDK 進行模組化？
 首先可以先將現有的 Resources 歸納出不同類型，如 Network, EKS, Microservices (Fargate, Codebuild...), Route53 等等，並且盡可能的最小化每個 Stack 其中也搭配著 Config 開關堆疊出跟原 Region 一樣的環境，如下圖。
-
+![modularized-cdk-stack.png](/img/modularized-cdk-stack.png)
+而使用 CDK 相較 CloudFormation 更好的差別在於，IaC 的 CDK 有更高的抽象化概念，尤其當碰到在 Microservices 中每組 CDK Code 不盡相同卻又會出現大量重複的程式碼，同時又希望保留其彈性時，你可以在 CDK 上導入 Design Pattern，像在上述的例子中，比較好的做法便是採用 Template Method Pattern，寫好 Microservice 共同的行為，而不同的實作行為則委派給子類別操作。如此一來，每組 Mcroservice 的行為一致更好維護，並且也都有自己的 Stack 可以保留彈性。
 
 
 - Stack 與 Stack 如何進行溝通？
