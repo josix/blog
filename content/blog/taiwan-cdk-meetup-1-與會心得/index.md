@@ -101,7 +101,7 @@ Multiple Stack 相較 Nested Stack 雖無特別的優點，但卻可以解決上
 
 接下來的分享是 Neil 如何將 CDK 應用在 GitLab 上，一開始 Neil 便秀了自己的 Profile 我覺得相當的酷。![Profile Self](https://gitlab.com/aws_cdk/aws-cdk-meetup/-/raw/master/png2.png)
 
-Code 可以參考[這邊](https://gitlab.com/aws_cdk/aws-cdk-meetup)。
+如何產出的 Code 可以參考[這邊](https://gitlab.com/aws_cdk/aws-cdk-meetup)。
 
 首先先介紹一下 GitLab Runner，這是一個開源項目，用於在運行完交付的作業後將結果發送回 GitLab，與 GitLab CI/CD 結合使用。而 Neil 介紹了如何使用 CDK 在 AWS 上快速建造自己的 GitLab Runner，相關的程式碼可以看[這邊](https://github.com/guan840912/cdk-gitlab-runner)，並且使用了 Amazon Alexa DEMO 了用講話的方式成功進行服務部署，真的相當令人驚艷🤩 
 
