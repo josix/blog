@@ -85,8 +85,17 @@ export class MyBucketStack extends cdk.Stack {
 ![modularized-cdk-stack.png](/img/modularized-cdk-stack.png)
 而使用 CDK 相較 CloudFormation 更好的差別在於，IaC 的 CDK 有更高的抽象化概念，尤其當碰到在 Microservices 中每組 CDK Code 不盡相同卻又會出現大量重複的程式碼，同時又希望保留其彈性時，你可以在 CDK 上導入 Design Pattern，像在上述的例子中，比較好的做法便是採用 Template Method Pattern，寫好 Microservice 共同的行為，而不同的實作行為則委派給子類別操作。如此一來，每組 Mcroservice 的行為一致更好維護，並且也都有自己的 Stack 可以保留彈性。
 
-
 - Stack 與 Stack 如何進行溝通？
+然而在 Microservice 上還是會有個問題是 CloudFormation 一個 Stack 限制 200 個 Resources，不可避免的會使用到多個 Stack，這邊有兩種做法：Nested Stack 與 Multiple Stack，兩者各有好壞：
+  - Nested Stack 優點：
+    - 好處在於 Stack 之間 Codebase 相同，內容裡的變數、方法都可以共用
+    - 只需要操作一個 Main Stack
+  - Nested Stack 缺點：
+    - cdk diff 不會顯示 Nested Stack 內的變化
+    - cdk deploy 不會顯示部署過程時 Resources 的建立狀況，也不會顯示錯誤提示
+
+Multiple Stack 相較 Nested Stack 雖無特別的優點，但卻可以解決上面致命的缺點，因此 Joel 還是採用了 Multiple Stack。
+而 Stack 與 Stack 之間的溝通，則可以透過定義好彼此介面的唯獨 Property 及 Stack 的 Naming Pattern (e.g. MyStagingClusterStack, MyStagingFargateAStack...)，使用 cdk command 時便可以更方便的操作 (e.g. `cdk diff MyStaging*`)
 
 ### [CDK 跨界應用 翻玩 pipeline](https://github.com/josix/taiwan-meetup-july2020/blob/master/04-neilguan/AWS%20CDK%20%20Meetup%20Taipei.pdf) (@neilguan)
 
