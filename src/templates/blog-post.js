@@ -50,10 +50,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             marginBottom: rhythm(1),
           }}
         />
-        <footer>
-          <Bio webDescription={false}/>
-          <Disqus config={disqusConfig} />
-        </footer>
       </article>
 
       <nav>
@@ -82,6 +78,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </li>
         </ul>
       </nav>
+      <footer>
+        <Bio webDescription={false}/>
+        <Disqus config={disqusConfig} />
+      </footer>
     </Layout>
   )
 }
