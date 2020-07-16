@@ -1,6 +1,6 @@
 ---
 title: "Taiwan CDK Meetup #1 回顧"
-date: 2020-07-14T15:04:37.980Z
+date: 2020-07-16T07:21:52.255Z
 description: 2020/07/07 是台灣 AWS CDK 社群的第一次聚會，此次聚會邀請了五位講者分享使用 CDK (Cloud
   Development Kit) 在不同應用情境下藉由基礎架構即程式碼 (Infrastructure as Code，IaC)
   設計雲端基礎架構的心得，及可能會接觸到的一些坑。
