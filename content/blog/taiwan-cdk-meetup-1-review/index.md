@@ -95,7 +95,7 @@ export class MyBucketStack extends cdk.Stack {
     - cdk deploy 不會顯示部署過程時 Resources 的建立狀況，也不會顯示錯誤提示
 
 Multiple Stack 相較 Nested Stack 雖無特別的優點，但卻可以解決上面致命的缺點，因此 Joel 還是採用了 Multiple Stack。
-而 Stack 與 Stack 之間的溝通，則可以透過定義好彼此介面的唯獨 Property 及 Stack 的 Naming Pattern (e.g. MyStagingClusterStack, MyStagingFargateAStack...)，使用 cdk command 時便可以更方便的操作 (e.g. `cdk diff MyStaging*`)
+而 Stack 與 Stack 之間的溝通，則可以透過定義好彼此介面的唯讀 Property 及 Stack 的 Naming Pattern (e.g. MyStagingClusterStack, MyStagingFargateAStack...)，使用 cdk command 時便可以更方便的操作 (e.g. `cdk diff MyStaging*`)
 
 ### [CDK 跨界應用 翻玩 pipeline](https://github.com/cdkmeetup/taiwan-meetup-july2020/blob/master/04-neilguan/AWS%20CDK%20%20Meetup%20Taipei.pdf) (@neilguan)
 
