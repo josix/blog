@@ -49,10 +49,45 @@ const proxy = dbInstance.addProxy('proxy', {
 
 ### [新手 operator 寫 CDK 之旅](https://github.com/josix/taiwan-meetup-july2020/blob/master/02-ricochen/rookie-operators-cdk-journey.pdf) (@ricochen)
 
-Rico 來自 Bincentive，在這場分享中分享過去她在學習 CDK 所使用過的資源，在初期不熟悉專案還無法進行貢獻時，對於新手來說最好的學習方式就是模仿。Rico 將資源分類（Workshop, Example, Documents, Community, Talk...）列出讓大家[參考](https://github.com/cdkmeetup/taiwan-meetup-july2020/tree/master/02-ricochen)，很可惜我玩過得還不多，只有玩過 AWS-CDK Workshop。從中相當好理解 AWS-CDK 的觀念以及中心思想，並且可以快速建出自己的第一個架構及服務，對於新手來說會相當有成就感。另外，AWS Summit 中給的 Talk 也介紹到相當多的觀念，非常推薦，也非常謝謝 Rico 的分享！
+Rico 來自 Bincentive，在這場分享中分享過去她在學習 CDK 所使用過的資源，在初期不熟悉專案還無法進行貢獻時，對於新手來說最好的學習方式就是模仿。Rico 將資源分類（Workshop, Example, Documents, Community, Talk...）列出讓大家[參考](https://github.com/cdkmeetup/taiwan-meetup-july2020/tree/master/02-ricochen)。很可惜我玩過得還不多，只有玩過 AWS-CDK Workshop，從中相當好理解 AWS-CDK 的觀念以及中心思想，並且可以快速建出自己的第一個架構及服務，對於新手來說會相當有成就感。另外，[AWS Online Tech Talk](https://www.youtube.com/watch?v=ZWCvNFUN-sU) 中也介紹到相當多的觀念，非常推薦，也非常謝謝 Rico 的分享！
 
-### [堆疊架構時該思考的事](https://github.com/josix/taiwan-meetup-july2020/blob/master/03-joelzhong/cdk.pdf)(@joelzhong)
+### [堆疊架構時該思考的事](https://github.com/josix/taiwan-meetup-july2020/blob/master/03-joelzhong/cdk.pdf) (@joelzhong)
 
+Joel 為我們分享了建構堆疊架構時，應該需要考慮到三點：
+- 如何導入 CDK？在這一部分，將會面臨到幾個問題：
+    - 改寫成 CDK 伴隨高風險而商業價值不高
+    - Resource 可能原先並非使用 CloudFormation 建立的
+    - 不同的 Region, Resource 可能配置不同
+    - Resource 可能跨 Region, 跨 Account
+
+針對這些問題 Joel 提到他的做法是在空的 Region 上開始導入 CDK，如此便不會影響到原有的服務架構，而對於不同的 Resource 去設計 Config，擴充 CDK Props 新增一個 `establish` 的 Boolean 變數作為開關決定依照環境決是否要創建，設計 Config 並同時也需要思考跨帳號、跨區域的問題，如下方程式碼：
+```typescript
+import * as s3 from '@aws-cdk/aws-s3';
+
+export interface MyBucketProps extends s3.BucketProps {
+  establish: boolean
+}
+```
+```typescript
+export class MyBucketStack extends cdk.Stack {
+  constructor(scope: cdk.Construct, id: string, props: MyBucketStack.props) {
+    super(scope, id, props);
+    Objects.values(props.s3Props)
+    .filter((bucketProps: MyBucketProps) => bucketProps.establish)
+    .forEach((bucketProps: MyBucketProps) => {
+      const bucket = new s3.Bucket(this, bucketProps.bucketName!, bucketProps);
+    })
+  }
+}
+``` 
+- 如何對 CDK 進行模組化？
+首先可以先將現有的 Resources 歸納出不同類型，如 Network, EKS, Microservices (Fargate, Codebuild...), Route53 等等，並且盡可能的最小化每個 Stack 其中也搭配著 Config 開關堆疊出跟原 Region 一樣的環境，如下圖。
+
+
+
+- Stack 與 Stack 如何進行溝通？
+
+### [CDK 跨界應用 翻玩 pipeline](https://github.com/josix/taiwan-meetup-july2020/blob/master/04-neilguan/AWS%20CDK%20%20Meetup%20Taipei.pdf) (@neilguan)
 
 
 ## 相關資源
