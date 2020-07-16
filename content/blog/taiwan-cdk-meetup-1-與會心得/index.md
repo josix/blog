@@ -47,11 +47,11 @@ const proxy = dbInstance.addProxy('proxy', {
    - API Gateway HTTP API Custom Domain，(Issue@[\#8475](https://github.com/aws/aws-cdk/issues/7847), PR@[\#8602](https://github.com/aws/aws-cdk/pull/8027))，透過這個功能，預設你可以透過 ACM (Amazon Certificate Manager) 服務所提供的憑證並且使用 addDomain method 來為自己的 API Gateway 設定客製化網域，並且也可以用 addStage method 來為你的產品不同階段設計不同的 API 接口，更方便開發調用。有關如何在 AWS-CDK 上設定 APIGateway Custom Domain 可以看這段[程式碼](https://github.com/aws/aws-cdk/tree/master/packages/%40aws-cdk/aws-apigatewayv2#custom-domain)
   - 除了 AWS-CDK 以外，在前幾個月也發佈了 CDK8S (CDK for k8s)，如同 AWS-CDK，CDK8S 讓你可以使用你熟悉的語言來開發你的 Kubernetes 應用，透過物件抽象化後的 API 讓你避免寫出繁雜的 YAML 檔，可以更方便複製這樣的設定到任何機器上進行部署。
 
-### [新手 operator 寫 CDK 之旅](https://github.com/josix/taiwan-meetup-july2020/blob/master/02-ricochen/rookie-operators-cdk-journey.pdf) (@ricochen)
+### [新手 operator 寫 CDK 之旅](https://github.com/cdkmeetup/taiwan-meetup-july2020/blob/master/02-ricochen/rookie-operators-cdk-journey.pdf) (@ricochen)
 
 Rico 來自 Bincentive，在這場分享中分享過去她在學習 CDK 所使用過的資源，在初期不熟悉專案還無法進行貢獻時，對於新手來說最好的學習方式就是模仿。Rico 將資源分類（Workshop, Example, Documents, Community, Talk...）列出讓大家[參考](https://github.com/cdkmeetup/taiwan-meetup-july2020/tree/master/02-ricochen)。很可惜我玩過得還不多，只有玩過 AWS-CDK Workshop，從中相當好理解 AWS-CDK 的觀念以及中心思想，並且可以快速建出自己的第一個架構及服務，對於新手來說會相當有成就感。另外，[AWS Online Tech Talk](https://www.youtube.com/watch?v=ZWCvNFUN-sU) 中也介紹到相當多的觀念，非常推薦，也非常謝謝 Rico 的分享！
 
-### [堆疊架構時該思考的事](https://github.com/josix/taiwan-meetup-july2020/blob/master/03-joelzhong/cdk.pdf) (@joelzhong)
+### [堆疊架構時該思考的事](https://github.com/cdkmeetup/taiwan-meetup-july2020/blob/master/03-joelzhong/cdk.pdf) (@joelzhong)
 
 Joel 為我們分享了建構堆疊架構時，應該需要考慮到三點：
 - 如何導入 CDK？在這一部分，將會面臨到幾個問題：
@@ -97,7 +97,7 @@ export class MyBucketStack extends cdk.Stack {
 Multiple Stack 相較 Nested Stack 雖無特別的優點，但卻可以解決上面致命的缺點，因此 Joel 還是採用了 Multiple Stack。
 而 Stack 與 Stack 之間的溝通，則可以透過定義好彼此介面的唯獨 Property 及 Stack 的 Naming Pattern (e.g. MyStagingClusterStack, MyStagingFargateAStack...)，使用 cdk command 時便可以更方便的操作 (e.g. `cdk diff MyStaging*`)
 
-### [CDK 跨界應用 翻玩 pipeline](https://github.com/josix/taiwan-meetup-july2020/blob/master/04-neilguan/AWS%20CDK%20%20Meetup%20Taipei.pdf) (@neilguan)
+### [CDK 跨界應用 翻玩 pipeline](https://github.com/cdkmeetup/taiwan-meetup-july2020/blob/master/04-neilguan/AWS%20CDK%20%20Meetup%20Taipei.pdf) (@neilguan)
 
 
 ## 相關資源
