@@ -105,7 +105,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             const navigator = window.navigator;
             const shareData = {
               title: post.frontmatter.title,
-              // text: post.frontmatter.description || post.excerpt,
+              text: `${post.frontmatter.title}`,
               url: location.href,
             }
             if (navigator.share) {
