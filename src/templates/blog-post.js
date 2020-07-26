@@ -34,7 +34,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
 
-  const [shareSucceed, setShareSucceed] = useState(true);
+  const [shareSucceed, setShareSucceed] = useState(false);
   const [disqusConfig, setDisqusConfig] = useState({
     url: `${process.env.GATSBY_SITE_URL+location.pathname}`,
     identifier: post.id,
