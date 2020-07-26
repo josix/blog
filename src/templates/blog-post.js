@@ -21,9 +21,11 @@ const styles = {
     cursor: "pointer",
     fontWeight: 300,
     padding: "5px 45px",
+    backgroundColor: "transparent"
   },
   popupText: {
-    color: "#2d2d2de8"
+    color: "#2d2d2de8",
+    backgroundColor: "transparent"
   }
 }
 const BlogPostTemplate = ({ data, pageContext, location }) => {

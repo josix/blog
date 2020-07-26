@@ -95,6 +95,13 @@ const SEO = ({ description, lang, meta, title }) => {
           gtag('config', "${process.env.GATSBY_GTAG_ID}");
         `}
       </script>
+      <style>
+        {`
+          .token.operator {
+            background-color: transparent;
+          }
+        `}
+      </style>
 
     </Helmet>
   )
