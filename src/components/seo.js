@@ -98,7 +98,7 @@ const SEO = ({ description, lang, meta, title }) => {
       <style>
         {`
           .token.operator {
-            background-color: transparent;
+            background-color: transparent !important;
           }
         `}
       </style>
