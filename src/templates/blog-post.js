@@ -22,9 +22,6 @@ const styles = {
     fontWeight: 300,
     padding: "5px 45px",
   },
-  icon: {
-    backgroundColor: "#f5f1ed",
-  },
   popupText: {
     color: "#2d2d2de8"
   }
@@ -127,7 +124,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             }
           }}
         >
-          分享這篇文章 <i style={styles.icon} className="fa fa-share-alt" aria-hidden="true"></i>
+          分享這篇文章 <i className="fa fa-share-alt" aria-hidden="true"></i>
         </button>
         {shareSucceed && <span style={styles.popupText}>已複製網址至剪貼簿! 🙌</span>}
       </div>
