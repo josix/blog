@@ -70,7 +70,6 @@ const SubscribeForm = () => {
         result,
         msg
       } = data
-      console.log(data)
       if (result === "error") {
         setErrorText({__html: msg});
       }

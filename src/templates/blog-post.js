@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState} from "react"
 import { Link, graphql } from "gatsby"
 import { Disqus } from 'gatsby-plugin-disqus'
 
@@ -7,16 +7,39 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 
+const styles = {
+  buttonContainer: {
+    display: "flex",
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: 6,
+  },
+  shareButton: {
+    border: "solid 1px #737373",
+    borderRadius: 5,
+    outline: "none",
+    cursor: "pointer",
+    fontWeight: 300,
+    padding: "5px 45px",
+  },
+  icon: {
+    backgroundColor: "#f5f1ed",
+  },
+  popupText: {
+    color: "#2d2d2de8"
+  }
+}
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
 
-  let disqusConfig = {
+  const [shareSucceed, setShareSucceed] = useState(true);
+  const [disqusConfig, setDisqusConfig] = useState({
     url: `${process.env.GATSBY_SITE_URL+location.pathname}`,
     identifier: post.id,
     title: post.title,
-  }
+  });
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -78,6 +101,36 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </li>
         </ul>
       </nav>
+      <div style={styles.buttonContainer} >
+        <button
+          style={styles.shareButton}
+          onClick={async () => {
+            const navigator = window.navigator;
+            const shareData = {
+              title: post.frontmatter.title,
+              text: post.frontmatter.description || post.excerpt,
+              url: location.href,
+            }
+            if (navigator.share) {
+              try {
+                await navigator.share(shareData)
+              } catch(err) {
+                console.error('Error: ' + err)
+              }
+            } else {
+              navigator.clipboard.writeText(location.href)
+              .then(() => {
+                setShareSucceed(true)
+                setTimeout(() => setShareSucceed(false), 800)
+              })
+              .catch(err => console.error('Error: ' + err))
+            }
+          }}
+        >
+          分享這篇文章 <i style={styles.icon} className="fa fa-share-alt" aria-hidden="true"></i>
+        </button>
+        {shareSucceed && <span style={styles.popupText}>已複製網址至剪貼簿! 🙌</span>}
+      </div>
       <footer>
         <Bio webDescription={false}/>
         <Disqus config={disqusConfig} />
