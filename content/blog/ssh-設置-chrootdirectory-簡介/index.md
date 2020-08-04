@@ -144,6 +144,7 @@ service sshd restart
 ### 其他 `chroot` 環境設定
 
 - 若有使用非在新目錄下的外部目錄的需要，需要 Bind Mount 到該目錄下的任意位置，作法如下：
+
 1. 修改 `/etc/fstab`(假設外部目錄為 `/var/www/html`)
 ```bash
 vim /etc/fstab
