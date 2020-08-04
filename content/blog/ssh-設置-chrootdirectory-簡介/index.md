@@ -11,19 +11,23 @@ description: 此篇內容將會介紹 SSH 中的 ChrootDirectory
 `chroot` 使用語法如下：
 ```
 chroot [OPTION] NEWROOT [COMMAND [ARG]...]
-chroot OPTION
+chroot OPTION 
 (Note. 如果沒有給定指令，則執行 `${SHELL} -i`)
 
 OPTION:
 --groups=G_LIST 
 以 g1,g2,..,gN 格式提供附加的群組 
+
 --userspec=USER:GROUP
 給定使用者和群組 (ID 或名稱) 使用該環境
+
 --skip-chdir
 不要更換工作目錄至 '/'
 Note. 只有當 NEWROOT 為 "/" 才允許，因此較常搭配 --groups, --userspec 使用
+
 --help
 輸出使用說明
+
 --version
 輸出版本號
 ```
@@ -34,9 +38,27 @@ Note. 只有當 NEWROOT 為 "/" 才允許，因此較常搭配 --groups, --users
 - 權限分離：將特定使用者允許存取的檔案放入 `chroot` 的目錄當中，當使用者使用 ssh 登入後限制其所能存取的環境僅限於該 `chroot` 的目錄下。
 
 ### 執行 `chroot`
-使用前須確認指定的目錄下已經包含所需執行指令的檔案如 ($CHROOT/bin/bash, $CHROOT/bin/ls
+在執行 `chroot` 之前，首先要確定該 `chroot` 所需執行到的指令已經放入該目錄下。
+以下假設 `chroot` 後要使用到 `/bin/bash`, `/usr/bin/rsync`，並手動建置該檔案：
+1. 複製原系統的檔案位置 `(/bin/bash)` 至 CHROOT 對應的目錄位置下 `($CHROOT/bin/bash)`
 ```bash
-chroot /josix/example
+cp /bin/bash $CHROOT/bin
+cp /usr/bin/rsync $CHROOT/usr/bin
+```
+2. 複製指令使用到的 shared object。可以使用 `ldd` 來找到所需要複製的檔案（也就是相依的 shared object）。
+```bash
+ldd /bin/bash
+#	linux-vdso.so.1 (0x00007ffee39e4000)
+#	libtinfo.so.5 => /lib/x86_64-linux-gnu/libtinfo.so.5 (0x00007f7722ca5000)
+#	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f7722aa1000)
+#	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f77226b0000)
+#	/lib64/ld-linux-x86-64.so.2 (0x00007f77231e9000)
+```
+需要複製這些檔案到 CHROOT 對應的目錄下 (例如 /lib/x86_64-linux-gnu/libtinfo.so.5 需要複製到 $CHROOT/lib/x86_64-linux-gnu)
+相同的步驟也需要對 `/usr/bin/rsync` 做一遍。
+3. 準備好所需執行的指令後，便可以使用 `chroot` 了，並且只能夠執行先前提供的指令。
+```bash
+chroot $CHROOT
 ```
 
 ## `ChrootDirectory` 用途及使用情境
