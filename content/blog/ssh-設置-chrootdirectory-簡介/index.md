@@ -4,8 +4,7 @@ date: 2020-07-25T15:47:15.517Z
 description: 此篇內容將會介紹 SSH 中的 ChrootDirectory
   關鍵字其用途及使用情境，並介紹如何設置，來達成限制特定帳號所能夠存取的檔案系統及可執行的指令的目的。
 ---
-## `chroot` 簡介
-### `chroot` 是什麼
+## `chroot` 是什麼
 `chroot` 是一個限於 superuser 執行的 unix 指令，即代表 change root directory ，主要用途為使用提供的目錄作為參考根目錄執行指令或開啟可互動的 shell。使用 `chroot` 後，離開該根目錄的檔案都將無法進行存取。
 
 `chroot` 使用語法如下：
@@ -59,6 +58,8 @@ ldd /bin/bash
 3. 準備好所需執行的指令後，便可以使用 `chroot` 了，並且只能夠執行先前提供的指令。
 ```bash
 chroot $CHROOT
+# or
+chroot $CHROOT /bin/bash
 ```
 
 ## `ChrootDirectory` 用途及使用情境
