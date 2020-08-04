@@ -1,8 +1,8 @@
 ---
 title: Chroot 指令與 SSH 設置 ChrootDirectory
 date: 2020-07-25T15:47:15.517Z
-description: 此篇內容首先將會介紹 UNIX 指令中的 chroot 指令及其相關的使用方式及情境，並且介紹在 SSH 中的
-  ChrootDirectory 關鍵字其用途及如何設置，來達成限制特定帳號所能夠存取的檔案系統及可執行的指令等目的。
+description: 此篇內容首先將會介紹 UNIX 中的 chroot 指令及其相關的使用方式及情境，並且介紹在 sshd 中的
+  ChrootDirectory 關鍵字其用途及如何設置，來達成限制特定帳號所能夠存取的檔案系統及可執行的指令。
 ---
 ## `chroot` 是什麼
 
@@ -46,6 +46,7 @@ OPTION:
 以下假設 `chroot` 後要使用到 `/bin/bash`, `/usr/bin/rsync`，先手動建置該檔案：
 
 **Note. 除了所需的程式外基本的 /dev 節點設置，也都需要透過 `mknode` 建立 **
+
 1. 複製原系統的檔案位置 `(/bin/bash)` 至 CHROOT 對應的目錄位置下 `($CHROOT/bin/bash)`
 
 ```bash
@@ -85,7 +86,7 @@ chroot $CHROOT /bin/bash
 `ChrootDirectory` 是在 [sshd_config](https://linux.die.net/man/5/sshd_config) (OpenSSH SSH daemon configuration) 可以設定的一個關鍵字，通常搭配 `Match` 來使用，針對 `Match` 到的使用者參考 `ChrootDirectory` 後帶的參數（NEWROOT 位置）執行 `chroot`，主要目的為針對特定的使用者，讓其登入後所能存取的檔案及指令皆限制在 `chroot` 的根目錄下。
 
 ### 設置 `ChrootDirectory` 限制特定使用者存取目錄
-下面例子將從零開始開一個 Chroot SFTP 使用者帳號（[參考這篇文章](https://www.thegeekstuff.com/2012/03/chroot-sftp-setup/)）：
+下面例子將從零開始創建一個 Chroot SFTP 使用者帳號（[參考這篇文章](https://www.thegeekstuff.com/2012/03/chroot-sftp-setup/)）：
 1. 新增一個使用者及群組
 ```bash
 groupadd sftpusers
@@ -143,7 +144,7 @@ service sshd restart
 
 ### 其他 `chroot` 環境設定
 
-- 若有使用非在新目錄下的外部目錄的需要，需要 Bind Mount 到該目錄下的任意位置，作法如下：
+- 若有使用外部目錄的需要，需要透過 Bind Mount 到新根目錄下的任意位置，作法如下：
 
 1. 修改 `/etc/fstab`(假設外部目錄為 `/var/www/html`)
 ```bash
