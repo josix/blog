@@ -149,7 +149,7 @@ service sshd restart
 ```bash
 vim /etc/fstab
 # Add
-# /var/www/html   $CHROOT/mounted_folder        none    bind    0 0`
+# /var/www/html   $CHROOT/mounted_folder        none    bind    0 0
 ```
 
 2. 將該外部目錄掛載到指定位置下
