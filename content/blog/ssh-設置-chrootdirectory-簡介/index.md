@@ -76,18 +76,24 @@ chroot $CHROOT /bin/bash
 ```
 
 ### 小結
-在現在容器盛行的情況下，使用 `chroot` 來進行測試、開發相依性維護已經較不大需要，更多時候會是在維護、修復系統、開設 guset 帳戶時使用。另外，使用 `chroot` 並非完全安全的，需要特別移除可會使用到 [setuid](https://man7.org/linux/man-pages/man2/setuid.2.html) 的程式、編譯器等任何可能在 `chroot` 後又獲得 root 權限[逃離 `chroot jail`](https://web.archive.org/web/20160127150916/http://www.bpfh.net/simes/computing/chroot-break.html)。
+在現在容器盛行的情況下，使用 `chroot` 來進行測試、開發及相依性維護已經較不大需要，更多時候會是在維護、修復系統、開設 guset 帳戶時使用。另外，使用 `chroot` 並非完全安全的，需要特別移除會使用到 [setuid](https://man7.org/linux/man-pages/man2/setuid.2.html) 的程式、編譯器等任何可能在 `chroot` 後又獲得 root 權限[逃離 `chroot jail`](https://web.archive.org/web/20160127150916/http://www.bpfh.net/simes/computing/chroot-break.html) 的漏洞。
 
 ## `ChrootDirectory` 用途及使用情境
+除了於登入後使用 `chroot` 指令可以執行更換根目錄，也可以在登入過程中使用 `chroot`。
 
+`ChrootDirectory` 是在 [sshd_config](https://linux.die.net/man/5/sshd_config) (OpenSSH SSH daemon configuration) 可以設定的一個關鍵字，通常搭配 `Match` 來使用，針對 `Match` 到的使用者參考 `ChrootDirectory` 後帶的參數（NEWROOT 位置）執行 `chroot`，為針對特定的使用者，讓其登入後所能存取的檔案及指令皆限制在 `chroot` 的根目錄下。
 ## 設置 `ChrootDirectory` 限制特定使用者存取目錄
 
 ## 其他 `ChrootDirectory` 搭配設定
 
 ## 參考資料
 
-[chroot wiki](https://zh.wikipedia.org/wiki/Chroot)
+- [chroot wiki](https://zh.wikipedia.org/wiki/Chroot)
 
-[chroot manual](http://manpages.ubuntu.com/manpages/focal/zh_TW/man8/chroot.8.html)
+- [chroot manual](http://manpages.ubuntu.com/manpages/focal/zh_TW/man8/chroot.8.html)
 
-[chroot 完整文件](https://www.gnu.org/software/coreutils/manual/html_node/chroot-invocation.html#chroot-invocation)
+- [chroot 完整文件](https://www.gnu.org/software/coreutils/manual/html_node/chroot-invocation.html#chroot-invocation)
+
+- [逃離 chroot jail](https://web.archive.org/web/20160127150916/http://www.bpfh.net/simes/computing/chroot-break.html)
+
+- [sshd_config manual](https://linux.die.net/man/5/sshd_config)
