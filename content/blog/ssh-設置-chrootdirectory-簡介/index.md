@@ -45,7 +45,7 @@ OPTION:
 在執行 `chroot` 之前，首先要確定該 `chroot` 所需執行到的指令已經放入該新的根目錄下。
 以下假設 `chroot` 後要使用到 `/bin/bash`, `/usr/bin/rsync`，先手動建置該檔案：
 
-**Note. 1. 除了所需的程式外基本的 /dev 節點設置，也都需要透過 `mknode` 建立 **
+**Note. 除了所需的程式外基本的 /dev 節點設置，也都需要透過 `mknode` 建立 **
 1. 複製原系統的檔案位置 `(/bin/bash)` 至 CHROOT 對應的目錄位置下 `($CHROOT/bin/bash)`
 
 ```bash
@@ -92,30 +92,41 @@ groupadd sftpusers
 useradd -g sftpusers -d /incoming -s /sbin/nologin $USERNAME
 passwd $USERNAME
 ```
+- `groupadd sftpusers:` 新增 `sftpusers` 這個 group
+- `useradd -g sftpusers -d /incoming -s /sbin/nologin $USERNAME`: 新增名稱為 $USERNAME 的使用者，並設置其群組為 `sftpusers`、家目錄為 `/incoming` 並用[無法登入的 Shell](http://linux.vbird.org/linux_basic/0410accountmanager.php#nologin) 作為這個帳號的 Shell
+- `passwd $USERNAME`: 設置該帳號的密碼
 2. 設置該使用者 `chroot jail`
 ```bash
 mkdir -p /sftp/$USERNAME/incoming
 chown $USERNAME:sftpusers /sftp/$USERNAME/incoming
 ```
-#### 
-1. 首先需要修改 `/etc/ssh/sshd_config`
+- `mkdir -p /sftp/$USERNAME/incoming`: 先建立該帳戶登入後會進入的目錄
+- `chown $USERNAME:sftpusers /sftp/$USERNAME/incoming`: 修改該目錄權限供該帳戶使用
+**Note. `/sftp/$USERNAME/` 目錄下除了使用者可存取的位置都需要為 root 權限**
+
+3. 修改 `/etc/ssh/sshd_config`
 ```bash
 vim /etc/ssh/sshd_config
 ```
-2.
+4. 使用 openssh 提供之 sftp 服務
 ```bash
 #Subsystem      sftp    /usr/libexec/openssh/sftp-server
 Subsystem       sftp    internal-sftp
 ```
-3. 
+- internal-sftp 是 openssh 提供的關鍵字用於辨認使用 sshd 內部的 sftp 服務
+- 關於 sftp-server 與 internal-sftp 的差別，參照[這裏](https://serverfault.com/questions/660160/openssh-difference-between-internal-sftp-and-sftp-server)
+5. 設置 `ChrootDirectory`
 ```bash
 Match Group sftpusers
     ChrootDirectory /sftp/%u
     AllowTcpForwarding no
     ForceCommand internal-sftp
 ```
+- Match Group sftpusers: 選取符合群組為 `sftpusers` 的使用者
+- ChrootDirectory /sftp/%u: 設置更換根目錄到 `/sftp/%u`，`%u`會被代換為該使用者名稱
+- ForceCommand internal-sftp: 強制使用執行 internal-sftp 指令忽略其他定義在 `.ssh/rc` 的指令
 
-4. 重啟 SSH
+6. 重啟 sshd
 ```bash
 service sshd restart
 ```
