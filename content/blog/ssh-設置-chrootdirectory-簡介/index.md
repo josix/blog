@@ -147,3 +147,7 @@ service sshd restart
 - [Cross server SSH Rsync backups done more securely with chroot](https://www.marcus-povey.co.uk/2015/04/09/cross-server-ssh-rsync-backups-done-more-securely/)
 
 - [How to Setup Chroot SFTP in Linux (Allow Only SFTP, not SSH)](https://www.thegeekstuff.com/2012/03/chroot-sftp-setup/)
+
+- [What's the difference between /sbin/nologin and /bin/false](https://unix.stackexchange.com/questions/10852/whats-the-difference-between-sbin-nologin-and-bin-false)
+
+- [OpenSSH: Difference between internal-sftp and sftp-server](https://serverfault.com/questions/660160/openssh-difference-between-internal-sftp-and-sftp-server)
