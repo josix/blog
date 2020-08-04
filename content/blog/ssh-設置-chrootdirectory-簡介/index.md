@@ -45,6 +45,7 @@ OPTION:
 在執行 `chroot` 之前，首先要確定該 `chroot` 所需執行到的指令已經放入該新的根目錄下。
 以下假設 `chroot` 後要使用到 `/bin/bash`, `/usr/bin/rsync`，先手動建置該檔案：
 
+**Note. 1. 除了所需的程式外基本的 /dev 節點設置，也都需要透過 `mknode` 建立 **
 1. 複製原系統的檔案位置 `(/bin/bash)` 至 CHROOT 對應的目錄位置下 `($CHROOT/bin/bash)`
 
 ```bash
@@ -81,10 +82,44 @@ chroot $CHROOT /bin/bash
 ## `ChrootDirectory` 用途及使用情境
 除了於登入後使用 `chroot` 指令可以執行更換根目錄，也可以在登入過程中使用 `chroot`。
 
-`ChrootDirectory` 是在 [sshd_config](https://linux.die.net/man/5/sshd_config) (OpenSSH SSH daemon configuration) 可以設定的一個關鍵字，通常搭配 `Match` 來使用，針對 `Match` 到的使用者參考 `ChrootDirectory` 後帶的參數（NEWROOT 位置）執行 `chroot`，為針對特定的使用者，讓其登入後所能存取的檔案及指令皆限制在 `chroot` 的根目錄下。
-## 設置 `ChrootDirectory` 限制特定使用者存取目錄
+`ChrootDirectory` 是在 [sshd_config](https://linux.die.net/man/5/sshd_config) (OpenSSH SSH daemon configuration) 可以設定的一個關鍵字，通常搭配 `Match` 來使用，針對 `Match` 到的使用者參考 `ChrootDirectory` 後帶的參數（NEWROOT 位置）執行 `chroot`，主要目的為針對特定的使用者，讓其登入後所能存取的檔案及指令皆限制在 `chroot` 的根目錄下。
 
-## 其他 `ChrootDirectory` 搭配設定
+### 設置 `ChrootDirectory` 限制特定使用者存取目錄
+下面例子將從零開始開一個 Chroot SFTP 使用者帳號（[參考這篇文章](https://www.thegeekstuff.com/2012/03/chroot-sftp-setup/)）：
+1. 新增一個使用者及群組
+```bash
+groupadd sftpusers
+useradd -g sftpusers -d /incoming -s /sbin/nologin $USERNAME
+passwd $USERNAME
+```
+2. 設置該使用者 `chroot jail`
+```bash
+mkdir -p /sftp/$USERNAME/incoming
+chown $USERNAME:sftpusers /sftp/$USERNAME/incoming
+```
+#### 
+1. 首先需要修改 `/etc/ssh/sshd_config`
+```bash
+vim /etc/ssh/sshd_config
+```
+2.
+```bash
+#Subsystem      sftp    /usr/libexec/openssh/sftp-server
+Subsystem       sftp    internal-sftp
+```
+3. 
+```bash
+Match Group sftpusers
+    ChrootDirectory /sftp/%u
+    AllowTcpForwarding no
+    ForceCommand internal-sftp
+```
+
+4. 重啟 SSH
+```bash
+service sshd restart
+```
+### 其他 `ChrootDirectory` 搭配設定
 
 ## 參考資料
 
@@ -97,3 +132,7 @@ chroot $CHROOT /bin/bash
 - [逃離 chroot jail](https://web.archive.org/web/20160127150916/http://www.bpfh.net/simes/computing/chroot-break.html)
 
 - [sshd_config manual](https://linux.die.net/man/5/sshd_config)
+
+- [Cross server SSH Rsync backups done more securely with chroot](https://www.marcus-povey.co.uk/2015/04/09/cross-server-ssh-rsync-backups-done-more-securely/)
+
+- [How to Setup Chroot SFTP in Linux (Allow Only SFTP, not SSH)](https://www.thegeekstuff.com/2012/03/chroot-sftp-setup/)
