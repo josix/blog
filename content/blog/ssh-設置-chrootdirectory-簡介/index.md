@@ -92,18 +92,22 @@ groupadd sftpusers
 useradd -g sftpusers -d /incoming -s /sbin/nologin $USERNAME
 passwd $USERNAME
 ```
-  - `groupadd sftpusers:` 新增 `sftpusers` 這個 group
-  - `useradd -g sftpusers -d /incoming -s /sbin/nologin $USERNAME`: 新增名稱為   $USERNAME 的使用者，並設置其群組為 `sftpusers`、家目錄為 `/incoming` 並用[無法登入的 Shell](http://linux.vbird.org/linux_basic/0410accountmanager.php#nologin) 作為這個帳號的 Shell
-  - `passwd $USERNAME`: 設置該帳號的密碼
+`groupadd sftpusers:` 新增 `sftpusers` 這個 group
+
+`useradd -g sftpusers -d /incoming -s /sbin/nologin $USERNAME`: 新增名稱為   $USERNAME 的使用者，並設置其群組為 `sftpusers`、家目錄為 `/incoming` 並用[無法登入的 Shell](http://linux.vbird.org/linux_basic/0410accountmanager.php#nologin) 作為這個帳號的 Shell
+
+`passwd $USERNAME`: 設置該帳號的密碼
 
 2. 設置該使用者 `chroot jail`
 ```bash
 mkdir -p /sftp/$USERNAME/incoming
 chown $USERNAME:sftpusers /sftp/$USERNAME/incoming
 ```
-  - `mkdir -p /sftp/$USERNAME/incoming`: 先建立該帳戶登入後會進入的目錄
-  - `chown $USERNAME:sftpusers /sftp/$USERNAME/incoming`: 修改該目錄權限供該帳戶使用
-  **Note. `/sftp/$USERNAME/` 目錄下除了使用者可存取的位置都需要為 root 權限**
+`mkdir -p /sftp/$USERNAME/incoming`: 先建立該帳戶登入後會進入的目錄
+
+`chown $USERNAME:sftpusers /sftp/$USERNAME/incoming`: 修改該目錄權限供該帳戶使用
+
+**Note. `/sftp/$USERNAME/` 目錄下除了使用者可存取的位置都需要為 root 權限**
 
 3. 修改 `/etc/ssh/sshd_config`
 ```bash
@@ -115,8 +119,9 @@ vim /etc/ssh/sshd_config
 #Subsystem      sftp    /usr/libexec/openssh/sftp-server
 Subsystem       sftp    internal-sftp
 ```
-  - internal-sftp 是 openssh 提供的關鍵字用於辨認使用 sshd 內部的 sftp 服務
-  - 關於 sftp-server 與 internal-sftp 的差別，參照[這裏](https://serverfault.com/questions/660160/openssh-difference-between-internal-sftp-and-sftp-server)
+internal-sftp 是 openssh 提供的關鍵字用於辨認使用 sshd 內部的 sftp 服務
+
+關於 sftp-server 與 internal-sftp 的差別，參照[這裏](https://serverfault.com/questions/660160/openssh-difference-between-internal-sftp-and-sftp-server)
 
 5. 設置 `ChrootDirectory`
 ```bash
@@ -124,15 +129,21 @@ Match Group sftpusers
     ChrootDirectory /sftp/%u
     ForceCommand internal-sftp
 ```
-  - Match Group sftpusers: 選取符合群組為 `sftpusers` 的使用者
-  - ChrootDirectory /sftp/%u: 設置更換根目錄到 `/sftp/%u`，`%u`會被代換為該使用者名稱
-  - ForceCommand internal-sftp: 強制使用執行 internal-sftp 指令忽略其他定義在 `.ssh/rc` 的指令
+Match Group sftpusers: 選取符合群組為 `sftpusers` 的使用者
+
+ChrootDirectory /sftp/%u: 設置更換根目錄到 `/sftp/%u`，`%u`會被代換為該使用者名稱
+
+ForceCommand internal-sftp: 強制使用執行 internal-sftp 指令忽略其他定義在 `.ssh/rc` 的指令
+
 
 6. 重啟 sshd
 ```bash
 service sshd restart
 ```
-### 其他 `ChrootDirectory` 搭配設定
+### 其他 `chroot` 環境設定
+1. 若有使用非在新目錄下的外部目錄的需要，需要 Bind Mount 到該目錄下的任意位置，作法如下：
+```bash
+```
 
 ## 參考資料
 
