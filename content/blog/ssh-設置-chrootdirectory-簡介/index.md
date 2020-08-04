@@ -141,8 +141,18 @@ ForceCommand internal-sftp: 強制使用執行 internal-sftp 指令忽略其他�
 service sshd restart
 ```
 ### 其他 `chroot` 環境設定
-1. 若有使用非在新目錄下的外部目錄的需要，需要 Bind Mount 到該目錄下的任意位置，作法如下：
+- 若有使用非在新目錄下的外部目錄的需要，需要 Bind Mount 到該目錄下的任意位置，作法如下：
+1. 修改 `/etc/fstab`(假設外部目錄為 `/var/www/html`)
 ```bash
+vim /etc/fstab
+# Add
+# /var/www/html   $CHROOT/mounted_folder        none    bind    0 0`
+```
+
+2. 將該外部目錄掛載到指定位置下
+```bash
+mkdir $CHROOT/mounted_folder
+mount $CHROOT/mounted_folder
 ```
 
 ## 參考資料
@@ -164,3 +174,5 @@ service sshd restart
 - [What's the difference between /sbin/nologin and /bin/false](https://unix.stackexchange.com/questions/10852/whats-the-difference-between-sbin-nologin-and-bin-false)
 
 - [OpenSSH: Difference between internal-sftp and sftp-server](https://serverfault.com/questions/660160/openssh-difference-between-internal-sftp-and-sftp-server)
+
+- [Bind mount an SFTP user after using chroot](https://support.rackspace.com/how-to/bind-mount-an-sftp-user-after-using-chroot/)
