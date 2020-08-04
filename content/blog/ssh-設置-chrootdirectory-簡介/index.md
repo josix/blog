@@ -1,5 +1,5 @@
 ---
-title: Chroot 指令與 SSH 設置 ChrootDirectory 簡介
+title: Chroot 指令與 SSH 設置 ChrootDirectory
 date: 2020-07-25T15:47:15.517Z
 description: 此篇內容首先將會介紹 UNIX 指令中的 chroot 指令及其相關的使用方式及情境，並且介紹在 SSH 中的
   ChrootDirectory 關鍵字其用途及如何設置，來達成限制特定帳號所能夠存取的檔案系統及可執行的指令等目的。
