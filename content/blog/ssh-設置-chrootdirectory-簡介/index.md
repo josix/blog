@@ -1,14 +1,14 @@
 ---
 title: Chroot 指令與 SSH 設置 ChrootDirectory 簡介
 date: 2020-07-25T15:47:15.517Z
-description: 此篇內容首先將會介紹 unix 指令中的 chroot 指令及其相關的使用方式及情境，並且介紹在 SSH 中的
+description: 此篇內容首先將會介紹 UNIX 指令中的 chroot 指令及其相關的使用方式及情境，並且介紹在 SSH 中的
   ChrootDirectory 關鍵字其用途及如何設置，來達成限制特定帳號所能夠存取的檔案系統及可執行的指令等目的。
 ---
 ## `chroot` 是什麼
 
-`chroot` 是一個限於 superuser 執行的 unix 指令，即代表 change root directory ，主要用途為使用提供的目錄作為根目錄來執行指令或開啟可互動的 shell。使用 `chroot` 後，離開該根目錄的檔案都將無法進行存取。
+`chroot` 是一個限於 superuser 執行的 UNIX 指令，即代表 change root directory ，主要用途為使用提供的目錄作為根目錄來執行指令或開啟可互動的 shell。使用 `chroot` 後，離開該根目錄的檔案都將無法進行存取。
 
-`chroot` 使用語法如下：
+[`chroot` 使用語法]((http://manpages.ubuntu.com/manpages/focal/zh_TW/man8/chroot.8.html))如下：
 
 ```
 chroot [OPTION] NEWROOT [COMMAND [ARG]...]
@@ -62,9 +62,10 @@ ldd /bin/bash
 #	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f77226b0000)
 #	/lib64/ld-linux-x86-64.so.2 (0x00007f77231e9000)
 ```
-
 需要複製這些檔案到 CHROOT 對應的目錄下 (例如 /lib/x86_64-linux-gnu/libtinfo.so.5 需要複製到 $CHROOT/lib/x86_64-linux-gnu)
 相同的步驟也需要對 `/usr/bin/rsync` 做一遍。
+
+**Note. 上述複製的檔案與目錄需確認權限是 `root` **
 
 3. 準備好所需執行的指令後，便可以使用 `chroot` 了，並且只能夠執行先前提供的指令。
 
@@ -73,6 +74,9 @@ chroot $CHROOT
 # or
 chroot $CHROOT /bin/bash
 ```
+
+### 小結
+在現在容器盛行的情況下，使用 `chroot` 來進行測試、開發相依性維護已經較不大需要，更多時候會是在維護、修復系統、開設 guset 帳戶時使用。另外，使用 `chroot` 並非完全安全的，需要特別移除可會使用到 [setuid](https://man7.org/linux/man-pages/man2/setuid.2.html) 的程式、編譯器等任何可能在 `chroot` 後又獲得 root 權限[逃離 `chroot jail`](https://web.archive.org/web/20160127150916/http://www.bpfh.net/simes/computing/chroot-break.html)。
 
 ## `ChrootDirectory` 用途及使用情境
 
