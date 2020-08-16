@@ -1,5 +1,5 @@
 ---
-title: 開啟一個乾淨的 Python Project 開發環境 - （一）套件管理工具
+title: 開啟一個乾淨的 Python Project 開發環境（一）套件管理工具
 date: 2020-08-14T15:53:01.619Z
 description: (temp)
 ---
