@@ -1,7 +1,7 @@
 ---
 title: 建立一個乾淨的 Python  開發環境（一）：套件管理工具
 date: 2020-08-14T15:53:01.619Z
-description: (temp)
+description: 此篇文章將會介紹如何從無到有開啟一個
 ---
 <!--
 - Why you need a package manager tool
