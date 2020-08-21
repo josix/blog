@@ -1,5 +1,5 @@
 ---
-title: 建立一個方便開發的 Python  環境（一）：套件管理工具簡介
+title: 建立一個方便開發的 Python  環境（一）：Python 的套件管理簡介
 date: 2020-08-14T15:53:01.619Z
 description: 此篇文章是自己配置 Python Project
   環境的系列筆記第一篇，將會在這篇文章中簡介何謂套件管理以及隨著開發越來越複雜化，套件管理需要有哪些支援，其中在 Python
@@ -21,6 +21,6 @@ description: 此篇文章是自己配置 Python Project
 - [Package Manager](https://en.wikipedia.org/wiki/Package_manager#Front-ends_for_locally_compiled_packages)
 - [What is a package manager](https://web.archive.org/web/20171017151526/http://aptitude.alioth.debian.org/doc/en/pr01s02.html)
 - [What is pip?](https://realpython.com/what-is-pip/)
-- [這樣的開發環境沒問題嗎？ - TP@PyConTW'18](https://speakerdeck.com/uranusjr/zhe-yang-de-kai-fa-huan-jing-mei-wen-ti-ma)
+- [這樣的開發環境沒問題嗎？ -- TP@PyConTW'18](https://speakerdeck.com/uranusjr/zhe-yang-de-kai-fa-huan-jing-mei-wen-ti-ma)
 - [Python Table Manners- Cut the Cookie Gracefully -- Lee Wei@EuroPython'20](https://speakerdeck.com/leew/python-table-manners-cut-the-cookie-gracefully-at-euro-python-2020)
 - [List of software package management systems](https://en.wikipedia.org/wiki/List_of_software_package_management_systems)
