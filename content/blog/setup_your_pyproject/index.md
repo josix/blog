@@ -22,5 +22,5 @@ description: 此篇文章是自己配置 Python Project
 - [What is a package manager](https://web.archive.org/web/20171017151526/http://aptitude.alioth.debian.org/doc/en/pr01s02.html)
 - [What is pip?](https://realpython.com/what-is-pip/)
 - [這樣的開發環境沒問題嗎？ - TP@PyConTW'18](https://speakerdeck.com/uranusjr/zhe-yang-de-kai-fa-huan-jing-mei-wen-ti-ma)
-- [Python Table Manners- Cut the Cookie Gracefully -- Lee Wei@EuroPython'20]
+- [Python Table Manners- Cut the Cookie Gracefully -- Lee Wei@EuroPython'20](https://speakerdeck.com/leew/python-table-manners-cut-the-cookie-gracefully-at-euro-python-2020)
 - [List of software package management systems](https://en.wikipedia.org/wiki/List_of_software_package_management_systems)
