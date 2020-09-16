@@ -40,7 +40,7 @@ brew install openssl readline sqlite3 xz zlib
 
 `versions`資料夾會放置下載的所有 Python 版本
 
-`shims` 是 pyenv 用於截取使用者呼叫 python 的相關指令，並且將其所附帶的參數一併帶入至 pyenv 執行所想要執行的 Python 版本，會被加入至 `PATH` 環境變數當中
+`shims` 是 pyenv 用於截取使用者呼叫 python 的相關指令，並且將其所附帶的參數一併帶入至 pyenv 執行所想要執行的 Python 版本，`shims` 路徑會被加入至 `PATH` 環境變數當中
 
 `plugins` 資料夾下放置的是 pyenv 相關的插件如管理虛擬環境的 `pyenv-virtualenv`、檢查安裝環境需求是否有誤的 `pyenv-doctor` 等。
 
@@ -80,6 +80,9 @@ pyenv versions
 
 ## Pyenv 其他使用方法
 
+除了上述安裝、解除安裝、在不同 Scope 切換不同的 Python 版本以外，以下還有一些比較特別的使用方法
+
+### 使用 `pyenv init` 
 
 
 ## 淺析 Pyenv 原理
