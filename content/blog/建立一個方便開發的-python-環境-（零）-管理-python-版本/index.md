@@ -23,7 +23,8 @@ Hmm... 聽起來不太妙，總要一個籠子來好好管理這些蛇，~~免�
 另外 Pyenv 本身並沒有提供虛擬環境控管，因此有關套件管理部分尚未得到解決，未來可能還需要自行使用內建的 `venv` module 或 `pyenv-virtualenv` plugin 來達成目的。
 
 ## Pyenv 使用方法
-- 安裝 Pyenv (macOS) 需要輸入下面的指令：
+
+### 安裝 Pyenv (macOS) 需要輸入下面的指令
 
 ```bash
 brew update
@@ -42,22 +43,22 @@ brew install openssl readline sqlite3 xz zlib
 
 `plugins` 資料夾下放置的是 pyenv 相關的插件如管理虛擬環境的 `pyenv-virtualenv`、檢查安裝環境需求是否有誤的 `pyenv-doctor` 等。
 
-- 使用 `pyenv install` 安裝 Python：
+### 使用 `pyenv install` 安裝 Python
 接著可以輸入 `pyenv install PYTHON_VERSION` 來下載想要的 Python 版本，例如想要下載 3.8.0 版的話可以輸入：
 ```bash
 pyenv install -v 3.8.0
 ```
 `-v` 代表會輸出冗長模式說明其中安裝的執行內容，除此以外也可以透過 `pyenv install --list` 顯示全部可以下載的 Python 版本，可以再透過 `grep` 輸出想要的版本有哪些
 
-- 使用 `pyenv global PYTHON_VERSION` 設定全域的 Python 版本：
+### 使用 `pyenv global PYTHON_VERSION` 設定全域的 Python 版本
 
 舉例來說，輸入 `pyenv global 3.8.0` 將會設定全域的 Python 版本為 3.8.0，設定後也可以輸入 `pyenv global` 來確認當前設定的 Python 版本為何。另外設定過後也可以在 `.pyenv` 上看到多出一個 `version`的檔案，其內容為當前設定的全域 Python 版本
 
-- 使用 `pyenv local PYTHON_VERSION` 設定本地（local）的 Python 版本：
+### 使用 `pyenv local PYTHON_VERSION` 設定本地（local）的 Python 版本
 
 舉例來說，輸入 `pyenv local 3.8.0` 將會設定本地（local）的版本為系統 3.8.0，設定後也同樣可以輸入 `pyenv local` 來確認當前設定的本地（local） pyenv 版本為何，並且在設定的該目錄下，可以看到一個 `.python-version` 檔案，其內容會是該本地（local）的 Python 版本
 
-- 使用 `pyenv versions` 顯示已經安裝的 Python 版本：
+### 使用 `pyenv versions` 顯示已經安裝的 Python 版本
 
 透過輸入 `pyenv versions` 可以輸出已經下載的所有 Python：
 ```bash
@@ -68,11 +69,12 @@ pyenv versions
 ```
 `pyenv versions` 會顯示當下 local 或 global 的所使用的 Python 版本，括號內容為 Python 來源位置，另外若輸入 `pyenv version` 則不會顯示全部的 Python 可用版本，並只顯示當前使用的 Python 版本，且本地會優先於全域的版本。
 
-- 使用 `pyenv which COMMAND` 得知目前的 COMMAND 來源：
+### 使用 `pyenv which COMMAND` 得知目前的 COMMAND 來源
 
 舉例來說，`pyenv which pip3` 會顯示當前使用的 `pip3` 來的來源會是哪個，可能會是系統的 `/usr/local/bin/pip3` 或是 `/Users/xxxx/.pyenv/versions/3.8.0/bin/pip3`，端看自己透過 `pyenv` 選用的 Python 版本決定，與 `which pip3` 差別在於，`which pip3` 會回傳的是 `~/.pyenv/shims` 下的 `pip3` 而無從得知 `pyenv` 選擇的版本為何。
 
-- 使用 `pyenv uninstall PYTHON_VERSION` 解除安裝指定的 Python 版本
+### 使用 `pyenv uninstall PYTHON_VERSION` 解除安裝指定的 Python 版本
+
 假設要刪除 Python 3.8.5 的話，只需要輸入 `pyenv uninstall 3.8.5`，則 pyenv 會刪除 `~/.pyenv/versions/3.8.5`
 
 
