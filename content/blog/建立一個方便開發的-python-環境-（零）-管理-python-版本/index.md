@@ -42,7 +42,7 @@ brew install openssl readline sqlite3 xz zlib
 
 `plugins` 資料夾下放置的是 pyenv 相關的插件如管理虛擬環境的 `pyenv-virtualenv`、檢查安裝環境需求是否有誤的 `pyenv-doctor` 等。
 
-    - 使用 `pyenv install` 安裝 Python：
+- 使用 `pyenv install` 安裝 Python：
 接著可以輸入 `pyenv install PYTHON_VERSION` 來下載想要的 Python 版本，例如想要下載 3.8.0 版的話可以輸入：
 ```bash
 pyenv install -v 3.8.0
