@@ -22,7 +22,7 @@ Hmm... 聽起來不太妙，總要一個籠子來好好管理這些蛇，~~免�
 
 另外 Pyenv 本身並沒有提供虛擬環境控管，因此有關套件管理部分尚未得到解決，未來可能還需要自行使用內建的 `venv` module 或 `pyenv-virtualenv` plugin 來達成目的。
 
-## Pyenv 使用方法
+## Pyenv 基本使用方法
 
 ### 安裝 Pyenv (macOS)
 
@@ -77,6 +77,8 @@ pyenv versions
 ### 使用 `pyenv uninstall PYTHON_VERSION` 解除安裝指定的 Python 版本
 
 假設要刪除 Python 3.8.5 的話，只需要輸入 `pyenv uninstall 3.8.5`，則 pyenv 會刪除 `~/.pyenv/versions/3.8.5`
+
+## Pyenv 其他使用方法
 
 
 
