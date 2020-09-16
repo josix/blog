@@ -24,8 +24,9 @@ Hmm... 聽起來不太妙，總要一個籠子來好好管理這些蛇，~~免�
 
 ## Pyenv 使用方法
 
-### 安裝 Pyenv (macOS) 需要輸入下面的指令
+### 安裝 Pyenv (macOS)
 
+安裝 Pyenv (macOS) 需要輸入下面的指令
 ```bash
 brew update
 brew install pyenv
