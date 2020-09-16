@@ -70,7 +70,7 @@ pyenv versions
 
 - 使用 `pyenv which COMMAND` 得知目前的 COMMAND 來源：
 
-舉例來說，`pyenv which pip3` 會顯示當前使用的 `pip3` 來的來源會是哪個，可能會是系統的 `/usr/local/bin/pip3` 或是 `/Users/wilson/.pyenv/versions/3.8.0/bin/pip3`，端看自己透過 `pyenv` 選用的 Python 版本決定，與 `which pip3` 差別在於，`which pip3` 會回傳的是 `~/.pyenv/shims` 下的 `pip3` 而無從得知 `pyenv` 選擇的版本為何。
+舉例來說，`pyenv which pip3` 會顯示當前使用的 `pip3` 來的來源會是哪個，可能會是系統的 `/usr/local/bin/pip3` 或是 `/Users/xxxx/.pyenv/versions/3.8.0/bin/pip3`，端看自己透過 `pyenv` 選用的 Python 版本決定，與 `which pip3` 差別在於，`which pip3` 會回傳的是 `~/.pyenv/shims` 下的 `pip3` 而無從得知 `pyenv` 選擇的版本為何。
 
 
 
@@ -81,3 +81,4 @@ pyenv versions
 - [這樣的開發環境沒問題嗎？](https://www.youtube.com/watch?v=6Nl0IYkU0hU)
 - [Managing Multiple Python Versions With pyenv](https://realpython.com/intro-to-pyenv/#why-not-use-system-python)
 - [Pyenv](https://github.com/pyenv/pyenv#understanding-path)
+- [Pyenv Commands](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global)
