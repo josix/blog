@@ -83,7 +83,10 @@ pyenv versions
 除了上述安裝、解除安裝、在不同 Scope 切換不同的 Python 版本以外，以下還有一些比較特別的使用方法
 
 ### 使用 `pyenv init` 
-
+### 使用 `pyenv shell`
+### 使用 `pyenv local`
+### 使用 `pyenv global`
+### 使用 `pyenv rehash`
 
 ## 淺析 Pyenv 原理
 ## 替代方案
