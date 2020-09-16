@@ -23,12 +23,43 @@ Hmm... 聽起來不太妙，總要一個籠子來好好管理這些蛇，~~免�
 另外 Pyenv 本身並沒有提供虛擬環境控管，因此有關套件管理部分尚未得到解決，未來可能還需要自行使用內建的 `venv` module 或 `pyenv-virtualenv` plugin 來達成目的。
 
 ## Pyenv 使用方法
-1. 安裝 Pyenv (macOS)
-    ```bash
-    brew update
-    brew install pyenv
-    ```
-2. 
+- 安裝 Pyenv (macOS) 需要輸入下面的指令：
+```bash
+brew update
+brew install pyenv
+```
+其中也會有下載相依的套件：
+```bash
+brew install openssl readline sqlite3 xz zlib
+```
+並且依照官方文件教學設定
+一般安裝後會在 Home 目錄下產出 `.pyenv` 的資料夾，其中包含 `versions`, `shims` 和`plugins`，分別會放的內容如下：
+
+`versions`資料夾會放置下載的所有 Python 版本
+
+`shims` 是 pyenv 用於截取使用者呼叫 python 的相關指令，並且將其所附帶的參數一併帶入至 pyenv 執行所想要執行的 Python 版本，會被加入至 `PATH` 環境變數當中
+
+`plugins` 資料夾下放置的是 pyenv 相關的插件如管理虛擬環境的 `pyenv-virtualenv`、檢查安裝環境需求是否有誤的 `pyenv-doctor` 等。
+
+    - 使用 `pyenv install` 安裝 Python
+接著可以輸入 `pyenv install PYTHON_VERSION` 來下載想要的 Python 版本，例如想要下載 3.8.0 版的話可以輸入：
+```bash
+pyenv install -v 3.8.0
+```
+`-v` 代表會輸出冗長模式說明其中安裝的執行內容，除此以外也可以透過 `pyenv install --list` 顯示全部可以下載的 Python 版本，可以再透過 `grep` 輸出想要的版本有哪些
+- 使用 `pyenv versions` 顯示已經安裝的 Python 版本
+
+透過輸入 `pyenv versions` 可以輸出已經下載的所有 Python：
+```bash
+pyenv versions
+  system
+* 3.8.0 (set by /Users/xxx/.pyenv/version)
+  3.8.5
+```
+`pyenv versions` 會顯示當下 local 或 global 的所使用的 Python 版本，括號內容為 Python 來源位置
+
+
+
 ## 淺析 Pyenv 原理
 ## 替代方案
 ## 參考資料
