@@ -38,7 +38,7 @@ brew install openssl readline sqlite3 xz zlib
 ```
 並且依照官方文件教學設定
 
-一般安裝後會在 Home 目錄下產出 `.pyenv` 的資料夾，其中包含 `versions`, `shims` 和`plugins`，分別會放的內容如下：
+一般安裝後會在家目錄下產出 `.pyenv` 的資料夾，其中包含 `versions`, `shims` 和`plugins`，分別會放的內容如下：
 
 `versions`資料夾會放置下載的所有 Python 版本
 
@@ -46,7 +46,7 @@ brew install openssl readline sqlite3 xz zlib
 
 `plugins` 資料夾下放置的是 pyenv 相關的插件如管理虛擬環境的 `pyenv-virtualenv`、檢查安裝環境需求是否有誤的 `pyenv-doctor` 等。
 
-### 使用 `pyenv init` 啟動 shims 及有自動補全的功能
+### 使用 `pyenv init` 啟動 shims 及自動補全的功能
 
 在官方文件中有提到，若希望可以讓 shell 啟動 shims 及有自動補全的功能，需要將 `pyenv init` 指令加入到 shell 配置 （configuration file）中
 
@@ -63,7 +63,7 @@ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nf
 exec "$SHELL"
 ```
 
-`pyenv init -` 會輸出一些 shell 指令，例如在 zsh 下呼叫下會輸出，可參考[原始碼](https://github.com/pyenv/pyenv/blob/master/libexec/pyenv-init)：
+`pyenv init -` 會輸出一些 shell 腳本，例如在 zsh 下呼叫下會輸出，可參考[原始碼](https://github.com/pyenv/pyenv/blob/master/libexec/pyenv-init)：
 ```bash
 export PATH="/Users/xxxx/.pyenv/shims:${PATH}"
 export PYENV_SHELL=zsh
@@ -91,25 +91,25 @@ pyenv() {
 - 執行 `pyenv rehash` 安裝 shims
 
 ### 使用 `pyenv install` 安裝 Python
-接著可以輸入 `pyenv install PYTHON_VERSION` 來下載想要的 Python 版本，例如想要下載 3.8.0 版的話可以輸入：
+接著可以輸入 `pyenv install <python_version>` 來下載想要的 Python 版本，例如想要下載 3.8.0 版的話可以輸入：
 ```bash
 pyenv install -v 3.8.0
 ```
 `-v` 代表會輸出冗長模式說明其中安裝的執行內容，除此以外也可以透過 `pyenv install --list` 顯示全部可以下載的 Python 版本，可以再透過 `grep` 輸出想要的版本有哪些
 
-### 使用 `pyenv global PYTHON_VERSION` 設定全域的 Python 版本
+### 使用 `pyenv global <python_version>` 設定全域的 Python 版本
 
 舉例來說，輸入 `pyenv global 3.8.0` 將會設定全域的 Python 版本為 3.8.0，設定後也可以輸入 `pyenv global` 來確認當前設定的 Python 版本為何。另外設定過後也可以在 `.pyenv` 上看到多出一個 `version`的檔案，其內容為當前設定的全域 Python 版本
 
-### 使用 `pyenv local PYTHON_VERSION` 設定本地（local）的 Python 版本
+### 使用 `pyenv local <python_version>` 設定區域（local）的 Python 版本
 
-舉例來說，輸入 `pyenv local 3.8.0` 將會設定本地（local）的版本為系統 3.8.0，設定後也同樣可以輸入 `pyenv local` 來確認當前設定的本地（local） pyenv 版本為何，並且在設定的該目錄下，可以看到一個 `.python-version` 檔案，其內容會是該本地（local）的 Python 版本
+舉例來說，輸入 `pyenv local 3.8.0` 將會設定區域（local）的版本為系統 3.8.0，設定後也同樣可以輸入 `pyenv local` 來確認當前設定的區域（local） pyenv 版本為何，並且在設定的該目錄下，可以看到一個 `.python-version` 檔案，其內容會是該區域（local）的 Python 版本
 
 ### 使用 `pyenv versions` 顯示已經安裝的 Python 版本
 
 透過輸入 `pyenv versions` 可以輸出已經下載的所有 Python：
 ```bash
-pyenv versions
+$ pyenv versions
   system
 * 3.8.0 (set by /Users/xxx/.pyenv/version)
   3.8.5
@@ -120,7 +120,7 @@ pyenv versions
 
 舉例來說，`pyenv which pip3` 會顯示當前使用的 `pip3` 來的來源會是哪個，可能會是系統的 `/usr/local/bin/pip3` 或是 `/Users/xxxx/.pyenv/versions/3.8.0/bin/pip3`，端看自己透過 `pyenv` 選用的 Python 版本決定，與 `which pip3` 差別在於，`which pip3` 會回傳的是 `~/.pyenv/shims` 下的 `pip3` 而無從得知 `pyenv` 選擇的版本為何。
 
-### 使用 `pyenv uninstall PYTHON_VERSION` 解除安裝指定的 Python 版本
+### 使用 `pyenv uninstall <python_version>` 解除安裝指定的 Python 版本
 
 假設要刪除 Python 3.8.5 的話，只需要輸入 `pyenv uninstall 3.8.5`，則 pyenv 會刪除 `~/.pyenv/versions/3.8.5`
 
@@ -130,8 +130,26 @@ pyenv versions
 
 
 ### 使用 `pyenv shell`
-### 使用 `pyenv local`
-### 使用 `pyenv global`
+在 shell 配置檔末加入 `pyenv init -` 將可以自動載入 `pyenv`，接著才能夠使用 `pyenv shell`
+
+`pyenv shell <verison>` 將可以設定 PYENV_VERSION 環境變數，作為 shell 使用的 Python 版本，此版本將會覆蓋全域及區域的 Python 版本，若不需要可以使用 `pyenv shell --unset` 取消。
+
+當想要在 shell 中使用多個版本的 Python 的話，可以輸入 `pyenv shell <version>...`，輸入後便可以在環境中使用 Python 的版本，舉例來說，想要可以使用 2.7.7 和 3.8.0 的話可以輸入 `pyenv shell 2.7.6 3.8.0`，接著可以看到下面的結果：
+```bash
+$ pyenv versions
+  system
+* 2.7.6 (set by PYENV_VERSION environment variable)
+* 3.3.3 (set by PYENV_VERSION environment variable)
+$ python --version
+Python 2.7.6
+$ python2.7 --version
+Python 2.7.6
+$ python3.3 --version
+Python 3.3.3
+```
+
+輸入比較前面的版號將會為是優先使用的 Python 版本，所以指令 python 會使用 2.7.6
+另外，`pyenv global` 和 `pyenv local` 同樣接受多個版本號的參數，作用如同 `pyenv shell` 輸入多個版本號，差別在於 `pyenv shell` 版本將會覆蓋 `pyenv local` 版本，並且 `pyenv local` 版本會覆蓋 `pyenv global` 版本。
 ### 使用 `pyenv rehash`
 
 ## 淺析 Pyenv 原理
@@ -142,3 +160,5 @@ pyenv versions
 - [Pyenv](https://github.com/pyenv/pyenv#understanding-path)
 - [Pyenv Commands](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global)
 - [Shim Wiki](https://en.wikipedia.org/wiki/Shim_(computing))
+## 其他備註
+- [Shell Parameter Expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html) 看原始碼會需要知道一些 Expansion 的意思
