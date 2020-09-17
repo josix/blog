@@ -154,7 +154,7 @@ Python 3.3.3
 
 ### 使用 `pyenv rehash`
 
-`pyenv rehash` 是在每次下載新的 Pyton 版本時，用於更新 Shims 可以使用的指令，其實在 `pyenv init` 和 `pyenv install` 中都會在執行這個指令，供使用者方便使用。
+`pyenv rehash` 是在每次下載新的 Python 版本時，用於更新 Shims 可以使用的指令，其實在 `pyenv init` 和 `pyenv install` 中都會在執行這個指令，供使用者方便使用。
 
 ## 淺析 Pyenv 原理
 
