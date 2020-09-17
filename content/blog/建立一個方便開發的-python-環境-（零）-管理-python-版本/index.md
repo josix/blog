@@ -132,7 +132,7 @@ $ pyenv versions
 ### 使用 `pyenv shell`
 在 shell 配置檔末加入 `pyenv init -` 將可以自動載入 `pyenv`，接著才能夠使用 `pyenv shell`
 
-`pyenv shell <verison>` 將可以設定 PYENV_VERSION 環境變數，作為 shell 使用的 Python 版本，此版本將會覆蓋全域及區域的 Python 版本，若不需要可以使用 `pyenv shell --unset` 取消。
+`pyenv shell <verison>` 將可以設定 `PYENV_VERSION` 環境變數，作為 shell 使用的 Python 版本，此版本將會覆蓋全域及區域的 Python 版本，若不需要可以使用 `pyenv shell --unset` 取消。
 
 當想要在 shell 中使用多個版本的 Python 的話，可以輸入 `pyenv shell <version>...`，輸入後便可以在環境中使用 Python 的版本，舉例來說，想要可以使用 2.7.7 和 3.8.0 的話可以輸入 `pyenv shell 2.7.6 3.8.0`，接著可以看到下面的結果：
 ```bash
