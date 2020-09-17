@@ -149,6 +149,7 @@ Python 3.3.3
 ```
 
 輸入比較前面的版號將會為是優先使用的 Python 版本，所以指令 python 會使用 2.7.6
+
 另外，`pyenv global` 和 `pyenv local` 同樣接受多個版本號的參數，作用如同 `pyenv shell` 輸入多個版本號，差別在於 `pyenv shell` 版本將會覆蓋 `pyenv local` 版本，並且 `pyenv local` 版本會覆蓋 `pyenv global` 版本。
 ### 使用 `pyenv rehash`
 
