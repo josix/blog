@@ -174,7 +174,7 @@ Shim 在維基百科的解釋是：
 > In computer programming, a shim is a library that transparently intercepts API calls and changes the arguments passed, handles the operation itself or redirects the operation elsewhere.
 
 大意指的是 Shim 的主要工作就是擷取 API 呼叫並且改變其中的參數，並改變後的參數傳給其他執行單元執行、或自身處理。
-而在 "${PYENV_ROOT}/shims" 中的每支腳本都是做這樣的事情，其中的程式碼如下：
+而在 "${PYENV_ROOT}/shims" 中的每支腳本都是做這樣的事情（Pyenv 稱之為 rehashing），其中的程式碼如下：
 ```bash
 #!/usr/bin/env bash
 set -e
