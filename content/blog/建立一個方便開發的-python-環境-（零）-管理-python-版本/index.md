@@ -85,7 +85,7 @@ pyenv() {
 ```
 其中做了以下的事情：
 - 修改 `PATH` 環境變數，使其加入 "~/.penv/shims/"，讓之後的指令可以優先選擇 shims 中的指令執行
-- 新增 `PYENV_SHELL` 環境變數，此變數將會於下方 `pyenv rehash` 使用
+- 新增 `PYENV_SHELL` 環境變數，此變數將會於下方 `pyenv rehash` 及 `pyenv shell` 使用
 - 導入 `pyenv` 自動補全腳本
 - 執行 `pyenv rehash` 安裝 shims
 
