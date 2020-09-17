@@ -200,7 +200,7 @@ exec "/usr/local/Cellar/pyenv/1.2.20/libexec/pyenv" exec "$program" "$@"
 ```
 其中會將輸入的指令及參數帶入至 `pyenv exec` 執行，這些檔案也是在 `pyenv rehash` 時建立的。
 
-## `pyenv exec` 在做什麼
+### `pyenv exec` 在做什麼
 
 查看[原始碼](https://github.com/pyenv/pyenv/blob/master/libexec/pyenv-exec)可以發現，下面者一段：
 
@@ -217,6 +217,32 @@ exec "$PYENV_COMMAND_PATH" "$@"
 中透過呼叫 `pyenv which` 可以得出當前使用的 Python 版本，並且取得其 `bin/` 位置加入至 `PATH` 環境變數，最後再帶入原先帶入的參數執行。
 
 ## 替代方案
+
+- 若不希望使用 pyenv 的 shim，也不希望看到像是 `.python-version`, `version`, `PYTHON_VERSION` 這樣的檔案或變數在，也可以透過 pyenv 中的 python-build 來幫助自己下載 特定的 Python 版本並解壓縮、編譯到想要的位置。
+擷取自 PyConTW'18 TP 大大的分享：
+```bash
+$ python-build 3.6.5 ~/.local/pythons/3.6
+$ python-build 3.5.4 ~/.local/pythons/3.5
+$ ln -s ~/.local/pythons/3.6/python3.6 ~/.local/bin
+$ ln -s ~/.local/pythons/3.5/python3.5 ~/.local/bin
+$ ln -s ~/.local/bin/python3.6 ~/.local/bin/python3
+```
+
+- 若不使用 Pyenv 也完全不希望使用系統的 Python 版本，可以將下列指令放入 shell 配置檔中：
+```bash
+python() {
+  local PYTHON="$(which python)"
+  if [[ "$PYTHON" == /usr/* ]];
+  then
+     echo "nope" >&2 | echo >/dev/null
+  else
+     "$PYTHON" "$@"
+  fi
+}
+```
+如此便可以避免呼叫到系統的 Python 版本。
+
+
 ## 參考資料
 - [這樣的開發環境沒問題嗎？](https://www.youtube.com/watch?v=6Nl0IYkU0hU)
 - [Managing Multiple Python Versions With pyenv](https://realpython.com/intro-to-pyenv/#why-not-use-system-python)
