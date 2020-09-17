@@ -198,7 +198,7 @@ fi
 export PYENV_ROOT="/Users/wilson/.pyenv"
 exec "/usr/local/Cellar/pyenv/1.2.20/libexec/pyenv" exec "$program" "$@"
 ```
-其中會將輸入的指令及參數帶入至 `pyenv exec` 執行，這些檔案也是在 `pyenv rehash` 時建立的。
+其中會將輸入的指令及參數帶入至 `pyenv exec` 執行，這些程式碼也是在 `pyenv rehash` 時建立的。
 
 ### `pyenv exec` 在做什麼
 
