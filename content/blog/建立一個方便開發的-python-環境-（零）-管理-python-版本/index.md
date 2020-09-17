@@ -87,14 +87,18 @@ pyenv versions
 
 在官方文件中有提到，若希望可以讓 shell 啟動 shims 及有自動補全的功能，需要將 `pyenv init` 指令加入到 shell 配置 （configuration file）中
 
-```
+```bash
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
 ```
 
 > 若是 zsh 的話會需要輸出至 `.zshrc`
 
-**請注意，由於 `pyenv init` 會改變 PATH 環境變數的內容，使 shell 應該要優先使用 `~/.pyenv/shims` 內的指令，請確認該指令位於配置檔案的最下方**
+**請注意，由於 `pyenv init` 會改變 `PATH` 環境變數的內容，使 shell 應該要優先使用 `~/.pyenv/shims` 內的指令，請確認該指令位於配置檔案的最下方**
 
+完成後，可以重新啟動 `shell` 讓 `PATH` 的路徑改變可以重新載入：
+```bash
+exec "$SHELL"
+```
 ### 使用 `pyenv init` 
 `pyenv init` 將會
 ### 使用 `pyenv shell`
