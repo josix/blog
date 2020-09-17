@@ -11,7 +11,7 @@ description: 此篇文章將會紀錄過去在 macOS 上自己管理不同 Pytho
 Hmm... 聽起來不太妙，總要一個籠子來好好管理這些蛇，~~免得早晚被蛇咬到寫不出 code 來~~ ，`Pyenv` 就是那個籠子，以下將會介紹 `Pyenv` 的使用方式及運作原理以及一些不用 `Pyenv` 的替代方案。
 ## 系統 Python 不好嗎
 使用系統的 Python 確實會有些問題的：
-- 最基本的原因是該版本應該也不會是想要用的版本，現行的版本多為 3.6 - 3.8，稍微舊的系其統內建 Python 多半是 2.7, 3.3, 3.4 等，若有 3.6 可能已經相當堪用，但還是會有下述的問題。
+- 最基本的原因是該版本應該也不會是想要用的版本，現行的版本多為 3.6 - 3.8，稍微舊的系統其內建 Python 多半是 2.7, 3.3, 3.4 等，若有 3.6 可能已經相當堪用，但還是會有下述的問題。
 - 由於是系統的 Python，每當要使用 pip 下載任何套件，可能會需要下 `sudo pip install` 的指令，然而一但全部東西都裝在全域，接下來的套件管理也將會是場災難，當這台機器的其他使用者要使用同套件的不同版本時，他將覆蓋先前的版本又或者他根本裝不了，也許帶上 `--user` 參數可以緩解這個狀況，但當不同 Project 有著不同的套件版本時，同樣的問題又誕生了，你可能會需要虛擬環境來進行管理，那又會有其他的問題要誕生了。
 - 由於是系統的 Python，通常不太敢對它做出更動，以免相依於上面的整個系統壞掉，這也代表著你不能夠完全掌控它，當不可掌控的 Python 因為 OS 更新而發生什麼改變時，可能自己的專案也會跟著不可掌控了。
 ## 為什麼要使用 Pyenv
@@ -42,7 +42,7 @@ brew install openssl readline sqlite3 xz zlib
 
 `versions` 資料夾會放置下載的所有 Python 版本
 
-`shims` 是 pyenv 用於截取使用者呼叫 python 的相關指令，並且將其所附帶的參數一併帶入至 pyenv 執行所想要執行的 Python 版本，`shims` 路徑會被加入至 `PATH` 環境變數當中
+`shims` 是 pyenv 用於截取使用者呼叫 python 的相關指令，並且將其所附帶的參數一併帶入至 pyenv 執行，`shims` 路徑會被加入至 `PATH` 環境變數當中
 
 `plugins` 資料夾下放置的是 pyenv 相關的插件如管理虛擬環境的 `pyenv-virtualenv`、檢查安裝環境需求是否有誤的 `pyenv-doctor` 等。
 
@@ -63,7 +63,7 @@ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nf
 exec "$SHELL"
 ```
 
-`pyenv init -` 會輸出一些 shell 腳本，例如在 zsh 下呼叫下會輸出：（可參考[原始碼](https://github.com/pyenv/pyenv/blob/master/libexec/pyenv-init)）
+`pyenv init -` 會輸出一些 shell 指令，例如在 zsh 下呼叫下會輸出：（可參考[原始碼](https://github.com/pyenv/pyenv/blob/master/libexec/pyenv-init)）
 ```bash
 export PATH="/Users/xxxx/.pyenv/shims:${PATH}"
 export PYENV_SHELL=zsh
@@ -85,8 +85,8 @@ pyenv() {
 }
 ```
 其中做了以下的事情：
-- 修改 `PATH` 環境變數，使其加入 "${PYENV_ROOT}/shims/"，讓之後的指令可以優先選擇 shims 中的指令執行
-- 新增 `PYENV_SHELL` 環境變數，此變數將會於下方 `pyenv rehash` 及 `pyenv shell` 使用
+- 修改 `PATH` 環境變數，使其加入 `${PYENV_ROOT}/shims/`，讓之後的指令可以優先選擇 shims 中的指令執行
+- 新增 `PYENV_SHELL` 環境變數，此變數將會於`pyenv rehash` 及 `pyenv shell` 使用
 - 導入 `pyenv` 自動補全腳本
 - 執行 `pyenv rehash` 安裝 shims
 
@@ -103,7 +103,7 @@ pyenv install -v 3.8.0
 
 ### 使用 `pyenv local <python_version>` 設定區域的 Python 版本
 
-舉例來說，輸入 `pyenv local 3.8.0` 將會設定區域的版本為系統 3.8.0，設定後也同樣可以輸入 `pyenv local` 來確認當前設定的區域 pyenv 版本為何，並且在設定的該目錄下，可以看到一個 `.python-version` 檔案，其內容會是該區域的 Python 版本
+舉例來說，輸入 `pyenv local 3.8.0` 將會設定區域的版本為 3.8.0，設定後也同樣可以輸入 `pyenv local` 來確認當前設定的區域 pyenv 版本為何，並且在設定的該目錄下，可以看到一個 `.python-version` 檔案，其內容會是該區域的 Python 版本
 
 ### 使用 `pyenv versions` 顯示已經安裝的 Python 版本
 
@@ -118,7 +118,7 @@ $ pyenv versions
 
 ### 使用 `pyenv which <command>` 得知目前的 command 來源
 
-舉例來說，`pyenv which pip3` 會顯示當前使用的 `pip3` 來的來源會是哪個，可能會是系統的 `/usr/local/bin/pip3` 或是 `/Users/xxxx/.pyenv/versions/3.8.0/bin/pip3`，端看自己透過 `pyenv` 選用的 Python 版本決定，與 `which pip3` 差別在於，`which pip3` 會回傳的是 `~/.pyenv/shims` 下的 `pip3` 而無從得知 `pyenv` 選擇的版本為何。
+舉例來說，`pyenv which pip3` 會顯示當前使用的 `pip3` 來的來源會是哪個，可能會是系統的 `/usr/local/bin/pip3` 或是 `/Users/xxxx/.pyenv/versions/3.8.0/bin/pip3` 等，端看自己透過 `pyenv` 選用的 Python 版本決定，與 `which pip3` 差別在於，`which pip3` 會回傳的是 `~/.pyenv/shims` 下的 `pip3` 而無從得知 `pyenv` 選擇的版本為何。
 
 ### 使用 `pyenv uninstall <python_version>` 解除安裝指定的 Python 版本
 
@@ -166,15 +166,15 @@ Python 3.3.3
 ```
 /Users/xxx/.pyenv/shims:/usr/local/opt/llvm/bin:/Users/xxx/torch/install/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/opt/local/bin/:/Users/xxx/bin
 ```
-系統將會由左至右開始查找，因此在前面的目錄先找到的話便不會往下繼續找，而當輸入 `eval "$(pyenv init -)"` 時會將把 "${PYENV_ROOT}/shims" 加入 `PATH` 的最前面，因此達到呼叫 Pyenv `shims` 中的指令而非系統的。
+系統將會由左至右開始查找，因此在前面的目錄先找到的話便不會往下繼續找，而當輸入 `eval "$(pyenv init -)"` 時會將把 `${PYENV_ROOT}/shims` 加入 `PATH` 的最前面，因此達到呼叫 Pyenv `shims` 中的指令而非系統的。
 
 ### Shim 是什麼
 
 Shim 在維基百科的解釋是：
 > In computer programming, a shim is a library that transparently intercepts API calls and changes the arguments passed, handles the operation itself or redirects the operation elsewhere.
 
-大意指的是 Shim 的主要工作就是擷取 API 呼叫並且改變其中的參數，並改變後的參數傳給其他執行單元執行、或自身處理。
-而在 "${PYENV_ROOT}/shims" 中的每支腳本都是做這樣的事情（Pyenv 稱之為 rehashing），其中的程式碼如下：
+大意指的是 Shim 的主要工作就是擷取 API 呼叫並且改變其中的參數，隨後將改變後的參數傳給其他執行單元執行、或自身處理。
+而在 `${PYENV_ROOT}/shims`中的每支腳本都是做這樣的事情（Pyenv 稱之為 rehashing），其中的程式碼如下：
 ```bash
 #!/usr/bin/env bash
 set -e
@@ -198,7 +198,7 @@ fi
 export PYENV_ROOT="/Users/wilson/.pyenv"
 exec "/usr/local/Cellar/pyenv/1.2.20/libexec/pyenv" exec "$program" "$@"
 ```
-其中會將輸入的指令及參數帶入至 `pyenv exec` 執行，這些程式碼也是在 `pyenv rehash` 時建立的。
+其中可以看到最後一行會將輸入的指令及參數帶入至 `pyenv exec` 執行，這些程式碼也是在 `pyenv rehash` 時建立於 `${PYENV_ROOT}/shims` 下的。
 
 ### `pyenv exec` 在做什麼
 
@@ -214,7 +214,7 @@ if [ "${PYENV_BIN_PATH#${PYENV_ROOT}}" != "${PYENV_BIN_PATH}" ]; then
 fi
 exec "$PYENV_COMMAND_PATH" "$@"
 ```
-中透過呼叫 `pyenv which` 可以得出當前使用的 Python 版本，並且取得其 `bin/` 位置加入至 `PATH` 環境變數，最後再帶入原先帶入的參數執行。
+其中透過呼叫 `pyenv which` 可以得出當前使用的 Python 版本，並且取得其 `bin/` 位置加入至 `PATH` 環境變數，最後再帶入原先帶入的參數執行。
 
 ## 替代方案
 
