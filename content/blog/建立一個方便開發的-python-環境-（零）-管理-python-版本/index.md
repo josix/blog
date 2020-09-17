@@ -228,7 +228,7 @@ $ ln -s ~/.local/pythons/3.5/python3.5 ~/.local/bin
 $ ln -s ~/.local/bin/python3.6 ~/.local/bin/python3
 ```
 
-- 若不使用 Pyenv 也完全不希望使用系統的 Python 版本，可以將下列指令放入 shell 配置檔中：
+- 若不使用 Pyenv 也完全不希望使用系統的 Python 版本，可以將下列指令放入 shell 配置檔中，同樣取自 PyConTW'18 TP 大大的分享：
 ```bash
 python() {
   local PYTHON="$(which python)"
@@ -244,7 +244,7 @@ python() {
 
 
 ## 參考資料
-- [這樣的開發環境沒問題嗎？](https://www.youtube.com/watch?v=6Nl0IYkU0hU)
+- [這樣的開發環境沒問題嗎？ (-- TP@PyConTW'18 )](https://www.youtube.com/watch?v=6Nl0IYkU0hU)
 - [Managing Multiple Python Versions With pyenv](https://realpython.com/intro-to-pyenv/#why-not-use-system-python)
 - [Pyenv](https://github.com/pyenv/pyenv#understanding-path)
 - [Pyenv Commands](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global)
