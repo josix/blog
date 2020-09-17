@@ -63,7 +63,7 @@ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nf
 exec "$SHELL"
 ```
 
-`pyenv init -` 會輸出一些 shell 腳本，例如在 zsh 下呼叫下會輸出，可參考[原始碼](https://github.com/pyenv/pyenv/blob/master/libexec/pyenv-init)：
+`pyenv init -` 會輸出一些 shell 腳本，例如在 zsh 下呼叫下會輸出：（可參考[原始碼](https://github.com/pyenv/pyenv/blob/master/libexec/pyenv-init)）
 ```bash
 export PATH="/Users/xxxx/.pyenv/shims:${PATH}"
 export PYENV_SHELL=zsh
