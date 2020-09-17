@@ -244,7 +244,7 @@ python() {
 
 
 ## 參考資料
-- [這樣的開發環境沒問題嗎？ (-- TP@PyConTW'18 )](https://www.youtube.com/watch?v=6Nl0IYkU0hU)
+- [這樣的開發環境沒問題嗎？ (-- TP@PyConTW'18 )](https://www.youtube.com/watch?v=6Nl0IYkU0hU) [(slides)](https://speakerdeck.com/uranusjr/zhe-yang-de-kai-fa-huan-jing-mei-wen-ti-ma)
 - [Managing Multiple Python Versions With pyenv](https://realpython.com/intro-to-pyenv/#why-not-use-system-python)
 - [Pyenv](https://github.com/pyenv/pyenv#understanding-path)
 - [Pyenv Commands](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global)
