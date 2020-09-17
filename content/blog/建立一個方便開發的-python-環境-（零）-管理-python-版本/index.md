@@ -99,7 +99,7 @@ pyenv install -v 3.8.0
 
 ### 使用 `pyenv global <python_version>` 設定全域的 Python 版本
 
-舉例來說，輸入 `pyenv global 3.8.0` 將會設定全域的 Python 版本為 3.8.0，設定後也可以輸入 `pyenv global` 來確認當前設定的 Python 版本為何。另外設定過後也可以在 `.pyenv` 上看到多出一個 `version`的檔案，其內容為當前設定的全域 Python 版本
+舉例來說，輸入 `pyenv global 3.8.0` 將會設定全域的 Python 版本為 3.8.0，設定後也可以輸入 `pyenv global` 來確認當前設定的 Python 版本為何。另外設定過後也可以在 `.pyenv` 上看到多出一個 `version` 的檔案，其內容為當前設定的全域 Python 版本
 
 ### 使用 `pyenv local <python_version>` 設定區域的 Python 版本
 
