@@ -198,9 +198,23 @@ fi
 export PYENV_ROOT="/Users/wilson/.pyenv"
 exec "/usr/local/Cellar/pyenv/1.2.20/libexec/pyenv" exec "$program" "$@"
 ```
-其中會將輸入的指令及參數帶入至 `pyenv exec` 執行，這些檔案也是在 `pyenv rehash`時建立的。
+其中會將輸入的指令及參數帶入至 `pyenv exec` 執行，這些檔案也是在 `pyenv rehash` 時建立的。
 
+## `pyenv exec` 在做什麼
 
+查看[原始碼](https://github.com/pyenv/pyenv/blob/master/libexec/pyenv-exec)可以發現，下面者一段：
+
+```bash
+PYENV_COMMAND_PATH="$(pyenv-which "$PYENV_COMMAND")"
+PYENV_BIN_PATH="${PYENV_COMMAND_PATH%/*}"
+# ...
+if [ "${PYENV_BIN_PATH#${PYENV_ROOT}}" != "${PYENV_BIN_PATH}" ]; then
+  # Only add to $PATH for non-system version.
+  export PATH="${PYENV_BIN_PATH}:${PATH}"
+fi
+exec "$PYENV_COMMAND_PATH" "$@"
+```
+中透過呼叫 `pyenv which` 可以得出當前使用的 Python 版本，並且取得其 `bin/` 位置加入至 `PATH` 環境變數，最後再帶入原先帶入的參數執行。
 
 ## 替代方案
 ## 參考資料
