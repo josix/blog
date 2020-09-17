@@ -2,7 +2,7 @@
 title: 建立一個方便開發的 Python 環境 （零）- 管理 Python 版本
 date: 2020-09-14T17:42:20.679Z
 description: 此篇文章將會紀錄過去在 macOS 上自己管理不同 Python 版本的痛處，為了解決該問題而嘗試透過 pyenv 管理 Python
-  版本的使用筆記，並且也會介紹其他可能的不使用 pyenv 的替代方案
+  版本的使用、淺析筆記，並且也會介紹其他可能的不使用 pyenv 的替代方案
 ---
 ![Python Env](https://imgs.xkcd.com/comics/python_environment.png)
 
@@ -83,7 +83,20 @@ pyenv versions
 
 除了上述安裝、解除安裝、在不同 Scope 切換不同的 Python 版本以外，以下還有一些比較特別的使用方法
 
+###  安裝後的其他設定
+
+在官方文件中有提到，若希望可以讓 shell 啟動 shims 及有自動補全的功能，需要將 `pyenv init` 指令加入到 shell 配置 （configuration file）中
+
+```
+echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
+```
+
+> 若是 zsh 的話會需要輸出至 `.zshrc`
+
+**請注意，由於 `pyenv init` 會改變 PATH 環境變數的內容，使 shell 應該要優先使用 `~/.pyenv/shims` 內的指令，請確認該指令位於配置檔案的最下方**
+
 ### 使用 `pyenv init` 
+`pyenv init` 將會
 ### 使用 `pyenv shell`
 ### 使用 `pyenv local`
 ### 使用 `pyenv global`
@@ -96,3 +109,4 @@ pyenv versions
 - [Managing Multiple Python Versions With pyenv](https://realpython.com/intro-to-pyenv/#why-not-use-system-python)
 - [Pyenv](https://github.com/pyenv/pyenv#understanding-path)
 - [Pyenv Commands](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global)
+- [Shim Wiki](https://en.wikipedia.org/wiki/Shim_(computing))
