@@ -1,7 +1,8 @@
 ---
 title: 建立一個方便開發的 Python 環境 （零）- 管理 Python 版本
 date: 2020-09-14T17:42:20.679Z
-description: TBD
+description: 此篇文章將會紀錄過去在 macOS 上自己管理不同 Python 版本的痛處，為了解決該問題而嘗試透過 pyenv 管理 Python
+  版本的使用筆記，並且也會介紹其他可能的不使用 pyenv 的替代方案
 ---
 ![Python Env](https://imgs.xkcd.com/comics/python_environment.png)
 
