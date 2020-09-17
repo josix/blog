@@ -2,7 +2,7 @@
 title: 建立一個方便開發的 Python 環境 （零）- 管理 Python 版本
 date: 2020-09-14T17:42:20.679Z
 description: 此篇文章將會紀錄過去在 macOS 上自己管理不同 Python 版本的痛處，為了解決該問題而嘗試透過 pyenv 管理 Python
-  版本的使用筆記，並且也會稍微研究其運作的原理和介紹其他可能替代方案
+  版本的使用筆記，並且也會稍微研究其運作的原理和介紹其他可能替代方案。
 ---
 ![Python Env](https://imgs.xkcd.com/comics/python_environment.png)
 
@@ -166,9 +166,11 @@ Python 3.3.3
 ```
 /Users/xxx/.pyenv/shims:/usr/local/opt/llvm/bin:/Users/xxx/torch/install/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/opt/local/bin/:/Users/xxx/bin
 ```
-系統將會由左至右開始查找，因此在前面的目錄先找到的話便不會往下繼續找，而當輸入 `eval "$(pyenv init -)"` 時會將把 "${PYENV_ROOT}/shims" 加入 `PATH` 的最前面，因此達到呼叫 Pyenv Shims 中的指令而非系統的。
+系統將會由左至右開始查找，因此在前面的目錄先找到的話便不會往下繼續找，而當輸入 `eval "$(pyenv init -)"` 時會將把 "${PYENV_ROOT}/shims" 加入 `PATH` 的最前面，因此達到呼叫 Pyenv `shims` 中的指令而非系統的。
 
-### Shims 是什麼
+### Shim 是什麼
+
+Shim 是
 
 ## 替代方案
 ## 參考資料
