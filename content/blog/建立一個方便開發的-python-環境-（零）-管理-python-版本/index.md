@@ -157,12 +157,26 @@ Python 3.3.3
 `pyenv rehash` 是在每次下載新的 Pyton 版本時，用於更新 Shims 可以使用的指令，其實在 `pyenv init` 和 `pyenv install` 中都會在執行這個指令，供使用者方便使用。
 
 ## 淺析 Pyenv 原理
+
+如同前面介紹 `pyenv init` 時提及的， `pyenv` 將會修改 `PATH` 這個環境變數，要了解 Pyenv 的運作怎麼切換不同版本的 Python 首先要先了解 `PATH` 環境變數，以及 Shims 在 Pyenv 中扮演的角色為何。
+
+### `PATH` 環境變數
+
+當想要在 shell 中執行任何指令時，系統首先要知道這些指令是什麼，然而系統便會去一個個的路徑尋找相同名字的可執行檔案，而這些路徑將會首先定義在 `PATH` 環境變數中，若在 shell 中執行 `echo $PATH` 將可以看到一串由冒號分隔的字串，例如：
+```
+/Users/xxx/.pyenv/shims:/usr/local/opt/llvm/bin:/Users/xxx/torch/install/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/opt/local/bin/:/Users/xxx/bin
+```
+系統將會由左至右開始查找，因此在前面的目錄先找到的話便不會往下繼續找，而當輸入 `eval "$(pyenv init -)"` 時會將把 "${PYENV_ROOT}/shims" 加入 `PATH` 的最前面，因此達到呼叫 Pyenv Shims 中的指令而非系統的。
+
+### Shims 是什麼
+
 ## 替代方案
 ## 參考資料
 - [這樣的開發環境沒問題嗎？](https://www.youtube.com/watch?v=6Nl0IYkU0hU)
 - [Managing Multiple Python Versions With pyenv](https://realpython.com/intro-to-pyenv/#why-not-use-system-python)
 - [Pyenv](https://github.com/pyenv/pyenv#understanding-path)
 - [Pyenv Commands](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global)
+- [PATH(variable)](https://en.wikipedia.org/wiki/PATH_(variable)#:~:text=PATH%20is%20an%20environment%20variable,has%20its%20own%20PATH%20setting.)
 - [Shim Wiki](https://en.wikipedia.org/wiki/Shim_(computing))
 ## 其他備註
-- [Shell Parameter Expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html) 看原始碼會需要知道一些 Expansion 的意思
+- [Shell Parameter Expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html) （看原始碼會需要知道一些 Expansion 的意思）
