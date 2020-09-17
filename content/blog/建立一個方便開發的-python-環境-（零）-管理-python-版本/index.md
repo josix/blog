@@ -218,7 +218,7 @@ exec "$PYENV_COMMAND_PATH" "$@"
 
 ## 替代方案
 
-- 若不希望使用 pyenv 的 shim，也不希望看到像是 `.python-version`, `version`, `PYTHON_VERSION` 這樣的檔案或變數在，也可以透過 pyenv 中的 python-build 來幫助自己下載 特定的 Python 版本並解壓縮、編譯到想要的位置。
+- 若不希望使用 pyenv 的 Shim，也不希望看到像是 `.python-version`, `version`, `PYTHON_VERSION` 這樣的檔案或變數在，也可以透過 pyenv 中的 python-build 來幫助自己下載 特定的 Python 版本並解壓縮、編譯到想要的位置。
 擷取自 PyConTW'18 TP 大大的分享：
 ```bash
 $ python-build 3.6.5 ~/.local/pythons/3.6
