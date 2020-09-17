@@ -116,7 +116,7 @@ $ pyenv versions
 ```
 `pyenv versions` 會顯示當下 local 或 global 的所使用的 Python 版本，括號內容為 Python 來源位置，另外若輸入 `pyenv version` 則不會顯示全部的 Python 可用版本，並只顯示當前使用的 Python 版本，且本地會優先於全域的版本。
 
-### 使用 `pyenv which COMMAND` 得知目前的 COMMAND 來源
+### 使用 `pyenv which <command>` 得知目前的 command 來源
 
 舉例來說，`pyenv which pip3` 會顯示當前使用的 `pip3` 來的來源會是哪個，可能會是系統的 `/usr/local/bin/pip3` 或是 `/Users/xxxx/.pyenv/versions/3.8.0/bin/pip3`，端看自己透過 `pyenv` 選用的 Python 版本決定，與 `which pip3` 差別在於，`which pip3` 會回傳的是 `~/.pyenv/shims` 下的 `pip3` 而無從得知 `pyenv` 選擇的版本為何。
 
