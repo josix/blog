@@ -40,7 +40,7 @@ brew install openssl readline sqlite3 xz zlib
 
 一般安裝後會在家目錄下產出 `.pyenv` 的資料夾，其中包含 `versions`, `shims` 和`plugins`，分別會放的內容如下：
 
-`versions`資料夾會放置下載的所有 Python 版本
+`versions` 資料夾會放置下載的所有 Python 版本
 
 `shims` 是 pyenv 用於截取使用者呼叫 python 的相關指令，並且將其所附帶的參數一併帶入至 pyenv 執行所想要執行的 Python 版本，`shims` 路徑會被加入至 `PATH` 環境變數當中
 
