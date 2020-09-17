@@ -37,6 +37,7 @@ brew install pyenv
 brew install openssl readline sqlite3 xz zlib
 ```
 並且依照官方文件教學設定
+
 一般安裝後會在 Home 目錄下產出 `.pyenv` 的資料夾，其中包含 `versions`, `shims` 和`plugins`，分別會放的內容如下：
 
 `versions`資料夾會放置下載的所有 Python 版本
@@ -84,7 +85,7 @@ pyenv() {
 }
 ```
 其中做了以下的事情：
-- 修改 `PATH` 環境變數，使其加入 "~/.penv/shims/"，讓之後的指令可以優先選擇 shims 中的指令執行
+- 修改 `PATH` 環境變數，使其加入 "${PYENV_ROOT}/shims/"，讓之後的指令可以優先選擇 shims 中的指令執行
 - 新增 `PYENV_SHELL` 環境變數，此變數將會於下方 `pyenv rehash` 及 `pyenv shell` 使用
 - 導入 `pyenv` 自動補全腳本
 - 執行 `pyenv rehash` 安裝 shims
