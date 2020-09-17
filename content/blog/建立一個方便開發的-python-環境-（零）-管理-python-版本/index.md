@@ -45,6 +45,50 @@ brew install openssl readline sqlite3 xz zlib
 
 `plugins` 資料夾下放置的是 pyenv 相關的插件如管理虛擬環境的 `pyenv-virtualenv`、檢查安裝環境需求是否有誤的 `pyenv-doctor` 等。
 
+### 使用 `pyenv init` 啟動 shims 及有自動補全的功能
+
+在官方文件中有提到，若希望可以讓 shell 啟動 shims 及有自動補全的功能，需要將 `pyenv init` 指令加入到 shell 配置 （configuration file）中
+
+```bash
+echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
+```
+
+> 若是 zsh 的話會需要輸出至 `.zshrc`
+
+**請注意，由於 `pyenv init` 會改變 `PATH` 環境變數的內容，使 shell 應該要優先使用 `~/.pyenv/shims` 內的指令，請確認該指令位於配置檔案的最下方**
+
+完成後，可以重新啟動 `shell` 讓 `PATH` 的路徑改變可以重新載入：
+```bash
+exec "$SHELL"
+```
+
+`pyenv init -` 會輸出一些 shell 指令，例如在 zsh 下呼叫下會輸出，可參考[原始碼](https://github.com/pyenv/pyenv/blob/master/libexec/pyenv-init)：
+```bash
+export PATH="/Users/xxxx/.pyenv/shims:${PATH}"
+export PYENV_SHELL=zsh
+source '/usr/local/Cellar/pyenv/1.2.20/libexec/../completions/pyenv.zsh'
+command pyenv rehash 2>/dev/null
+pyenv() {
+  local command
+  command="${1:-}"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(pyenv "sh-$command" "$@")";;
+  *)
+    command pyenv "$command" "$@";;
+  esac
+}
+```
+其中做了以下的事情：
+- 修改 `PATH` 環境變數，使其加入 "~/.penv/shims/"，讓之後的指令可以優先選擇 shims 中的指令執行
+- 新增 `PYENV_SHELL` 環境變數，此變數將會於下方 `pyenv rehash` 使用
+- 導入 `pyenv` 自動補全腳本
+- 執行 `pyenv rehash` 安裝 shims
+
 ### 使用 `pyenv install` 安裝 Python
 接著可以輸入 `pyenv install PYTHON_VERSION` 來下載想要的 Python 版本，例如想要下載 3.8.0 版的話可以輸入：
 ```bash
@@ -83,24 +127,7 @@ pyenv versions
 
 除了上述安裝、解除安裝、在不同 Scope 切換不同的 Python 版本以外，以下還有一些比較特別的使用方法
 
-###  安裝後的其他設定
 
-在官方文件中有提到，若希望可以讓 shell 啟動 shims 及有自動補全的功能，需要將 `pyenv init` 指令加入到 shell 配置 （configuration file）中
-
-```bash
-echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
-```
-
-> 若是 zsh 的話會需要輸出至 `.zshrc`
-
-**請注意，由於 `pyenv init` 會改變 `PATH` 環境變數的內容，使 shell 應該要優先使用 `~/.pyenv/shims` 內的指令，請確認該指令位於配置檔案的最下方**
-
-完成後，可以重新啟動 `shell` 讓 `PATH` 的路徑改變可以重新載入：
-```bash
-exec "$SHELL"
-```
-### 使用 `pyenv init` 
-`pyenv init` 將會
 ### 使用 `pyenv shell`
 ### 使用 `pyenv local`
 ### 使用 `pyenv global`
