@@ -170,7 +170,37 @@ Python 3.3.3
 
 ### Shim 是什麼
 
-Shim 是
+Shim 在維基百科的解釋是：
+> In computer programming, a shim is a library that transparently intercepts API calls and changes the arguments passed, handles the operation itself or redirects the operation elsewhere.
+
+大意指的是 Shim 的主要工作就是擷取 API 呼叫並且改變其中的參數，並改變後的參數傳給其他執行單元執行、或自身處理。
+而在 "${PYENV_ROOT}/shims" 中的每支腳本都是做這樣的事情，其中的程式碼如下：
+```bash
+#!/usr/bin/env bash
+set -e
+[ -n "$PYENV_DEBUG" ] && set -x
+
+program="${0##*/}"
+if [[ "$program" = "python"* ]]; then
+  for arg; do
+    case "$arg" in
+    -c* | -- ) break ;;
+    */* )
+      if [ -f "$arg" ]; then
+        export PYENV_FILE_ARG="$arg"
+        break
+      fi
+      ;;
+    esac
+  done
+fi
+
+export PYENV_ROOT="/Users/wilson/.pyenv"
+exec "/usr/local/Cellar/pyenv/1.2.20/libexec/pyenv" exec "$program" "$@"
+```
+其中會將輸入的指令及參數帶入至 `pyenv exec` 執行，這些檔案也是在 `pyenv rehash`時建立的。
+
+
 
 ## 替代方案
 ## 參考資料
@@ -178,7 +208,9 @@ Shim 是
 - [Managing Multiple Python Versions With pyenv](https://realpython.com/intro-to-pyenv/#why-not-use-system-python)
 - [Pyenv](https://github.com/pyenv/pyenv#understanding-path)
 - [Pyenv Commands](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-global)
-- [PATH(variable)](https://en.wikipedia.org/wiki/PATH_(variable)#:~:text=PATH%20is%20an%20environment%20variable,has%20its%20own%20PATH%20setting.)
+- [
+Deep dive into how pyenv actually works by leveraging the shim design pattern](https://mungingdata.com/python/how-pyenv-works-shims/#:~:text=Shims%20are%20lightweight%20executables%20that,the%20beginning%20of%20your%20PATH)
+- [PATH (variable)](https://en.wikipedia.org/wiki/PATH_(variable)#:~:text=PATH%20is%20an%20environment%20variable,has%20its%20own%20PATH%20setting.)
 - [Shim Wiki](https://en.wikipedia.org/wiki/Shim_(computing))
 ## 其他備註
 - [Shell Parameter Expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html) （看原始碼會需要知道一些 Expansion 的意思）
