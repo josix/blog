@@ -16,10 +16,9 @@ description: 在這篇文章中將會簡介何謂套件管理以及隨著開發�
 ## pip 的一些問題
 
 pip 看似方便，可以用來下載第三方套件，然而卻也有著下列的問題：
-- 基於先前提到過在環境之中有著多個版本 Python 的問題，隨著不同的 Python 版本也會有不同版本的 pip，那麼當在輸入指令 `pip` 時，難以得知自己使用的 pip 是哪一個版本的，必須自行查看 `PATH` 的優先度，並且確認該優先的路徑下是 Python 的哪個版本。
+- 基於先前提到過在環境之中有著多個版本 Python 的問題，隨著不同的 Python 版本也會有不同版本的 pip，那麼當在輸入指令 `pip` 時，難以得知自己使用的 pip 是哪一個版本的，必須自行查看 `PATH` 的優先度，並且確認該路徑下的 Python 是哪個版本。
 - pip 安裝的第三方套件皆為全域，也就是說，當今天有多個專案要同時進行開發，但專案之間有用著相同套件但有著不同的版本，由於 pip 只能夠安裝一個版本，將會導致有一個專案可能不能夠運作。
 - pip 通常會使用 Requirements File 將已經安裝的版本以特定格式紀錄（如下面範例，參閱 [PEP 440](https://www.python.org/dev/peps/pep-0440/)），然而這樣的紀錄方式，卻讓人難以發現套件彼此的相依性為何，常常發生安裝了一個套件，`pip freeze` 之後卻跳出了一堆相依且不知道哪裡來的套件，而要解除安裝時，卻無法將所有相依的套件也一並刪除掉。
-- Requirements File 通常也讓
 ```
 appdirs==1.4.4
 argcomplete==1.12.0
@@ -33,6 +32,9 @@ toml==0.10.1
 typed-ast==1.4.1
 userpath==1.4.1
 ```
+- Requirements File 的內容若規則未定義清楚，也容易產生相依性衝突，舉例來說當要安裝 `requests` 時，並不會知道安裝的版本為哪一版（通常是 PyPI 上最新的版本），也因此當專案要協作時，需透過 Requirements File 中寫清楚每個使用的套件版號，用來統一好大家應該要使用哪個版本來進行安裝，但相對 JS 中的 `package.json` 並沒有明確地將 dev 與 prod 時使用的相依套件區隔出來，並且也缺少了 Lock File 明確指出要的版本。
+
+
 ## Python 套件管理近況
 ## 參考資料
 - [Package Manager](https://en.wikipedia.org/wiki/Package_manager#Front-ends_for_locally_compiled_packages)
