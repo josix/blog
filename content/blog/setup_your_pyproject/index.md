@@ -48,7 +48,7 @@ userpath==1.4.1
 
 - pip's new resolver：在今年 (2020) Mozilla 和 Chan Zuckerberg Initiative的幫助下將推動 pip 的 dependency resolver 發展，pip 在 20.x 版本之中將可以使用 resolver 來解決相依套件之間的版本衝突問題，這將加強 pip 在安裝相依套件時維持套件之間的一致性，舉例來說，過去 `pip install "six<1.12" "virtualenv==20.0.2"` 將會下載到 `six==1.11 ` 然而 `virtualenv==20.0.2` 需要的是 `six>=1.12.0,<2` [（參閱此連結）](https://github.com/pypa/virtualenv/blob/20.0.2/setup.cfg#L42-L50)，而在新版本推出後，將會顯示錯誤資訊拒絕安裝。
 
-- pip 的替代方案：同樣為了解決上方所述的問題，也發展出了許多可使用的替代套件管理工具，如此[連結](https://grassfedcode.com/python-packaging/)，例如 pipx, pipenv, poetry。
+- pip 的替代方案：同樣為了解決上方所述的問題，也發展出了許多可使用的替代套件管理工具，如此[連結](https://grassfedcode.com/python-packaging/)，例如 pipx 在安裝套件時自動開啟一個獨立的虛擬環境放置該套件並且讓使用者不用 activate 也能夠使用該指令, pipenv 提供了專案專用的虛擬環境、明確的套件相依樹並透過 `Pipfile` 和 `Pipfile.lock` 來明確定出使用的相依套件, poetry 相似於 pipenv 然而提供了較快的 lock 時間並且多了套件發佈的指令可以使用。
 
 
 
