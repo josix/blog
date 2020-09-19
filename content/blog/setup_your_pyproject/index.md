@@ -59,3 +59,8 @@ userpath==1.4.1
 - [這樣的開發環境沒問題嗎？ -- TP@PyConTW'18](https://speakerdeck.com/uranusjr/zhe-yang-de-kai-fa-huan-jing-mei-wen-ti-ma)
 - [Python Table Manners- Cut the Cookie Gracefully -- Lee Wei@EuroPython'20](https://speakerdeck.com/leew/python-table-manners-cut-the-cookie-gracefully-at-euro-python-2020)
 - [List of software package management systems](https://en.wikipedia.org/wiki/List_of_software_package_management_systems)
+- [Why you should use `python -m pip`](https://snarky.ca/why-you-should-use-python-m-pip/)
+- [Python Application Dependency Management -- Liuyang Wan@PyConTW'20](https://drive.google.com/file/d/1AZoWKI3OQfpFETD2NoT6C9spanrsrOSG/view)
+- [New pip resolver to roll out this year](https://pyfound.blogspot.com/2020/03/new-pip-resolver-to-roll-out-this-year.html)
+- [Mozilla and Chan Zuckerberg Initiative to support pip](https://pyfound.blogspot.com/2019/12/moss-czi-support-pip.html)
+- [PEP 517 and 518 in Plain English](https://medium.com/@grassfedcode/pep-517-and-518-in-plain-english-47208ca8b7a6)
