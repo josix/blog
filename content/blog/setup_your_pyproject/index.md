@@ -42,10 +42,12 @@ userpath==1.4.1
 - 所有套件請都使用虛擬環境安裝：如同前面所提到的，為了避免使用 pip 所安裝的套件都安裝到全域而導致不同專案使用的套件產生衝突，最好的做法是依照專案建立不同區域的（local）虛擬環境，以確保每個專案中使用到的套件是獨立的不會互相影響。即便沒有專案，也請不要在將套件安裝到系統當中，可以使用 `pipx` 來安裝系統會使用到的套件，原因是要避免影響到系統相依的套件進而導致系統故障，因此使用者需注意「請ㄧ定要使用虛擬環境」、「請不要將套件安裝至全域」。
 - 永遠不要 `sudo pip intall`：在使用 `pip install` 不要使用 `sudo` 一方面是因為如上一點所述，不應該將套件安裝至全域。另一方面，這樣將出現讓惡意軟體有權限以 root 身份執行 setup.py 的機會，進而獲得使用者資訊或進行其他有安全疑慮的行為，事實上 PyPI 上過去也有許多命名假以亂真的套件（例如此 [issue](https://github.com/pypa/warehouse/issues/3948)），若不小心安裝到可能會洩漏個人資訊。
 - 使用 `python3.X -m pip` 而不是 `pip install`：為避免當使用者擁有多版 Python 版本時，使用自己不明確的 pip 版本，最好的做法會是習慣使用特定版本的直譯器呼叫該版本的 pip 進行安裝，以免搞亂自己的安裝環境。即便可以搭配上一篇的 `pyenv` 使用 `pip`，但我想透過 `python3.X -m pip` 使用 pip 雖然字數較多，但卻還是一個表達比較明確的指令，以避免歧義。
+- 在 Requirements File 中定出明確的版本號：在 `requirements.txt` 中，需要完全定義好每一個相依版本的版本號，只使用 `==` 確認每一個相依套件版本，若使用 `>=`、`<=` 等規則決定要安裝的相依套件，則可能導致安裝到相依套件彼此衝突的版本，因此在要釋出開發時所需的相依套件時，請務必只使用 `==` 確定每一個套件的版本號。
 
 ## Python 套件管理近況
 
-- pip's new resolver
+- pip's new resolver：在今年 (2020) Mozilla 和 Chan Zuckerberg Initiative的幫助下將推動 pip 的 dependency resolver 發展，pip 在 20.x 版本之中將可以使用 resolver 來解決相依套件之間的版本衝突問題，這將加強 pip 在安裝相依套件時維持套件之間的一致性，舉例來說，過去 `pip install "six<1.12" "virtualenv==20.0.2"` 將會下載到 `six==1.11 ` 然而 `virtualenv==20.0.2` 需要的是 `six>=1.12.0,<2` [參閱此連結](https://github.com/pypa/virtualenv/blob/20.0.2/setup.cfg#L42-L50)，而在新版本推出後，將會顯示錯誤資訊拒絕安裝。
+
 - pip 的替代方案
 
 [The Big List of Python Packaging and Distribution Tools](https://grassfedcode.com/python-packaging/)
