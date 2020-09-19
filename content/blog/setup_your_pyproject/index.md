@@ -37,7 +37,7 @@ userpath==1.4.1
 
 ## 使用 pip 需要注意的地方
 
-- 所有套件請都使用虛擬環境
+- 所有套件請都使用虛擬環境安裝
 - 不要 `sudo pip intall`
 - 使用 `python -m pip` 而不是 `pip install`
 
@@ -45,6 +45,7 @@ userpath==1.4.1
 
 - PEP 517
 - PEP 518
+- pip's new resolver
 - pip 的替代方案
 
 [The Big List of Python Packaging and Distribution Tools](https://grassfedcode.com/python-packaging/)
