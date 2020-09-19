@@ -35,11 +35,26 @@ userpath==1.4.1
 - Requirements File 的內容若規則未定義清楚，也容易產生相依性衝突，舉例來說當要安裝 `requests` 時，並不會知道安裝的版本為哪一版（通常是 PyPI 上最新的版本），也因此當專案要協作時，需透過 Requirements File 中寫清楚每個使用的套件版號，用來統一好大家應該要使用哪個版本來進行安裝，但相對 JS 中的 `package.json` 並沒有明確地將 dev 與 prod 時使用的相依套件區隔出來，並且也缺少了 Lock File 明確指出要的版本。
 
 
+## 使用 pip 需要注意的地方
+
+- 所有套件請都使用虛擬環境
+- 不要 `sudo pip intall`
+- 使用 `python -m pip` 而不是 `pip install`
+
 ## Python 套件管理近況
+
+- PEP 517
+- PEP 518
+- pip 的替代方案
+
+[The Big List of Python Packaging and Distribution Tools](https://grassfedcode.com/python-packaging/)
+
+
+
 ## 參考資料
 - [Package Manager](https://en.wikipedia.org/wiki/Package_manager#Front-ends_for_locally_compiled_packages)
 - [What is a package manager](https://web.archive.org/web/20171017151526/http://aptitude.alioth.debian.org/doc/en/pr01s02.html)
-- [What is pip?](https://realpython.com/what-is-pip/)
+- [What Is Pip? A Guide for New Pythonistas](https://realpython.com/what-is-pip/)
 - [這樣的開發環境沒問題嗎？ -- TP@PyConTW'18](https://speakerdeck.com/uranusjr/zhe-yang-de-kai-fa-huan-jing-mei-wen-ti-ma)
 - [Python Table Manners- Cut the Cookie Gracefully -- Lee Wei@EuroPython'20](https://speakerdeck.com/leew/python-table-manners-cut-the-cookie-gracefully-at-euro-python-2020)
 - [List of software package management systems](https://en.wikipedia.org/wiki/List_of_software_package_management_systems)
