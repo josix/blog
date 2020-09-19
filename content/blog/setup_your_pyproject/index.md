@@ -64,3 +64,4 @@ userpath==1.4.1
 - [New pip resolver to roll out this year](https://pyfound.blogspot.com/2020/03/new-pip-resolver-to-roll-out-this-year.html)
 - [Mozilla and Chan Zuckerberg Initiative to support pip](https://pyfound.blogspot.com/2019/12/moss-czi-support-pip.html)
 - [PEP 517 and 518 in Plain English](https://medium.com/@grassfedcode/pep-517-and-518-in-plain-english-47208ca8b7a6)
+- [Managing Python packages the right way](https://opensource.com/article/19/4/managing-python-packages)
