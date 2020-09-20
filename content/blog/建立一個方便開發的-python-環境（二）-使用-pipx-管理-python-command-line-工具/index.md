@@ -40,7 +40,7 @@ pipx ensurepath
 
 而 `pipx ensurepath` 作用為確認 pipx 所下載的 app 其執行檔位置有被加入至 `PATH` 環境變數中，若[沒有則會加進去](https://github.com/pipxproject/pipx/blob/master/src/pipx/commands/ensure_path.py#L61)。
 
-### 使用 `pipx completions` 顯示自動完成指示
+### 使用 `pipx completions` 顯示自動補全設定指示
 輸入 `pipx completions` 後將會輸出：
 ```
 Add the appropriate command to your shell's config file
@@ -76,6 +76,26 @@ eval "$(register-python-argcomplete pipx)"
 加入至 `.zshrc` 就可以在 shell 中讓 pipx 可以按 tab 自動補全。
 
 ### 使用 `pipx install <package_spec>` 安裝套件
+
+當使用 `pipx install <package_spec>` 後， pipx 會為將要安裝的套件開啟一個虛擬環境，並且將該套件安裝到裡面，再為其執行檔複製或建立一個 sympolic link 到 `$PIPX_BIN_DIR/bin` 下，供使用者直接調用。
+
+`<package_spec>` 並不限定是套件名稱只要是符合 pip 安裝規範（pip installation spec）的都可以，如 VCS_URL, ZIP_FILE, TAR_GZ_FILE 都是可以的，使用範例如下：
+```
+pipx install pycowsay
+pipx install --python python3.6 pycowsay
+pipx install --python python3.7 pycowsay
+pipx install git+https://github.com/psf/black
+pipx install git+https://github.com/psf/black.git@branch-name
+pipx install git+https://github.com/psf/black.git@git-hash
+pipx install https://github.com/psf/black/archive/18.9b0.zip
+pipx install black[d]
+```
+其中可以發現有 `--python` 這個選項是用於要開啟虛擬環境的 Python 版本，其限定必須是 Python3.5 以上。
+
+安裝玩套件之後將可以發現有幾個目錄出現在 `$PIPX_HOME` 當中：
+- `shared`:
+- `venvs`:
+- `.cache`:
 
 
 ## pipx 怎麼運作
