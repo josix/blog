@@ -13,11 +13,11 @@ ln -s ~/.local/venvs/pipenv/bin/pip ~/.local/bin
 ```
 （擷取自：這樣的開發環境沒問題嗎？ — TP@PyConTW’18）
 
-而 Flask 的作者 [Armin Ronacher](https://github.com/mitsuhiko) 也製作了 [pipsi](https://github.com/mitsuhiko/pipsi)（現已不維護） 來將上面所進行的工具打包起來提供使用者更好的使用體驗，受此影響 pipx 也跟著被 [Chad Smith](https://github.com/cs01/) 創造出來，並且包含了相似於 npx 的功能，讓使用者可以安裝使用該套件並隨後刪除。
+而 Flask 的作者大大 [Armin Ronacher](https://github.com/mitsuhiko) 也製作了 [pipsi](https://github.com/mitsuhiko/pipsi)（現已不維護） 來將上面所進行的工具打包起來提供使用者更好的使用體驗，受此影響 pipx 也跟著被 [Chad Smith](https://github.com/cs01/) 大大創造出來，並且包含了相似於 npx 的功能，讓使用者可以安裝使用該套件並隨後刪除。
 
 這讓 pipx 有著以下的主要特色：
-- 基於 pip 有 `list`、`upgrade` 和 `uninstall` 套件的功能。
-- 可以在安裝套件時為每個套件建出一個分離的環境。
+- 基於 pip 同樣也有 `list`、`upgrade` 和 `uninstall` 套件的功能。
+- 可以在安裝套件時為每個套件建出一個分離的環境，並可以在不啟動虛擬環境的情況下直接使用。
 - 在暫時的虛擬環境中執行最新版的套件功能。
 - 另外，所有指令都不會需要 `root` 權限，一切都在使用者權限下進行。
 
