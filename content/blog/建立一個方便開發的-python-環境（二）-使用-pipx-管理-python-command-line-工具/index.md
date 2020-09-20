@@ -25,6 +25,19 @@ ln -s ~/.local/venvs/pipenv/bin/pip ~/.local/bin
 
 ## pipx 基本使用方式
 
+### 使用 `brew install pipx` 安裝 pipx (macOS)
+
+首先需要確認系統支援 Python 3.6+ 和 pip
+
+接者只需要輸入：
+```bash
+brew install pipx
+pipx ensurepath
+```
+使用 brew install pipx， pipx 也可以使用 pip 安裝，但如此一來就會沒有使用虛擬環境並且安裝到了全域，因此我覺得只需要用 `brew install pipx` 就好。
+
+
+
 ## pipx 怎麼運作
 
 ## 資料來源
