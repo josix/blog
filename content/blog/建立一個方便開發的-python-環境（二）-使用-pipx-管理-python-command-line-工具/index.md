@@ -78,7 +78,6 @@ eval "$(register-python-argcomplete pipx)"
 ### 使用 `pipx install <package_spec>` 安裝套件
 
 
-
 ## pipx 怎麼運作
 
 ## 資料來源
