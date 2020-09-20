@@ -67,7 +67,7 @@ tcsh:
 fish:
     register-python-argcomplete --shell fish pipx | source
 ```
-以 zsh 舉例，只需要將
+有對於不同 shell 給予不同的指示，遵循其操作便可以讓 pipx 可以自動補全。以 zsh 舉例，只需要將
 ```
 autoload -U bashcompinit
 bashcompinit
