@@ -1,7 +1,7 @@
 ---
 title: 建立一個方便開發的 Python 環境（二）- 使用 pipx 管理基於 Python 的 Command-Line 工具
 date: 2020-09-20T09:35:07.698Z
-description: TBD
+description: 在這篇文章終將介紹 pipx 這個工具將可以解決什麼樣的問題，其中也將會介紹使用的方法，進而探究其中的運作原理。
 ---
 ## 為什麼要使用 pipx
 在[上一篇文章](https://josix.tw/pip-porblems-and-current-stats/)中有提到，`pip` 有幾點使用時需要注意的地方，其中有包含 「安裝套件時一定要使用虛擬環境」、「永遠不要使用 `sudo pip install`」、「不要將套件安裝至全域」，針對這三點，非常合理的照做就會是在自己創建一個獨立的虛擬環境，並且 activate 該虛擬環境或直接使用虛擬環境 `bin/` 中的指令來安裝自己想要的工具，最後再將該安裝完成的執行檔加入到 `PATH` 環境變數中。舉例來說，想要安裝一個 commandline 使用的 pipenv 工具並不會直接使用 `pip3 install pipenv` 來進行安裝，而是輸入下列的指令：
