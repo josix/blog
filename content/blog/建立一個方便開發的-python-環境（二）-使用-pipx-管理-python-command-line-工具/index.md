@@ -27,7 +27,7 @@ ln -s ~/.local/venvs/pipenv/bin/pip ~/.local/bin
 
 ### 使用 `brew install pipx` 安裝 pipx (macOS)
 
-首先需要確認系統支援 Python 3.6+ 和 pip
+**首先需要確認系統支援 Python 3.6+ 和 pip**
 
 接者只需要輸入：
 ```bash
@@ -35,6 +35,45 @@ brew install pipx
 pipx ensurepath
 ```
 使用 brew install pipx， pipx 也可以使用 pip 安裝，但如此一來就會沒有使用虛擬環境並且安裝到了全域，因此我覺得只需要用 `brew install pipx` 就好。
+
+預設的虛擬環境位置會開設在 `~/.local/pipx` 下，而預設的 binary 執行檔會在 `~/.local/bin` 下，分別可以由 `PIPX_HOME` 和 `PIPX_BIN_DIR` 環境變數來覆寫。
+
+而 `pipx ensurepath` 作用為確認 pipx 所下載的 app 其執行檔位置有被加入至 `PATH` 環境變數中，若[沒有則會加進去](https://github.com/pipxproject/pipx/blob/master/src/pipx/commands/ensure_path.py#L61)。
+
+### 使用 `pipx completions` 顯示自動完成指示
+輸入 `pipx completions` 後將會輸出：
+```
+Add the appropriate command to your shell's config file
+so that it is run on startup. You will likely have to restart
+or re-login for the autocompletion to start working.
+
+bash:
+    eval "$(register-python-argcomplete pipx)"
+
+zsh:
+    To activate completions for zsh you need to have
+    bashcompinit enabled in zsh:
+
+    autoload -U bashcompinit
+    bashcompinit
+
+    Afterwards you can enable completion for pipx:
+
+    eval "$(register-python-argcomplete pipx)"
+
+tcsh:
+    eval `register-python-argcomplete --shell tcsh pipx`
+
+fish:
+    register-python-argcomplete --shell fish pipx | source
+```
+以 zsh 舉例，只需要將
+```
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete pipx)"
+```
+加入至 `.zshrc` 就可以在 shell 中讓 pipx 可以按 tab 自動補全。
 
 
 
