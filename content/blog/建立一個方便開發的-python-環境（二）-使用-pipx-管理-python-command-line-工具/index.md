@@ -36,7 +36,7 @@ pipx ensurepath
 ```
 使用 brew install pipx， pipx 也可以使用 pip 安裝，但如此一來就會沒有使用虛擬環境並且安裝到了全域，因此我覺得只需要用 `brew install pipx` 就好。
 
-預設的虛擬環境位置會開設在 `~/.local/pipx` 下，而預設的 binary 執行檔會在 `~/.local/bin` 下，分別可以由 `PIPX_HOME` 和 `PIPX_BIN_DIR` 環境變數來覆寫。
+預設的虛擬環境位置會開設在 `~/.local/pipx/venvs` 下，而預設的 binary 執行檔會在 `~/.local/bin` 下，分別可以由 `PIPX_HOME` 和 `PIPX_BIN_DIR` 環境變數來覆寫成放置在 `$PIPX_HOME/venvs` 和 `$PIPX_BIN_DIR/bin`。
 
 而 `pipx ensurepath` 作用為確認 pipx 所下載的 app 其執行檔位置有被加入至 `PATH` 環境變數中，若[沒有則會加進去](https://github.com/pipxproject/pipx/blob/master/src/pipx/commands/ensure_path.py#L61)。
 
@@ -74,6 +74,8 @@ bashcompinit
 eval "$(register-python-argcomplete pipx)"
 ```
 加入至 `.zshrc` 就可以在 shell 中讓 pipx 可以按 tab 自動補全。
+
+### 使用 `pipx install <package_spec>` 安裝套件
 
 
 
