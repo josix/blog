@@ -8,6 +8,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.35",
     "@mdx-js/mdx": "^1.6.18",
     "@mdx-js/react": "^1.6.18",
     "gatsby": "^2.22.15",
