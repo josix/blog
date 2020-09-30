@@ -6,6 +6,7 @@ import { Disqus } from 'gatsby-plugin-disqus'
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import TOC from "../components/toc"
 import { rhythm, scale } from "../utils/typography"
 
 const styles = {
@@ -33,6 +34,11 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.mdx
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
+  const {
+    frontmatter,
+    tableOfContents,
+    body
+  } = post;
 
   const [shareSucceed, setShareSucceed] = useState(false);
   const [disqusConfig, setDisqusConfig] = useState({
@@ -44,8 +50,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
+        title={frontmatter.title}
+        description={frontmatter.description || post.excerpt}
       />
       <article>
         <header>
@@ -55,7 +61,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               marginBottom: 0,
             }}
           >
-            {post.frontmatter.title}
+            {frontmatter.title}
           </h1>
           <p
             style={{
@@ -64,10 +70,11 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               marginBottom: rhythm(1),
             }}
           >
-            {post.frontmatter.date}
+            {frontmatter.date}
           </p>
         </header>
-        <MDXRenderer>{post.body}</MDXRenderer>
+        {tableOfContents.items && <TOC items={tableOfContents.items} />}
+        <MDXRenderer>{body}</MDXRenderer>
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -107,8 +114,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           onClick={async () => {
             const navigator = window.navigator;
             const shareData = {
-              title: post.frontmatter.title,
-              text: `${post.frontmatter.title}`,
+              title: frontmatter.title,
+              text: `${frontmatter.title}`,
               url: location.href,
             }
             if (navigator.share) {
@@ -157,6 +164,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
       }
+      tableOfContents
     }
   }
 `
