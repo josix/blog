@@ -1,1 +1,1 @@
-export * from './AutoLink.js';
+export * from './autolink.js';

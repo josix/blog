@@ -1,6 +1,6 @@
 import { css } from '@emotion/core'
 
-export const AutoLink = css`
+export const autolink = css`
   svg {
     visibility: hidden;
   }
