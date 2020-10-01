@@ -18,7 +18,7 @@ ln -s ~/.local/venvs/pipenv/bin/pip ~/.local/bin
 這讓 pipx 有著以下的主要特色：
 - 基於 pip 同樣也有 `list`、`upgrade` 和 `uninstall` 套件的功能。
 - 可以在安裝套件時為每個套件建出一個分離的環境，並可以在不啟動虛擬環境的情況下直接使用。
-- 在暫時的虛擬環境中執行最新版的套件功能。
+- 使用 `pipx run` 可以在暫時的虛擬環境中執行最新版的套件功能。
 - 另外，所有指令都不會需要 `root` 權限，一切都在使用者權限下進行。
 
 完美解決了上述提到的所以要注意的地方。
@@ -34,7 +34,9 @@ ln -s ~/.local/venvs/pipenv/bin/pip ~/.local/bin
 brew install pipx
 pipx ensurepath
 ```
-使用 brew install pipx， pipx 也可以使用 pip 安裝，但如此一來就會沒有使用虛擬環境並且安裝到了全域，因此我覺得只需要用 `brew install pipx` 就好。
+使用 Homebrew 安裝 pipx
+
+pipx 也可以使用 pip 安裝，至於安裝 pipx 建議還是使用虛擬環境，先使用 Python 的 venv 模組先建出虛擬環境再用其中的 pip 安裝，這樣確保全域的 pip 完全乾淨。
 
 預設的虛擬環境位置會開設在 `~/.local/pipx/venvs` 下，而預設的 binary 執行檔會在 `~/.local/bin` 下，分別可以由 `PIPX_HOME` 和 `PIPX_BIN_DIR` 環境變數來覆寫成放置在 `$PIPX_HOME/venvs` 和 `$PIPX_BIN_DIR/bin`。
 
