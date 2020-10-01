@@ -92,8 +92,8 @@ pipx install black[d]
 ```
 其中可以發現有 `--python` 這個選項是用於要開啟虛擬環境的 Python 版本，其限定必須是 Python3.5 以上。
 
-安裝玩套件之後將可以發現有幾個目錄出現在 `$PIPX_HOME` 當中：
-- `shared`:
+安裝玩套件之後將可以發現有幾個目錄出現在 `~/.local/pipx` 或覆寫的 `$PIPX_HOME` 當中：
+- `shared`: 
 - `venvs`:
 - `.cache`:
 
