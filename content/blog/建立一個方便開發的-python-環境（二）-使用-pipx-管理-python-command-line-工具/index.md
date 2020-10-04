@@ -101,6 +101,12 @@ pipx install black[d]
 - `.cache`: 為 `pipx run` 指令使用，後續會再做說明，由於是在使用 `pipx` 時便會建立的，因此這個資料夾下的內容在還沒使用 `pipx run` 指令時都會是空的。
 
 
+### 使用 `pipx uninstall <package>` 解除安裝套件
+解除安裝只需要輸入 `pipx uninstall <package_spec>` 來解除安裝給定的套件，例如
+`pipx uninstall pycowsay` 將會解除安裝 pycowsay 並且也會一併將其所屬的虛擬環境刪除，也將 `$PIPX_BIN_DIR/bin` 下的 symbolic link 解除。
+
+### 使用 `pipx upgrade <package_spec>`
+
 ## pipx 怎麼運作
 
 ## 資料來源
