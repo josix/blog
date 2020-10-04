@@ -95,7 +95,7 @@ pipx install black[d]
 
 其他常見的選項還有 `--force -f` 用於安裝時修改已經存在的虛擬環境及已安裝的檔案， `--editable -e` 用於使用可編輯模式（editable mode）安裝，讓你可以在開發套件同時可以直接在環境下使用開發中的版本。
 
-安裝玩套件之後將可以發現有幾個目錄[依照預設](https://github.com/pipxproject/pipx/blob/master/src/pipx/constants.py#L6)會出現在 `~/.local/pipx` 或覆寫的 `$PIPX_HOME` 路經當中：
+安裝完套件之後將可以發現有幾個目錄[依照預設](https://github.com/pipxproject/pipx/blob/master/src/pipx/constants.py#L6)會出現在 `~/.local/pipx` 或覆寫的 `$PIPX_HOME` 路經當中：
 - `shared`: 
 - `venvs`:
 - `.cache`:
