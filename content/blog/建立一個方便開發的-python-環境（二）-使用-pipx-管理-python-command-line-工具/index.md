@@ -105,7 +105,8 @@ pipx install black[d]
 解除安裝只需要輸入 `pipx uninstall <package_spec>` 來解除安裝給定的套件，例如
 `pipx uninstall pycowsay` 將會解除安裝 pycowsay 並且也會一併將其所屬的虛擬環境刪除，也將 `$PIPX_BIN_DIR/bin` 下的 symbolic link 解除。
 
-### 使用 `pipx upgrade <package_spec>`
+### 使用 `pipx upgrade <package>` 升級安裝的套件
+
 
 ## pipx 怎麼運作
 
