@@ -108,3 +108,4 @@ pipx install black[d]
 - [pipx Repository](https://github.com/pipxproject/pipx)
 - [pipx Document](https://pipxproject.github.io/pipx/)
 - [PEP 582](https://www.python.org/dev/peps/pep-0582/)
+- [site — Site-specific configuration hook](https://docs.python.org/3/library/site.html)
