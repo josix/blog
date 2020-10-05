@@ -122,7 +122,7 @@ apps are exposed on your $PATH at /Users/wilson/.local/bin
 ```
 
 ### 使用 `pipx run <app>` 直接執行該套件指令
-當不想要長時期安裝該套件，並希望短時間內可以使用該套件的最新版本，可以使用 `pipx run <app> ...` 來執行該套件提供的功能，舉例來說若想要使用 `pipenv install` 但不希望安裝 pipenv，可以透過 `pipx run pipenv install` 來達成目的。
+當不想要長時期安裝該套件，並希望短時間內可以使用該套件的最新版本，可以使用 `pipx run <app> ...` 來執行該套件提供的功能，舉例來說若想要使用 `pipenv install` 但不希望長期安裝 pipenv，可以透過 `pipx run pipenv install` 來達成目的。
 
 使用 `pipx run` 時 pipx 將會於 `$PIPX_HOME/.cache` 中開啟一個暫時的虛擬環境並使用 `shared` 的 `pip` 安裝該套件，直接執行該虛擬環境中 `bin/` 下的執行檔，並且將要要執行的子指令或參數帶入，此暫時的虛擬環境會存在 14 天，方便在下次執行時會因為跳過了下載階段而執行比較快，若超過 14 天則會在下次執行 `pipx run` 時[將該虛擬環境刪除](https://github.com/pipxproject/pipx/blob/master/src/pipx/commands/run.py#L170)並重新安裝新版執行。
 
