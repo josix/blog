@@ -108,6 +108,8 @@ pipx install black[d]
 ### 使用 `pipx upgrade <package>` 升級安裝的套件
 當想要升級安裝的套件只需要輸入 `pipx upgrade <package>` 升級該套件，例如 `pipx upgrade Commitizen` 將會升級 commitizen 的版本，並且也可透過加入 `--force -f` 選項允許修改虛擬環境及已安裝的檔案。
 
+> 除了 `pipx uninstall` 和 `pipx upgrade` 用於單一套件以外，pipx 另外提供了 `pipx uninstall-all` 和 `pipx upgrade-all` 用於所有已安裝的套件。
+
 ### 使用 `pipx list` 列出已安裝的套件
 使用 `pipx list` 可以列出已經安裝的套件，其中會列出 `$PIPX_HOME/venvs` 和 `$PIPX_BIN_DIR/bin` 設定的位置，以及可以使用的指令有哪寫，以安裝 Commitizen 後的 `pipx list` 輸出如下：
 
