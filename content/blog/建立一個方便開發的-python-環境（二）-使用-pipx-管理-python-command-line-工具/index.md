@@ -78,7 +78,7 @@ eval "$(register-python-argcomplete pipx)"
 
 ### 使用 `pipx install <package_spec>` 安裝套件
 
-當使用 `pipx install <package_spec>` 後， pipx 會為將要安裝的套件開啟一個虛擬環境，並且將該套件安裝到裡面，再為其執行檔複製或建立一個 sympolic link 到 `$PIPX_BIN_DIR/bin` 下，供使用者直接調用。
+當使用 `pipx install <package_spec>` 後， pipx 會為要安裝的套件開啟一個虛擬環境，並且將該套件安裝到裡面，再為其執行檔複製或建立一個 sympolic link 到 `$PIPX_BIN_DIR/bin` 下，供使用者直接調用。
 
 `<package_spec>` 並不限定是套件名稱只要是符合 pip 安裝規範（pip installation spec）的都可以，如 VCS_URL, ZIP_FILE, TAR_GZ_FILE 都是可以的，使用範例如下：
 ```
