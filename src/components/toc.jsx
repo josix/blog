@@ -69,7 +69,7 @@ const TOC = ({
             </a>
             {item.items && item.items.length > 0 ? item.items.map(
               subitem => (
-                <li css={styles.subitem} key={subitem.url}>
+                <li style={styles.subitem} key={subitem.url}>
                   <a css={styles.link} href={subitem.url} key={subitem.url}>
                     {subitem.title}
                   </a>
