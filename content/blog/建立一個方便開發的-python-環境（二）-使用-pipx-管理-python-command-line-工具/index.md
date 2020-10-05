@@ -35,7 +35,7 @@ brew install pipx
 pipx ensurepath
 ```
 
-pipx 也可以使用 pip 安裝，至於安裝 pipx 建議還是使用虛擬環境，使用 Python 的 venv 模組先建出虛擬環境再用其中的 pip 安裝，這樣確保全域的 pip 完全乾淨。
+pipx 也可以使用 pip 安裝，至於安裝 pipx 建議還是使用虛擬環境，使用 Python 的 venv 模組先建出虛擬環境再用其中的 pip 安裝，這樣確保系統的 pip 完全乾淨。
 
 預設的虛擬環境位置會開設在 `~/.local/pipx/venvs` 下，而預設的 binary 執行檔會在 `~/.local/bin` 下，分別可以由 `PIPX_HOME` 和 `PIPX_BIN_DIR` 環境變數來覆寫成放置在 `$PIPX_HOME/venvs` 和 `$PIPX_BIN_DIR/bin`。
 
