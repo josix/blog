@@ -128,6 +128,21 @@ apps are exposed on your $PATH at /Users/wilson/.local/bin
 
 ## pipx 怎麼運作
 
+### pipx install 的執行內容
+
+1. 首次在 pipx 接收到 `pipx install` 或 `pipx run` 指令後，會先建立一個 `shared` 的虛擬環境，後續都會使用該虛擬環境的 `pip` 來安裝指定的套件，並共用其中的 `pip`, `wheel`, `setuptools`。
+2. 會確認是否該更新 `shared` 環境中的套件至最新的版本。
+3. 接著會再建立該套件所屬的虛擬環境，除了 pip 是使用 shared 的虛擬環境以外，其他都會是獨立的。
+4. 安裝該套件。
+5. 安裝完畢後會在建立 symbolic link 到 `$PIPX_BIN_DIR/bin` 下。
+6. 接著因為 ensurepah 有將 `$PIPX_BIN_DIR/bin` 加到 `$PATH` 中所以可以在全域下使用。
+
+### pipx run 的執行內容
+
+1. 同樣和 `pipx install` 的第一步相同，
+
+
+
 ## 資料來源
 - [這樣的開發環境沒問題嗎？ — TP@PyConTW’18](https://speakerdeck.com/uranusjr/zhe-yang-de-kai-fa-huan-jing-mei-wen-ti-ma?slide=31)
 - [pipx Repository](https://github.com/pipxproject/pipx)
