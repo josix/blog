@@ -22,12 +22,13 @@ const styles = {
     box-shadow: rgb(20 21 23 / 32%) 0px 8px 24px;
     border-radius: 5px;
 
-    @media (max-width: 420px) {
+    @media (max-width: 770px) {
       position: static;
       width: 100%;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 2px;
       padding: 0.75rem;
       margin-bottom: 25px;
+      max-height: 30vh;
     }
   `,
   item: {
@@ -39,8 +40,15 @@ const styles = {
     :hover {
       color: #a37774
     }
-  `
-  
+  `,
+  subitem: {
+    fontSize: 14.5,
+    marginLeft: 25,
+    listStyleType: "none",
+    lineHeight: 1.2,
+    marginTop: 12,
+    marginBottom: 12,
+  }
 }
 
 const TOC = ({
@@ -59,6 +67,15 @@ const TOC = ({
             <a css={styles.link} href={item.url} key={item.url}>
               {item.title}
             </a>
+            {window.outerWidth >= 770 && item.items && item.items.length > 0 ? item.items.map(
+              subitem => (
+                <li css={styles.subitem} key={subitem.url}>
+                  <a css={styles.link} href={subitem.url} key={subitem.url}>
+                    {subitem.title}
+                  </a>
+                </li>
+              )
+            ) : null}
           </li>
         )
       )}

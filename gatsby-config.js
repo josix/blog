@@ -125,6 +125,7 @@ module.exports = {
                 </path>
               </svg>`,
               isIconAfterHeader: true,
+              elements: [`h2`, `h3`],
             },
           },
           {
