@@ -1,6 +1,6 @@
 ---
 title: 建立一個方便開發的 Python 環境（二）- 使用 pipx 管理基於 Python 的 Command-Line 工具
-date: 2020-09-20T09:35:07.698Z
+date: 2020-10-05T14:34:03.801Z
 description: 在這篇文章中將會介紹 pipx 這個工具可以用於安裝全域的 Python 工具，其中也將會介紹使用 pipx 的方法，進而探究其中的運作原理。
 ---
 ## 為什麼要使用 pipx
