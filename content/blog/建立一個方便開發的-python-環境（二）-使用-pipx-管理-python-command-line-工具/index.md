@@ -139,7 +139,7 @@ apps are exposed on your $PATH at /Users/wilson/.local/bin
 
 ### pipx run 的執行內容
 
-1. 同樣和 `pipx install` 的第一步相同，
+1. 同樣會重複 `pipx` 的第一步建立或直接 ``
 
 
 
