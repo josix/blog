@@ -122,7 +122,7 @@ apps are exposed on your $PATH at /Users/wilson/.local/bin
 ```
 
 ### 使用 `pipx run <app>` 直接執行該套件指令
-當不想要長時期安裝該套件，並希望短時間內可以使用該套件的最新版本，可以使用 `pipx run <app> ...` 來執行該套件提供的功能，舉例來說若想要使用 `pipenv install` 但不希望長期安裝 pipenv，可以透過 `pipx run pipenv install` 來達成目的。
+當不想要長時期安裝該套件，並希望短時間內可以使用該套件的最新版本，可以使用 `pipx run <app> [...]` 來執行該套件提供的功能，舉例來說若想要使用 `pipenv install` 但不希望長期安裝 pipenv，可以透過 `pipx run pipenv install` 來達成目的。
 
 使用 `pipx run` 時 pipx 將會於 `$PIPX_HOME/.cache` 中開啟一個暫時的虛擬環境並使用 `shared` 的 `pip` 安裝該套件，接著直接執行該虛擬環境中 `bin/` 下的執行檔，並且將要執行的子指令或參數帶入。
 
@@ -135,7 +135,7 @@ apps are exposed on your $PATH at /Users/wilson/.local/bin
 1. 首次在 pipx 接收到 `pipx install` 或 `pipx run` 指令後，會先建立一個 `shared` 的虛擬環境，後續都會使用該虛擬環境的 `pip` 來安裝指定的套件，並共用其中的 `pip`, `wheel`, `setuptools`。
 2. 會確認是否該更新 `shared` 環境中的套件至最新的版本。
 3. 接著會再建立該套件所屬的虛擬環境，除了 pip 是使用 shared 的虛擬環境以外，其他都會是獨立的。
-4. 安裝該套件。
+4. 安裝該套件至虛擬環境中。
 5. 安裝完畢後會在建立 symbolic link 到 `$PIPX_BIN_DIR/bin` 下。
 6. 接著因為 ensurepah 有將 `$PIPX_BIN_DIR/bin` 加到 `$PATH` 中所以可以在全域下使用。
 
@@ -143,7 +143,7 @@ apps are exposed on your $PATH at /Users/wilson/.local/bin
 
 1. 同樣會重複 `pipx` 的第一步建立或使用 `shared` 中的環境。
 2. 建立一個透過 hash 命名的暫時虛擬環境。
-3. 安裝該套件。
+3. 安裝該套件至虛擬環境中。
 4. 直接調用該虛擬環境下 bin 的執行檔。
 
 
@@ -151,5 +151,4 @@ apps are exposed on your $PATH at /Users/wilson/.local/bin
 - [這樣的開發環境沒問題嗎？ — TP@PyConTW’18](https://speakerdeck.com/uranusjr/zhe-yang-de-kai-fa-huan-jing-mei-wen-ti-ma?slide=31)
 - [pipx Repository](https://github.com/pipxproject/pipx)
 - [pipx Document](https://pipxproject.github.io/pipx/)
-- [PEP 582](https://www.python.org/dev/peps/pep-0582/)
 - [site — Site-specific configuration hook](https://docs.python.org/3/library/site.html)
