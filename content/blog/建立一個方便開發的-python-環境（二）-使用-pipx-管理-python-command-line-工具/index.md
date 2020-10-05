@@ -139,8 +139,10 @@ apps are exposed on your $PATH at /Users/wilson/.local/bin
 
 ### pipx run 的執行內容
 
-1. 同樣會重複 `pipx` 的第一步建立或直接 ``
-
+1. 同樣會重複 `pipx` 的第一步建立或使用 `shared` 中的環境。
+2. 建立一個透過 hash 命名的暫時虛擬環境。
+3. 安裝該套件。
+4. 直接調用該虛擬環境下 bin 的執行檔。
 
 
 ## 資料來源
