@@ -96,7 +96,7 @@ pipx install black[d]
 其他常見的選項還有 `--force -f` 用於安裝時允許修改已經存在的虛擬環境及已安裝的檔案， `--editable -e` 用於使用可編輯模式（editable mode）安裝，讓你可以在開發套件同時可以直接在環境下使用開發中的版本。
 
 安裝完套件之後將可以發現有幾個目錄[依照預設](https://github.com/pipxproject/pipx/blob/master/src/pipx/constants.py#L6)會出現在 `~/.local/pipx` 或覆寫的 `$PIPX_HOME` 路經當中：
-- `shared`: `shared` 為 pipx 在執行安裝套件之前建立之前，預設會透過 `python -m venv --clear shared` 會建立的第一個虛擬環境，其中包含了供後續安裝其他套件共用的 `pip`, `wheel`, `setuptools`，建立過一次之後每次安裝套件都會檢查是否可用，並且會隔[特定時間（30 天）](https://github.com/pipxproject/pipx/blob/master/src/pipx/shared_libs.py#L45)升級更新。
+- `shared`: `shared` 為 pipx 在執行安裝套件之前建立之前，預設會透過 `python -m venv --clear shared` 會建立的第一個虛擬環境，其中包含了供後續安裝其他套件共用的 `pip`, `wheel`, `setuptools`，建立過一次之後每次安裝套件都會檢查是否可用，並且會隔特定時間（30 天）升級更新，可參照[venv.__init__()](https://github.com/pipxproject/pipx/blob/master/src/pipx/venv.py#L92), [shared_libs.needs_upgrade](https://github.com/pipxproject/pipx/blob/master/src/pipx/shared_libs.py#L45)。
 - `venvs`: `venvs` 中會包含每個套件所屬的虛擬環境，[預設](https://github.com/pipxproject/pipx/blob/master/src/pipx/venv.py#L136)會以套件名稱作為虛擬環境的名稱，並且也可以透過加入 `--suffix` 加入後綴至環境預設的名稱。虛擬環境中將安裝所需要使用的相依套件及執行檔，除了 `pip` 會是透過在虛擬環境中寫入的 `pipx_shared.pth` [路徑設定檔](https://docs.python.org/3/library/site.html)共用 `shared` 環境中的 `pip`。
 - `.cache`: 為 `pipx run` 指令使用，於 `pipx run` 段落中會再做說明，由於是在使用 `pipx` 時便會建立的，因此這個資料夾下的內容在還沒使用 `pipx run` 指令時都會是空的。
 
