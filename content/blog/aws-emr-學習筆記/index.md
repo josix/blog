@@ -37,7 +37,7 @@ Amazon EMR 叢集提供兩種方式處理資料包含直接提交 Hadoop Jobs �
 
     若執行過程中任何 step 執行失敗其狀態會被修改為 FAILED，使用者可以決定是否要繼續執行下一個 step 或是終止 (terminate) cluster，預設是將後續 step 狀態修改為 CANCELLED 並不執行。
 
-    ![](https://i.imgur.com/WKorafX.png)
+![](https://i.imgur.com/WKorafX.png)
 
 ## Amazon EMR 的生命週期
 
