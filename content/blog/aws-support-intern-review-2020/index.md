@@ -1,10 +1,9 @@
 ---
 tags: AWS, Note, Experience
-title: aws-support-intern-review-2020
+title: AWS Support 實習心得 (2020)
 date: 2021-03-16T06:39:33.228Z
 description: 紀錄一下 2020 年一年來在台灣 AWS Support 的實習經歷，包含了面試過程、公司的文化以及總結這一年來的感想
 ---
-# AWS Support 實習心得 (2020)
 ## 應徵過程
 應徵 AWS Support Intern 這個職位是透過 Student Bootcamp 的活動投遞履歷的，Bootcamp 當日活動內容可以參考也是實習生 Jack 寫的[雲端工程師體驗營心得](https://jackkuo.org/post/aws%E9%9B%B2%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%AB%E9%AB%94%E9%A9%97%E7%87%9F%E5%BF%83%E5%BE%97/)。
 
