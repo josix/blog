@@ -132,7 +132,7 @@ DJ1c1ovit51BYBKb97fLIxxFe
 
 ### 使用 `pass insert <pass-name>` 新增密碼
 新增密碼可以透過指令 `pass insert` 達成，可以直接輸入想要設定的密碼到 `pass-name` 中，
-也可以透過選項 --multiline 輸入 `pass insert --multiline` 在儲存的密碼中增加其他的欄位資料如 `username`, `password`, `PIN`, `URLs` 等，如下方舉例：
+也可以透過選項 `--multiline` 輸入 `pass insert --multiline` 在儲存的密碼中增加其他的欄位資料如 `username`, `password`, `PIN`, `URLs` 等，如下方舉例：
 
 ```
 Yw|ZSNH!}z"6{ym9pI 
@@ -203,10 +203,39 @@ Are you sure you would like to delete test3? [y/N] y
  delete mode 100644 test3.gpg
 ```
 
-## 使用 [browserpass](https://chrome.google.com/webstore/detail/browsrpass/naepdomgkenhinolocfifgehidddafch) 在瀏覽器上讀取本地密碼資料
+## 使用 [browserpass](https://github.com/browserpass/browserpass-extension) 在瀏覽器上讀取本地密碼資料
+`pass` 有許多相容的 clients 如 Windows、iOS、Android 等，可以參見[這裏](https://www.passwordstore.org/#other)，`browserpass` 是 chrome plugin，若要在 MacOS 環境上使用該 plugin 可以參考下方做法：
+1. 為了可以和 `browserpass` 溝通，首先需要先啟動 `browserpass host`，可以透過 brew 安裝非正式版：
+    ```
+    $ brew tap amar1729/formulae
+    $ brew install browserpass
+    $ PREFIX='/usr/local/opt/browserpass' make hosts-chrome-user -f /usr/local/opt/browserpass/lib/browserpass/Makefile
+    ```
+    make 時選擇自己的瀏覽器指令，完成後可以看到會產生一個 symlink，
+    ```
+    /Users/wilson/Library/Application Support/Google/Chrome/NativeMessagingHosts/com.github.browserpass.native.json -> /usr/local/opt/browserpass/lib/browserpass/hosts/chromium/com.github.browserpass.native.json
+    ```
+    > 小記：由於我換成使用 sidekick，另一個基於 chromium 的瀏覽器，沒有找到 make 符合的子指令，但只要複製該 symlink 即可到 sidekick 下的相同目錄位置就可以執行了
+3. [安裝 plugin](https://chrome.google.com/webstore/detail/browserpass/naepdomgkenhinolocfifgehidddafch)
+4. 為了讓 `browserpass` 可以和 gpg 溝通，首先需要修改/新增 `~/.gnupg/gpg-agent.conf` 加入下列內容：
+    ```
+    # Enables gpg to find gpg-agent (deprecated since version 2.1)
+    # use-standard-socket
+    3 
+    # Connects gpg-agent to the macOS keychain via pinentry-mac from GPGtools. 
+    # This allows to trigger pinentry-mac GUI to enter our passphrase when needed 
+    # and gpg key's passphrase to be stored in the login keychain, enabling automatic key signing.
+    pinentry-program /usr/local/bin/pinentry-mac
+    ```
+    輸入 `gpgconf --kill gpg-agnet` 重啟 `gpg-agent` 
+
+成功後可以看到下方結果，在符合的網站頁面，`browserpass` 會跳 badge，選擇符合的 username 後若有[定義明確的欄位](https://github.com/browserpass/browserpass-extension#usage)，該值會被自動帶入至表單之中。
+![](https://user-images.githubusercontent.com/1177900/56079873-87057600-5dfa-11e9-8ff1-c51744c75585.gif)
+
 
 ## 使用 [Password Store](https://play.google.com/store/apps/details?id=dev.msfjarvis.aps&hl=en_US&gl=US) 和 [OpenKeychain](https://play.google.com/store/apps/details?id=org.sufficientlysecure.keychain&hl=zh_TW&gl=US) 在 Android 手機上管理密碼
 
+在 Android 上可以使用 [Password Store](https://play.google.com/store/apps/details?id=dev.msfjarvis.aps&hl=en_US&gl=US)，安裝好 App 後只需要將 remote repo 設定好即可以從遠端拉取 password-store 的密碼資料，另外由於會需要 gpg agent，因此會需要再安裝 [OpenKeychain](https://play.google.com/store/apps/details?id=org.sufficientlysecure.keychain&hl=zh_TW&gl=US) 並將私鑰夠過 `gpg --export-secret-keys --armor Uid > ~/Downloads/keys.asc` 輸出，再搬至手機上讓 OpenKeychain 引入使用。
 
 ## Reference
 - [The Standard Unix Password Manager: Pass](https://www.passwordstore.org/)
