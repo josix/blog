@@ -5,10 +5,10 @@ date: 2021-03-30T19:31:27.802Z
 description: 此篇文章將會介紹 pass 這個 CLI 工具來記住難以記德的複雜密碼，並且介紹與其相關的擴充工具，讓密碼管理可以在不同的 client 都很方便
 ---
 ## `pass` 是什麼?
-為了要維持好的安全性，密碼設定時需要有足夠的長度、字母數字隨機混合、定期更換密碼、不要使用固定的密碼，然而隨著使用的軟體服務、註冊的網站越來越多，人類的腦袋難以記住這些又長又複雜還要時常更換的密碼。因此我們需要一個工具來管理這些密碼，常見的工具包含 [1Password](https://1password.com/zh-tw/)、[KeePass](https://keepass.info/) 等，另外還有這篇文章要介紹的 `pass`，這是一個符合 Unix 哲學的密碼管理工具，其包含下列特色：
+為了要維持好的安全性，密碼設定時需要有足夠的長度、字母數字隨機混合、定期更換密碼、不要使用固定的密碼。然而隨著使用的軟體服務、註冊的網站越來越多，人類的腦袋難以記住這些又長又複雜還要時常更換的密碼。因此我們需要一個工具來管理這些密碼，常見的工具包含 [1Password](https://1password.com/zh-tw/)、[KeePass](https://keepass.info/) 等，另外還有這篇文章要介紹的 `pass`，這是一個符合 Unix 哲學的密碼管理工具，其包含下列特色：
 - 所有的密碼會透過 GPG 加密後以檔案儲存在特定目錄下
 - 密碼儲存路徑及檔名命名自由，可以依照註冊網站或資源的名稱來命名方便查找
-- 因為是檔案，可以複製到不同的電腦上，方便不同設備搬遷
+- 因為是檔案，可以複製到不同的設備上，方便搬遷
 - 透過 CLI 操作，自動補全讓查找密碼容易、上手簡單（fish, zsh 也相容）
 - 增刪修改密碼時會透過 git 進行版本控制，分散式儲存
 - 多數裝置可以使用如 android、iOS 設備，基於 Chromium 的瀏覽器、Firefox 等都有擴充工具
@@ -235,7 +235,7 @@ Are you sure you would like to delete test3? [y/N] y
 
 ## 使用 [Password Store](https://play.google.com/store/apps/details?id=dev.msfjarvis.aps&hl=en_US&gl=US) 和 [OpenKeychain](https://play.google.com/store/apps/details?id=org.sufficientlysecure.keychain&hl=zh_TW&gl=US) 在 Android 手機上管理密碼
 
-在 Android 上可以使用 [Password Store](https://play.google.com/store/apps/details?id=dev.msfjarvis.aps&hl=en_US&gl=US)，安裝好 App 後只需要將 remote repo 設定好即可以從遠端拉取 password-store 的密碼資料，另外由於會需要 gpg agent，因此會需要再安裝 [OpenKeychain](https://play.google.com/store/apps/details?id=org.sufficientlysecure.keychain&hl=zh_TW&gl=US) 並將私鑰夠過 `gpg --export-secret-keys --armor Uid > ~/Downloads/keys.asc` 輸出，再搬至手機上讓 OpenKeychain 引入使用。
+在 Android 上可以使用 [Password Store](https://play.google.com/store/apps/details?id=dev.msfjarvis.aps&hl=en_US&gl=US)，安裝好 App 後只需要將 remote repo 設定好即可以從遠端拉取 password-store 的密碼資料，另外由於會需要 gpg agent，因此會需要再安裝 [OpenKeychain](https://play.google.com/store/apps/details?id=org.sufficientlysecure.keychain&hl=zh_TW&gl=US) 並將私鑰夠過 `gpg --export-secret-keys --armor Uid` 輸出，再搬至手機上讓 OpenKeychain 引入使用。
 
 ## Reference
 - [The Standard Unix Password Manager: Pass](https://www.passwordstore.org/)
