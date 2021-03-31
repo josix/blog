@@ -5,7 +5,7 @@ date: 2021-03-30T19:31:27.802Z
 description: 此篇文章將會介紹 pass 這個工具來管理大量的密碼
 ---
 ## `pass`： 一個符合 Unix 標準的密碼管理工具
-### `pass` 是什麼?
+## `pass` 是什麼?
 為了要維持好的安全性，密碼設定時需要有足夠的長度、字母數字隨機混合、定期更換密碼、不要使用固定的密碼，然而隨著使用的軟體服務、註冊的網站越來越多，人類的腦袋難以記住這些又長又複雜還要時常更換的密碼。因此我們需要一個工具來管理這些密碼，常見的工具包含 [1Password](https://1password.com/zh-tw/)、[KeePass](https://keepass.info/) 等，另外還有這篇文章要介紹的 `pass`，這是一個符合 Unix 哲學的密碼管理工具，其包含下列特色：
 - 所有的密碼會透過 GPG 加密後以檔案儲存在特定目錄下
 - 密碼儲存路徑及檔名命名自由，可以依照註冊網站或資源的名稱來命名方便查找
@@ -19,13 +19,13 @@ description: 此篇文章將會介紹 pass 這個工具來管理大量的密碼
 
 
 
-### 安裝 `pass`
+## 安裝 `pass`
 
 在 MacOS 環境中，安裝 `pass` 只需要輸入指令 `brew install pass` 即可，Homebrew 會將相依的 gnupg 、tree 等工具一起安裝好。
 
 其他環境的安裝方式可以參考[官方文件](https://www.passwordstore.org/)。
 
-### 設定 `pass` 及 `gnupg`
+## 設定 `pass` 及 `gnupg`
 由於 `pass` 儲存密碼的檔案會經過 `gpg` 加密過，因此需要先產生 GPG keypair，因為上一步已經安裝好 gnupg ，可以直接透過指令 `gpg --full-generate-key` 來產生 keypair，求方便可以選擇預設選項（密鑰種類為 RSA 用於加密及簽名、密鑰長度為 3072 bits 、密鑰不會過期）。
 ```
 $gpg --full-gen-key
@@ -106,16 +106,16 @@ sub   rsa3072/4B11C286610BC41C 2021-03-31 [E]
 
 建立 password store git repository 後，`pass` 會在每次操作自動產生 git commit 記錄每次進行的變更。
 
-### `pass` 基本操作
-#### 使用 `pass generate <pass-name>` 產生密碼
-#### 使用 `pass insert <pass-name>` 新增密碼
-#### 使用 `pass <pass-name>` 或 `pass show <pass-name>` 查看密碼內容
-#### 使用 `pass <subfolder>` 或 `pass ls <subfolder>` 查看已紀錄的密碼
+## `pass` 基本操作
+### 使用 `pass generate <pass-name>` 產生密碼
+### 使用 `pass insert <pass-name>` 新增密碼
+### 使用 `pass <pass-name>` 或 `pass show <pass-name>` 查看密碼內容
+### 使用 `pass <subfolder>` 或 `pass ls <subfolder>` 查看已紀錄的密碼
 
 
-### 使用 [browserpass](https://chrome.google.com/webstore/detail/browsrpass/naepdomgkenhinolocfifgehidddafch) 在瀏覽器上讀取本地密碼資料
+## 使用 [browserpass](https://chrome.google.com/webstore/detail/browsrpass/naepdomgkenhinolocfifgehidddafch) 在瀏覽器上讀取本地密碼資料
 
-### 使用 [Password Store](https://play.google.com/store/apps/details?id=dev.msfjarvis.aps&hl=en_US&gl=US) 和 [OpenKeychain](https://play.google.com/store/apps/details?id=org.sufficientlysecure.keychain&hl=zh_TW&gl=US) 在 Android 手機上管理密碼
+## 使用 [Password Store](https://play.google.com/store/apps/details?id=dev.msfjarvis.aps&hl=en_US&gl=US) 和 [OpenKeychain](https://play.google.com/store/apps/details?id=org.sufficientlysecure.keychain&hl=zh_TW&gl=US) 在 Android 手機上管理密碼
 
 
 ## Reference
