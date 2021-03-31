@@ -106,12 +106,102 @@ sub   rsa3072/4B11C286610BC41C 2021-03-31 [E]
 建立 password store git repository 後，`pass` 會在每次操作自動產生 git commit 記錄每次進行的變更。
 
 ## `pass` 基本操作
-### 使用 `pass insert <pass-name>` 新增密碼
-首先，新增密碼可以透過指令 `pass insert` 來達到，所需要的參數 `<pass-name>`是可以具有以類似目錄的格式來命名，如 `pass insert website/facebook.com/user1`，
 ### 使用 `pass generate <pass-name>` 產生密碼
-### 使用 `pass <pass-name>` 或 `pass show <pass-name>` 查看密碼內容
-### 使用 `pass <subfolder>` 或 `pass ls <subfolder>` 查看已紀錄的密碼
+可以透過 `pass generate <pass-name>` 產生密碼，此指令會透過 `/dev/urandom` 隨機產生密碼到 `<pass-name>`，`<pass-name>` 是一個檔案路徑，如 `pass generate website/facebook.com/user1`，`pass` 會自動建立目錄 `~/.password-store/website/facebook.com`，並產生密碼文字檔案透過 gpg 加密後放入該目錄下，並也會輸出產生的密碼。
 
+幾個常用的選項和參數如下：
+- 可以透過 `pass generate <pass-name> <password length>` 指定密碼長度
+- `--no-symbols -n`， 指定生成的密碼是不會有符號的只包含字母數字
+- `--clip -c`，`pass` 將生成的密碼直接放入剪貼簿中，並且在 45 秒後自動刪除，並且不會輸出密碼至螢幕
+
+```
+$pass generate test                                                       
+[main ab6b2c2] Add generated password for test.
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test.gpg
+The generated password for test is:
+{t)1`1Sp-A;Qp|}5mI1>jYzf9
+
+$pass generate -n test2                                                 
+[main 86bee4a] Add generated password for test2.
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test2.gpg
+The generated password for test2 is:
+DJ1c1ovit51BYBKb97fLIxxFe
+```
+
+### 使用 `pass insert <pass-name>` 新增密碼
+新增密碼可以透過指令 `pass insert` 達成，可以直接輸入想要設定的密碼到 `pass-name` 中，
+也可以透過選項 --multiline 輸入 `pass insert --multiline` 在儲存的密碼中增加其他的欄位資料如 `username`, `password`, `PIN`, `URLs` 等，如下方舉例：
+
+```
+Yw|ZSNH!}z"6{ym9pI 
+URL: *.amazon.com/*
+Username: AmazonianChicken@example.com
+Secret Question 1: What is your childhood best friend's most bizarre superhero fantasy? Oh god, Amazon, it's too awful to say...
+Phone Support PIN #: 84719
+```
+
+在一些擴充工具中如 `browserpass` 會辨識其中欄位如 `username`, `password` 等帶入至瀏覽器表單自動填入，這些額外的欄位有助於這些工具使用。另外需注意的是多行的輸入模式需要讓第一行是密碼，原因是 `pass` 使用 `--clip -c` 參數時只會複製第一行（由於沒有明確的 schema 定義，並且預設每個檔案只會包含密碼） 
+
+
+```
+$pass insert test3
+Enter password for test3:
+Retype password for test3:
+[main aeba54a] Add given password for test3 to store.
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test3.gpg
+```
+
+### 使用 `pass edit <pass-name>` 修改密碼
+`pass` 預設會使用 `vi` 編輯解密後的檔案，並且可以在環境變數中設定 `$EDITOR` 變數決定想要使用的編輯器。
+
+
+### 使用 `pass <pass-name>` 或 `pass show <pass-name>` 查看密碼內容
+
+使用 `pass <pass-name>` 或是 `pass show <pass-name>` 可以直接得到密碼的內容，若想要直接輸出到剪貼簿可以加入 `--clip -c` 選項。
+
+```
+$pass test2
+DJ1c1ovit51BYBKb97fLIxxFe
+
+$pass -c test2
+Copied test2 to clipboard. Will clear in 45 seconds.
+```
+
+### 使用 `pass <subfolder>` 或 `pass ls <subfolder>` 查看已紀錄的密碼
+使用 `pass <subfolder>` 或是 `pass ls <subfolder>` 可以得到當前設定的密碼檔案的層級狀態，如下：
+```
+$pass
+Password Store
+├── Business
+│   ├── some-silly-business-site.com
+│   └── another-business-site.net
+├── Email
+│   ├── donenfeld.com
+│   └── zx2c4.com
+└── France
+    ├── bank
+    ├── freebox
+    └── mobilephone
+    
+$pass ls Email
+Email
+├── donenfeld.com
+└── zx2c4.com
+```
+
+### 使用 `pass rm <pass-name>` 刪除密碼
+使用 `pass rm` 便可以刪除建立的密碼，如下：
+```
+$pass rm test3
+Are you sure you would like to delete test3? [y/N] y
+/Users/wilson/.password-store/test3.gpg
+[main 0d45ec0] Remove test3 from store.
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 test3.gpg
+```
 
 ## 使用 [browserpass](https://chrome.google.com/webstore/detail/browsrpass/naepdomgkenhinolocfifgehidddafch) 在瀏覽器上讀取本地密碼資料
 
