@@ -2,7 +2,7 @@
 tags: Tool Sharing, draft
 title: "使用 Unix 標準的密碼管理工具 pass (password-store) 管理密碼 "
 date: 2021-03-30T19:31:27.802Z
-description: 此篇文章將會介紹 pass 這個工具來管理大量的密碼
+description: 此篇文章將會介紹 pass 這個 CLI 工具來管理大量的密碼，並且介紹與其相關的擴充工具，讓密碼管理可以在不同的 client 都很方便
 ---
 ## `pass` 是什麼?
 為了要維持好的安全性，密碼設定時需要有足夠的長度、字母數字隨機混合、定期更換密碼、不要使用固定的密碼，然而隨著使用的軟體服務、註冊的網站越來越多，人類的腦袋難以記住這些又長又複雜還要時常更換的密碼。因此我們需要一個工具來管理這些密碼，常見的工具包含 [1Password](https://1password.com/zh-tw/)、[KeePass](https://keepass.info/) 等，另外還有這篇文章要介紹的 `pass`，這是一個符合 Unix 哲學的密碼管理工具，其包含下列特色：
