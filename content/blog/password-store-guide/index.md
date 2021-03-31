@@ -106,8 +106,9 @@ sub   rsa3072/4B11C286610BC41C 2021-03-31 [E]
 建立 password store git repository 後，`pass` 會在每次操作自動產生 git commit 記錄每次進行的變更。
 
 ## `pass` 基本操作
-### 使用 `pass generate <pass-name>` 產生密碼
 ### 使用 `pass insert <pass-name>` 新增密碼
+首先，新增密碼可以透過指令 `pass insert` 來達到，所需要的參數 `<pass-name>`是可以具有以類似目錄的格式來命名，如 `pass insert website/facebook.com/user1`，
+### 使用 `pass generate <pass-name>` 產生密碼
 ### 使用 `pass <pass-name>` 或 `pass show <pass-name>` 查看密碼內容
 ### 使用 `pass <subfolder>` 或 `pass ls <subfolder>` 查看已紀錄的密碼
 
