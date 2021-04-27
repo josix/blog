@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Link, graphql } from "gatsby"
-import { Disqus } from 'gatsby-plugin-disqus'
+import Octomments from 'octomments'
+import OctommentsRenderer from 'octomments-renderer'
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -41,12 +42,16 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   } = post;
 
   const [shareSucceed, setShareSucceed] = useState(false);
-  const [disqusConfig, setDisqusConfig] = useState({
-    url: `${process.env.GATSBY_SITE_URL+location.pathname}`,
-    identifier: post.id,
-    title: post.title,
-  });
-
+  useEffect(() => {
+    Octomments({
+     github: {
+       owner: 'josix',
+       repo: 'blog',
+     },
+     issueNumber: 28,
+     renderer: [OctommentsRenderer, '#comments']
+   }).init();
+ }, []);
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
@@ -139,8 +144,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         {shareSucceed && <span style={styles.popupText}>已複製網址至剪貼簿! 🙌</span>}
       </div>
       <footer>
-        <Bio webDescription={false}/>
-        <Disqus config={disqusConfig} />
+        <Bio webDescription={false} />
+        <div id="comments" />
       </footer>
     </Layout>
   )

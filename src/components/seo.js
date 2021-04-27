@@ -86,6 +86,7 @@ const SEO = ({ description, lang, meta, title }) => {
       ].concat(meta)}
     >
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"></link>
+      <link href="https://unpkg.com/octomments/build/ocs-ui.min.css" rel="stylesheet"></link>
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG_ID}`}></script>
       <script>
         {`
