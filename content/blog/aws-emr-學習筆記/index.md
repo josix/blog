@@ -1,6 +1,6 @@
 ---
 title: AWS EMR 初探
-date: 2021-01-26T04:15:08.800Z
+date: 2021-07-28T20:20:52.562Z
 description: AWS EMR 的基本介紹：包含 AWS EMR 中節點的型態及工作內容，以及 EMR 執行的生命週期等內容簡介
 ---
 ## Amazon EMR 中的 Clusters 和 Nodes
