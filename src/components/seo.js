@@ -103,6 +103,7 @@ const SEO = ({ description, lang, meta, title }) => {
           }
         `}
       </style>
+      <script async src="https://cdn.volument.com/v1/volument.js" onload={`volument('${process.env.GATSBY_VOLUMENT_ID}')`}></script>
 
     </Helmet>
   )
