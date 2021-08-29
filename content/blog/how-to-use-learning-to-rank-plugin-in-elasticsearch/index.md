@@ -1,9 +1,8 @@
 ---
-title: How to use learning to rank plugin in elasticsearch
+title: 在 Elasticsearch 中使用 Learning to Rank Plugin
 date: 2021-08-29T09:14:18.948Z
 description: TBD
 ---
-# 在 Elasticsearch 中使用 Learning to Rank Plugin
 ## 什麼是 Learning to Rank
 
 Learning to Rank 又稱為 Machine-Learned Rankingy 為機器學習的任務之一，Learning to Rank 任務主要為給定可以透過特定給分（例如相關與否、回饋評分高低等）以進行排序的資料集，學習的目標為產生一個排序該排序順序可以讓高分的項目位置在列表的越前面，反之不相關、低分的項目位置則在列表的後面。因此，相較於回歸（Regression）問題，Learning to Rank 注重的是結果的排序，訓練時期給予每個排序項目的給分數值本身並不重要，最重要的是在於排序的順位。
