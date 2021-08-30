@@ -8,7 +8,7 @@ description: TBD
 
 Learning to Rank 又稱為 Machine-Learned Rankingy 為機器學習的任務之一，任務內容為給定可以透過評分（例如相關與否、回饋評分高低等）以進行排序的資料集，目標產生一個排序讓高分的項目位置在列表的越前面，反之不相關、低分的項目位置則在列表的後面。相較於回歸（Regression）問題，Learning to Rank 注重的是結果的排序，訓練時期給予每個排序項目的給分數值本身並不重要，最重要的是在於排序的順位。
 
-Learning to Rank 經常使用在資訊檢索（Information Retrievel）的情境當中，透過給定的 query 、專家建立包含各個 query 檢索結果的給分列表（ Judgement List）以及有助於提高相關性的特徵，如 query 出現的詞頻（Term Frequency）、詞數（Term Count）、檔案頻率（Document Frequency）、逆向檔案頻率（Inverse Document Frequency, IDF）、詞位置（Term Position）等數值以訓練模型，並將訓練好的模型應用於未來的檢索當中，達到更好的檢索結果。
+Learning to Rank 經常使用在資訊檢索（Information Retrieval）的情境當中，透過給定的 query 、專家建立包含各個 query 檢索結果的給分列表（ Judgement List）以及有助於提高相關性的特徵，如 query 出現的詞頻（Term Frequency）、詞數（Term Count）、檔案頻率（Document Frequency）、逆向檔案頻率（Inverse Document Frequency, IDF）、詞位置（Term Position）等數值以訓練模型，並將訓練好的模型應用於未來的檢索當中，達到更好的檢索結果。
 
 
 ## Elasticsearch Learning to Rank (LTR) Plugin 提供功能
