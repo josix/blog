@@ -1,13 +1,7 @@
 ---
-tags: Tool Sharing, draft
 title: 在 Elasticsearch 中使用 Learning to Rank Plugin
 date: 2021-08-29T09:14:18.948Z
 description: TBD
----
-# 在 Elasticsearch 中使用 Learning to Rank Plugin
-
-[TOC]
-
 ---
 
 ## 什麼是 Learning to Rank
