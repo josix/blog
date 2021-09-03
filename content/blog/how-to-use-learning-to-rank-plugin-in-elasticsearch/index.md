@@ -209,7 +209,7 @@ POST tmdb/_search
 可以接受的基本的統計數值如下：
 
 - `raw_df`： 計算給定 `term` 的 document frequency
-- `classic_idf`： 計算給定 `term` 的 IDF 值，其公式為 $log(\frac{NUM\_DOCS+1}{raw\_df + 1} + 1)$
+- `classic_idf`： 計算給定 `term` 的 IDF 值，其公式為 log((NUM_DOCS+1)/(raw_df+1) + 1)
 - `raw_ttf`： 計算給定 `term` 在所有文件中的總詞頻（total term frequency）
 - `raw_tf`： 計算給定 `term` 在單一文件中的詞頻（term frequency）
 - `unique_terms_count`： 計算給定 `term` 的數量。
@@ -382,6 +382,3 @@ POST tmdb/_search
 - [We’re Bringing Learning to Rank to Elasticsearch](https://opensourceconnections.com/blog/2017/02/14/elasticsearch-learning-to-rank/)
 - [(YouTube) Elasticsearch Learning to Rank: Search as a ML Problem & Search Logs + ML](https://www.youtube.com/watch?v=ZeeGskd1bjY)
 - [(YouTube) Conversion Models: Building Learning to Rank Training Data - Doug Turnbull, OpenSource Connections](https://youtu.be/33QDCpZmR-E)
-
-
-
