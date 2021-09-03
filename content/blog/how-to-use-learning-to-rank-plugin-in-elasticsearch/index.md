@@ -8,7 +8,7 @@ description: TBD
 
 Learning to Rank 又稱為 Machine-Learned Rankingy 為機器學習的任務之一，任務內容為給定可以透過評分（例如相關與否、回饋評分高低等）以進行排序的資料集，目標產生一個排序讓高分的項目位置在列表的越前面，反之不相關、低分的項目位置則在列表的後面。相較於回歸（Regression）問題，Learning to Rank 注重的是結果的排序，訓練時期給予每個排序項目的給分數值本身並不重要，最重要的是在於排序的順位。
 
-Learning to Rank 經常使用在資訊檢索（Information Retrieval）的情境當中，透過給定的 query 、專家建立包含各個 query 檢索結果的給分列表（ Judgement List）以及有助於提高相關性的特徵，如 query 出現的詞頻（Term Frequency）、詞數（Term Count）、檔案頻率（Document Frequency）、逆向檔案頻率（Inverse Document Frequency, IDF）、詞位置（Term Position）等數值以訓練模型，並將訓練好的模型應用於未來的檢索當中，達到更好的檢索結果。
+Learning to Rank 經常使用在資訊檢索（Information Retrievel）的情境當中，透過給定的 query 、專家建立包含各個 query 檢索結果的給分列表（ Judgement List）以及有助於提高相關性的特徵，如 query 出現的詞頻（Term Frequency）、詞數（Term Count）、檔案頻率（Document Frequency）、逆向檔案頻率（Inverse Document Frequency, IDF）、詞位置（Term Position）等數值以訓練模型，並將訓練好的模型應用於未來的檢索當中，達到更好的檢索結果。
 
 
 ## Elasticsearch Learning to Rank (LTR) Plugin 提供功能
@@ -186,10 +186,62 @@ DELETE _ltr/_featureset/<feature_set_name>
 
 ### Elasticsearch LTR 中的 Feature Enginnering
 
+Elasticsearch LTR 提供了針對詞彙的基本特徵工程（Feature Engineering），並可以在這些特徵值上再計算統計數值。
 
+使用方式為在 search query 中加入 Elasticsearch LTR 的 query primitive `match_explorer`，便可以替搜尋的 query 進行特定 term 相關統計，例如下方 query 會計算 `rambo` 和 `rocky` 的最高 document frequency：
+```
+POST tmdb/_search
+{
+    "query": {
+        "match_explorer": {
+            "type": "max_raw_df",
+            "query": {
+                "match": {
+                    "title": "rambo rocky"
+                }
+            }
+        }
+    }
+}
+```
+
+
+可以接受的基本的統計數值如下：
+
+- `raw_df`： 計算給定 `term` 的 document frequency
+- `classic_idf`： 計算給定 `term` 的 IDF 值，其公式為 $log(\frac{NUM\_DOCS+1}{raw\_df + 1} + 1)$
+- `raw_ttf`： 計算給定 `term` 在所有文件中的總詞頻（total term frequency）
+- `raw_tf`： 計算給定 `term` 在單一文件中的詞頻（term frequency）
+- `unique_terms_count`： 計算給定 `term` 的數量。
+- `raw_tp`： 計算給定 `term` 位於文本的位置
+
+而隨著下的 query term 越多，Elasticsearch LTR `match_explorer` 接受結合 `max`、`min`、`sum`、`stddev` 運算在計算的數值上，只需要在 type 中加入這些運算名稱當做 prefix 即可，如 `max_raw_df`、`sum_classic_idf`、`stddeev_raw_tf` 等。
+
+而 `raw_tp` 只提供 `min`、`max`、`avg` 三種 prefix，分別針對在多個 query term 的情況下取得匹配到的 `term` 最小出現位置、匹配到的 `term` 最大出現位置以及所有匹配到的 term 平均位置，例如： query `dance monkey` 在 type `min_raw_tp` 分別在文本中 `dance` 匹配到的位置為 `[2, 5, 9]` 而 `monkey` 匹配到的位置為 `[1, 4]` 因此取最小位置為 1 即 `min_raw_tp` 的值。
+
+針對 Document 特定的特徵如 `popularity`、`recency`，可以透過 Elasticsearch `function_score` 來取得各個文件的分數，例如：
+
+```
+{
+    "query": {
+        "function_score": {
+            "functions": [{
+                "field_value_factor": {
+                    "field": "vote_average",
+                    "missing": 0
+                }
+            }],
+            "query": {
+                "match_all": {}
+            }
+        }
+    }
+}
+```
 
 ### 如何取得 Elasticsearch LTR 特徵值
-### 如何上傳排序模型至 Elasticsearch LTR
+
+
 ### 透過 Elasticsearch LTR 搜尋
 ## Reference
 - [Elasticsearch Learning to Rank GitHub](https://github.com/o19s/elasticsearch-learning-to-rank) 
