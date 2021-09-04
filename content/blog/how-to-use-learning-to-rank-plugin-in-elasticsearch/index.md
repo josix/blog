@@ -1,6 +1,6 @@
 ---
 title: 在 Elasticsearch 中使用 Learning to Rank Plugin 進行 Feature Engineering
-date: 2021-08-29T09:14:18.948Z
+date: 2021-09-04T09:35:48.223Z
 description: 此篇文章將會介紹如何使用 Elasticsearch Learning to Rank (LTR) Plugin 於
   Elasticsearch 全文檢索中，並透過其提供的功能針對文章進行 Feature Engineering 以方便下游任務的模型訓練。
 ---
