@@ -1,7 +1,8 @@
 ---
-title: 在 Elasticsearch 中使用 Learning to Rank Plugin
+title: 在 Elasticsearch 中使用 Learning to Rank Plugin 進行 Feature Engineering
 date: 2021-08-29T09:14:18.948Z
-description: TBD
+description: 此篇文章將會介紹如何使用 Elasticsearch Learning to Rank (LTR) Plugin 於
+  Elasticsearch 全文檢索中，並透過其提供的功能針對文章進行 Feature Engineering 以方便下游任務的模型訓練。
 ---
 
 ## 什麼是 Learning to Rank
@@ -97,7 +98,7 @@ POST _ltr/_featureset/more_movie_features
 }
 ```
 
-其中，Feature 的欄位如下：
+其中，feature 需要帶入的欄位如下：
 - `name`: 特徵的名稱，用於後續 logging 使用，所有的名稱必須是唯一的不可重複的。
 - `params`: 為使用者希望帶入 query 的參數名稱。
 - `template`: 所有的特徵都是基於 Elasticsearch query 執行後取得的，檢索結果中的分數便是訓練資料，因此所有 Elasticsearch query 都是可以作為特徵的，如 `match`、`multi_match`、`match_all` 等都是合法可以使用的，特別是針對 document 屬性的 query 也可以透過 [`function_score`](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-function-score-query.html) 來獲得該計分：
@@ -140,7 +141,7 @@ POST _ltr/_featureset/more_movie_features
     ```
 
 - `params`: 可以見到如 `{{keywords}}`、`{{users_lat}}`、`{{users_lon}}` 等語法，這些為 Elasticsearch [Search Template](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/search-template.html) 的 [Mustache](https://mustache.github.io/) 語法，透過 Search Template 可以將 `params` 中使用者加入的參數帶入至 search query 中。
-- `template_language`: 為 `template` 渲染的方式，共有 `mustache`、`derived_expression`、`script_feature` 三種。
+- `template_language`: 為 `template` 渲染的方式，共有 `mustache`、`derived_expression`、`script_feature` 三種，`derived_expression` 和 `script_feature` 使用方式可參考 [Derived Features](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/advanced-functionality.html#derived-features)。
 
 若需要加入 feature 至現有的 feature set 可以透過 `POST /_ltr/_featureset/<feature_set_name>/_addfeatures`：
 
@@ -373,8 +374,9 @@ POST tmdb/_search
 ```
 最後便可以將這些取得的 featuer score 放入 training data 中。
 
+## 其他功能
+除了 feature enginnering 以外，Elasticsearch LTR 也提供**模型上傳功能**和結合 **Elasticsearch 和模型使用**。但由於實務上自己還是會選擇使用 Elasticsearch 作為輸出候選項目的元件，再結合其他模型 ensemble 決定最終排序，因此比較不常使用便沒有列入，有興趣的讀者可以參考 [Uplading A Trained Model](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/training-models.html) 和 [Search with LTR](https://elasticsearch-learning-to-rank.readthedocs.io/en/latest/searching-with-your-model.html)。
 
-### 透過 Elasticsearch LTR 搜尋
 ## Reference
 - [Elasticsearch Learning to Rank GitHub](https://github.com/o19s/elasticsearch-learning-to-rank) 
 - [Learning to rank Weikipedia](https://en.wikipedia.org/wiki/Learning_to_rank)
