@@ -1,8 +1,6 @@
-// Gatsby supports TypeScript natively!
 import React from "react"
 import { PageProps, Link, graphql } from "gatsby"
 
-import SubscribeForm from "../components/SubscribeForm.jsx"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -65,7 +63,6 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
           </article>
         )
       })}
-      <SubscribeForm />
     </Layout>
   )
 }

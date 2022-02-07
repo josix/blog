@@ -11,15 +11,15 @@ const styles = {
     display: flex;
     flex-direction: column;
     position: fixed;
-    right: 50px;
+    color: #808080;
+    right: 12%;
     top: 18%;
-    max-height: 70vh;
+    max-height: 100vh;
     width: 255px;
     list-style-type: none;
     overflow: hidden;
     overflow-y: scroll;
     padding: 0.75rem;
-    box-shadow: rgb(20 21 23 / 32%) 0px 8px 24px;
     border-radius: 5px;
 
     @media (max-width: 770px) {
@@ -39,15 +39,16 @@ const styles = {
   item: {
     lineHeight: 1.2,
     marginTop: 3,
+    fontSize: 14.5,
   },
   link: css`
-    color: #191413;
+    color: #808080;
     :hover {
-      color: #a37774
+      color: #945a47;
     }
   `,
   subitem: {
-    fontSize: 14.5,
+    fontSize: 12.5,
     listStyleType: "none",
     lineHeight: 1.2,
     marginTop: 12,
@@ -64,14 +65,16 @@ const TOC = ({
     <div
       css={styles.toc}
     >
-      <h3 style={styles.h3}>Table of Contents</h3>
+      <h5 style={styles.h3}>Contents</h5>
       <ul style={styles.ul}>
         {
           items.map(item => (
             <li style={styles.item} key={item.url}>
-              <a css={styles.link} href={item.url} key={item.url}>
-                {item.title}
-              </a>
+              <div style={styles.linkWrapper} >
+                <a css={styles.link} href={item.url} key={item.url}>
+                  {item.title}
+                </a>
+              </div>
               {item.items && item.items.length > 0 ? (
                 <ul style={{ ...styles.ul, marginLeft: "1.25rem" }}>
                   {

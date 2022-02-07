@@ -1,6 +1,8 @@
+/** @jsx jsx */
 import React, { useState, useEffect } from "react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Link, graphql } from "gatsby"
+import { css, jsx } from '@emotion/core'
 import Octomments from 'octomments'
 import OctommentsRenderer from 'octomments-renderer'
 
@@ -9,6 +11,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import TOC from "../components/toc"
 import { rhythm, scale } from "../utils/typography"
+import { link as linkStyle, navLink as navLinkStyle } from "../../styles/link.js"
 
 const styles = {
   buttonContainer: {
@@ -29,7 +32,9 @@ const styles = {
   popupText: {
     color: "#2d2d2de8",
     backgroundColor: "transparent"
-  }
+  },
+  link: linkStyle,
+  navLink: navLinkStyle,
 }
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.mdx
@@ -79,7 +84,9 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </p>
         </header>
         {tableOfContents.items && <TOC items={tableOfContents.items} />}
-        <MDXRenderer>{body}</MDXRenderer>
+        <div css={styles.link}>
+          <MDXRenderer>{body}</MDXRenderer>
+        </div>
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -97,14 +104,14 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             padding: 0,
           }}
         >
-          <li>
+          <li css={styles.navLink}>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
-          <li>
+          <li css={styles.navLink}>
             {next && (
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
