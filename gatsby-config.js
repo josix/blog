@@ -4,9 +4,9 @@ module.exports = {
     image: `blog-icon.png`,
     author: {
       name: `Josix`,
-      summary: ` 興趣是沒事把玩各式各樣的 FOSS ，喜愛專研技術、參與社群交流，有著各種天馬行空的 Idea 想去實現`,
+      summary: ` 興趣是沒事把玩各式各樣的 FOSS ，喜愛專研技術、參與社群交流，努力實踐原子習慣及建立自己的生活系統，讓生活與工作都更有趣`,
     },
-    description: `這裡是我的技術與碎念部落格，你可以找到一些 Python / Web Dev / Data Science 的學習筆記跟一些人生雜談，只要我有學習我會將我所學到的知識記錄到這裡`,
+    description: `這裡是我的筆記部落格，你可以找到一些技術分享或讀書筆記，同時這裡也是我的第二大腦，我將會把我的知識記錄在這裡，也許其中有你想要的資訊`,
     siteUrl: `https://josix.tw/`,
     social: {
       twitter: `josixisoj`,
