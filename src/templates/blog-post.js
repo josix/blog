@@ -83,7 +83,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             {frontmatter.date}
           </p>
         </header>
-        {tableOfContents.items && <TOC items={tableOfContents.items} />}
+        {/* {tableOfContents.items && <TOC items={tableOfContents.items} />} */}
         <div css={styles.link}>
           <MDXRenderer>{body}</MDXRenderer>
         </div>
