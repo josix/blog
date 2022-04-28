@@ -4,13 +4,13 @@ import Wordpress2016 from "typography-theme-wordpress-2016"
 Wordpress2016.overrideThemeStyles = (config) => {
   return {
     "h1": {
-      fontWeight: "600",
+      fontWeight: "400",
     },
     "a": {
       boxShadow: `none`,
     },
     "body": {
-      backgroundColor: "#fff9f3",
+      backgroundColor: "#FEFCFC",
     }
   }
 }

@@ -103,7 +103,7 @@ const SEO = ({ description, lang, meta, title }) => {
           }
         `}
       </style>
-
+      <link href="https://fonts.googleapis.com/css?family=Comforter" rel="stylesheet"/>
     </Helmet>
   )
 }

@@ -16,6 +16,9 @@ const Layout = ({ location, title, children }) => {
           marginBottom: rhythm(1.5),
           marginTop: 0,
           textAlign: 'center',
+          fontFamily: 'Comforter, sans-serif',
+          fontSize: "6rem", /* 96px */
+          lineHeight: 1,
         }}
       >
         <Link
@@ -33,7 +36,7 @@ const Layout = ({ location, title, children }) => {
     header = (
       <h3
         style={{
-          fontFamily: `Montserrat, sans-serif`,
+          fontFamily: `Comforter, sans-serif`,
           marginTop: 0,
         }}
       >
