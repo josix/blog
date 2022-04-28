@@ -2,9 +2,7 @@ import React from "react"
 import * as path from 'path';
 import { PageProps, Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
 type menuLink = {
@@ -36,15 +34,13 @@ type Data = {
   }
 }
 
-const BlogIndex = ({ data, location }: PageProps<Data>) => {
+const PostsIndex = ({ data, location }: PageProps<Data>) => {
   const siteTitle = data.site.siteMetadata.title
   const menuLinks = data.site.siteMetadata.menuLinks
   const posts = data.allMdx.edges
 
   return (
     <Layout location={location} title={siteTitle} menuLinks={menuLinks}>
-      <SEO title="Josix's Blog" />
-      <Bio webDescription={true} />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
@@ -75,7 +71,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
   )
 }
 
-export default BlogIndex
+export default PostsIndex
 
 export const pageQuery = graphql`
   query {

@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import React, { useState, useEffect } from "react"
+import * as path from 'path'
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Link, graphql } from "gatsby"
 import { css, jsx } from '@emotion/core'
@@ -39,6 +40,7 @@ const styles = {
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.mdx
   const siteTitle = data.site.siteMetadata.title
+  const menuLinks = data.site.siteMetadata.menuLinks
   const { previous, next } = pageContext
   const {
     frontmatter,
@@ -58,7 +60,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
    }).init();
  }, []);
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} menuLinks={menuLinks }>
       <SEO
         title={frontmatter.title}
         description={frontmatter.description || post.excerpt}
@@ -106,14 +108,14 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         >
           <li css={styles.navLink}>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
+              <Link to={path.resolve(`posts/${previous.fields.slug}`)} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li css={styles.navLink}>
             {next && (
-              <Link to={next.fields.slug} rel="next">
+              <Link to={path.resolve(`posts/${next.fields.slug}`)} rel="next">
                 {next.frontmatter.title} →
               </Link>
             )}
@@ -165,6 +167,10 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        menuLinks {
+          name
+          link
+        }
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {

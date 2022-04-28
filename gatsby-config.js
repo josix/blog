@@ -13,6 +13,16 @@ module.exports = {
       github: `josix`,
       email: `josixwang@gmail.com`,
     },
+    menuLinks: [
+      {
+        name: 'Posts',
+        link: '/posts',
+      },
+      // {
+      //   name: 'Notes',
+      //   link: '/notes',
+      // }
+    ],
   },
   plugins: [{
       resolve: `gatsby-source-filesystem`,
