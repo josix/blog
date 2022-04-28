@@ -31,13 +31,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
-      },
-    },
-    `gatsby-plugin-feed-mdx`,
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Josix's Blog`,
@@ -67,11 +60,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        output: `/sitemap.xml`,
+        output: `/sitemap`,
         // Exclude specific pages or groups of pages using glob parameters
         // See: https://github.com/isaacs/minimatch
         // The example below will exclude the single `path/to/page` and all routes beginning with `category`
-        exclude: [],
+        excludes: [],
         query: `
           {
             site {
@@ -93,17 +86,23 @@ module.exports = {
           //Alternativly, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
           return site.siteMetadata.siteUrl
         },
-        serialize: ({
-            site,
-            allSitePage
-          }) =>
-          allSitePage.nodes.map(node => {
-            return {
-              url: `${site.siteMetadata.siteUrl}${node.path}`,
-              changefreq: `daily`,
-              priority: 0.7,
-            }
+        resolvePages: ({
+          site,
+          allSitePage: { nodes: allPages },
+        }) => {
+          return allPages.map(node => {
+            return { path: node.path, siteUrl: site.siteMetadata.siteUrl}
           })
+        },
+        serialize: ({
+          path, siteUrl
+        }) => {
+          return {
+            url: `${siteUrl}${path}`,
+            changefreq: `daily`,
+            priority: 0.7,
+          }
+        }
       }
     },
     {
