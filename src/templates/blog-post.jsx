@@ -12,6 +12,7 @@ import SEO from "../components/seo"
 import TOC from "../components/toc"
 import { rhythm, scale } from "../utils/typography"
 import { link as linkStyle, navLink as navLinkStyle } from "../../styles/link.js"
+import "../../styles/pages/blog-post.css"
 
 const styles = {
   buttonContainer: {

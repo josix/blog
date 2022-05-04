@@ -11,7 +11,7 @@ exports.createPages = async ({
     createPage
   } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const blogPost = path.resolve(`./src/templates/blog-post.jsx`)
   const result = await graphql(
     `
       {

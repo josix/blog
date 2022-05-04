@@ -1,0 +1,10 @@
+.bio__header {
+  @apply flex items-center my-2;
+}
+.bio__avatar {
+  @apply mr-4;
+}
+.bio__icon {
+  @apply w-7 h-7;
+  color: #3D3D3D;
+}
