@@ -10,6 +10,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import { rhythm } from "../utils/typography"
+import "../../styles/components/bio.css"
 
 const styles = {
   socialMediaIcon: {
@@ -53,28 +54,24 @@ const Bio = ({webDescription}) => {
         flexDirection: 'column',
       }}
     >
-      <div
-        style={{
-          display: `flex`,
-          alignItems: 'center',
-          margin: rhythm(1 / 2),
-        }}>
+      <div className="bio__header">
         <GatsbyImage
           image={image}
           alt={author.name}
+          className="bio__avatar"
           imgStyle={{
             marginRight: rhythm(1 / 2),
             minWidth: 50,
             borderRadius: `50%`,
           }}
         />
-        <a style={styles.socialMediaIcon} href={`https://twitter.com/${social.twitter}`}>
-          <i class="fab fa-twitter"></i>
+        <a className="bio__icon" href={`https://twitter.com/${social.twitter}`}>
+            <i class="fab fa-twitter"></i>
         </a>
-        <a style={styles.socialMediaIcon} href={`https://github.com/${social.github}`}>
+        <a className="bio__icon" href={`https://github.com/${social.github}`}>
           <i class="fab fa-github"></i>
         </a>
-        <a style={styles.socialMediaIcon} href={`mailto:${social.email}`}>
+        <a className="bio__icon" href={`mailto:${social.email}`}>
           <i class="fas fa-envelope"></i>
         </a>
       </div>
@@ -82,7 +79,6 @@ const Bio = ({webDescription}) => {
         Hi, I'm <strong>{author.name}</strong>，{author.summary}
       </p>
       {webDescription && <p>{description}</p>}
-
     </div>
   )
 }

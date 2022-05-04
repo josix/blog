@@ -1,0 +1,7 @@
+h1 {
+  @apply font-serif mb-0 mt-2;
+}
+
+.copyright {
+  @apply flex justify-end items-center font-serif text-xs  font-thin;
+}

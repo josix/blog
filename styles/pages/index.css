@@ -1,0 +1,47 @@
+h1, h2, h3, h4, h5, h6 {
+  margin: 0,
+}
+p {
+  margin: 0,
+}
+
+.post__container {
+  @apply pb-4;
+}
+
+
+.post__title {
+  @apply mb-7 mt-3 mx-auto;
+  @apply font-bold text-2xl;
+  font-family: "Merriweather", serif;
+  color: hsla(0, 0%, 0%, 1);
+}
+
+.post__date {
+  @apply font-normal text-base;
+  font-family: "Merriweather", serif;
+  color: hsla(0, 0%, 38%, 1);
+}
+
+.post__body {
+  @apply mb-4;
+  @apply font-normal text-lg;
+  font-family: "Merriweather", serif;
+  color: hsla(0, 0%, 0%, 1);
+  line-height: 36.76px;
+}
+
+.post__link {
+  @apply font-normal text-lg;
+  font-family: "Merriweather", serif;
+  color: hsla(214, 50%, 55%, 1)
+}
+
+.post__link:hover {
+  @apply underline;
+  color: #203e88;
+}
+
+.post__divider {
+  @apply my-4;
+}

@@ -1,8 +1,7 @@
 ---
 title: 在 Elasticsearch 中使用 Learning to Rank Plugin 進行 Feature Engineering
 date: 2021-09-04T09:35:48.223Z
-description: 此篇文章將會介紹如何使用 Elasticsearch Learning to Rank (LTR) Plugin 於
-  Elasticsearch 全文檢索中，並透過其提供的功能針對文章進行 Feature Engineering 以方便下游任務的模型訓練。
+description: Learning to Rank 又稱為 Machine-Learned Ranking 為機器學習的任務之一，任務內容為給定可以透過評分（例如相關與否、回饋評分高低等）以進行排序的資料集，目標產生一個排序讓高分的項目位置在列表的越前面，反之不相關、低分的項目位置則在列表的後面。相較於回歸（Regression）問題，Learning to Rank 注重的是...
 ---
 
 ## 什麼是 Learning to Rank

@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
+import "../../styles/components/layout.css"
 
 
 const Layout = ({ location, title, children }) => {
@@ -57,13 +58,13 @@ const Layout = ({ location, title, children }) => {
       style={{
         marginLeft: `auto`,
         marginRight: `auto`,
-        maxWidth: rhythm(28),
+        maxWidth: rhythm(35),
         padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
       }}
     >
       <header>{header}</header>
       <main>{children}</main>
-      <footer>
+      <footer className="copyright">
         Josix Wang © {new Date().getFullYear()}
       </footer>
     </div>

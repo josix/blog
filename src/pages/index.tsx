@@ -4,7 +4,7 @@ import { PageProps, Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import '../../styles/pages/index.css'
 
 type Data = {
   site: {
@@ -35,31 +35,27 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="Josix's Blog" />
-      <Bio webDescription={true} />
+      <SEO title={siteTitle} />
+      <Bio webDescription />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
-          <article key={node.fields.slug}>
+          <article key={node.fields.slug} className="post__container">
             <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
+              <small className="post__date">{node.frontmatter.date}</small>
+              <p className="post__title">{title}</p>
             </header>
-            <section>
+            <section className="post__body">
               <p
                 dangerouslySetInnerHTML={{
                   __html: node.frontmatter.description || node.excerpt,
                 }}
               />
             </section>
+            <Link className="post__link" to={node.fields.slug}>
+                read more
+            </Link>
+            <hr className="post__divider"/>
           </article>
         )
       })}
