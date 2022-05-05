@@ -18,6 +18,7 @@ exports.createPages = async ({
         allMdx(
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
+          filter: {fileAbsolutePath: {regex: "/\\/blog\\//"}}
         ) {
           edges {
             node {
@@ -45,6 +46,15 @@ exports.createPages = async ({
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
     const next = index === 0 ? null : posts[index - 1].node
 
+    createPage({
+      path: `post${post.node.fields.slug}`,
+      component: blogPost,
+      context: {
+        slug: post.node.fields.slug,
+        previous,
+        next,
+      },
+    })
     createPage({
       path: post.node.fields.slug,
       component: blogPost,

@@ -66,13 +66,13 @@ const Bio = ({webDescription}) => {
           }}
         />
         <a className="bio__icon" href={`https://twitter.com/${social.twitter}`}>
-            <i class="fab fa-twitter"></i>
+            <i className="fab fa-twitter"></i>
         </a>
         <a className="bio__icon" href={`https://github.com/${social.github}`}>
-          <i class="fab fa-github"></i>
+          <i className="fab fa-github"></i>
         </a>
         <a className="bio__icon" href={`mailto:${social.email}`}>
-          <i class="fas fa-envelope"></i>
+          <i className="fas fa-envelope"></i>
         </a>
       </div>
       <p>
