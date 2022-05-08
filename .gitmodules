@@ -1,0 +1,3 @@
+[submodule "content/note"]
+	path = content/note
+	url = https://github.com/josix/knowledge-base.git

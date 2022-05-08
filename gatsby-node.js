@@ -65,6 +65,45 @@ exports.createPages = async ({
       },
     })
   })
+
+  const blogNote = path.resolve(`./src/templates/blog-note.jsx`)
+  const blogNoteResult = await graphql(
+    `
+      {
+        allMdx(
+          sort: { fields: [frontmatter___date], order: DESC }
+          filter: {fileAbsolutePath: {regex: "/\\/note\\//"}}
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+              }
+            }
+          }
+        }
+      }
+    `
+  )
+
+  if (result.errors) {
+    throw result.errors
+  }
+
+  const notes = blogNoteResult.data.allMdx.edges
+
+  notes.forEach((note, index) => {
+    createPage({
+      path: `note${note.node.fields.slug}`,
+      component: blogNote,
+      context: {
+        slug: note.node.fields.slug,
+      },
+    })
+  })
 }
 
 exports.onCreateNode = ({

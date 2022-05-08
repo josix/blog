@@ -1,3 +1,6 @@
+const remarkMath = require('remark-math')
+const remarkHtmlKatex = require('remark-html-katex')
+
 module.exports = {
   siteMetadata: {
     title: `Josix is Only Joking`,
@@ -28,6 +31,22 @@ module.exports = {
         name: `assets`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/note`,
+        ignore: [`**/_*/**`, `**/Permanent/**`],
+        name: `note`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/note/assets`,
+        name: `notes-assets`,
+      },
+    },
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -109,7 +128,12 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
-        gatsbyRemarkPlugins: [{
+        remarkPlugins: [
+          remarkMath,
+          remarkHtmlKatex,
+        ],
+        gatsbyRemarkPlugins: [
+          {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
               icon: `
@@ -136,6 +160,12 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          {
+            resolve: `gatsby-remark-wiki-link`,
+            options: {
+              titleToURLPath: `${__dirname}/resolve-url.js`,
+            },
+          },
         ],
       },
     },
@@ -143,5 +173,12 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-transformer-markdown-references`,
+      options: {
+        types: ["Mdx"],
+      },
+    },
+    `gatsby-plugin-catch-links`
   ],
 }
