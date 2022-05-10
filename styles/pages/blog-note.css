@@ -1,12 +1,3 @@
-a {
-  color: #945a47;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
 .header__title {
   @apply font-serif mb-0 mt-2 text-4xl md:text-5xl ;
 }
