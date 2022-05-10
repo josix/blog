@@ -18,6 +18,7 @@ exports.createPages = async ({
         allMdx(
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
+          filter: {fileAbsolutePath: {regex: "/\\/blog\\//"}}
         ) {
           edges {
             node {
@@ -46,12 +47,60 @@ exports.createPages = async ({
     const next = index === 0 ? null : posts[index - 1].node
 
     createPage({
+      path: `post${post.node.fields.slug}`,
+      component: blogPost,
+      context: {
+        slug: post.node.fields.slug,
+        previous,
+        next,
+      },
+    })
+    createPage({
       path: post.node.fields.slug,
       component: blogPost,
       context: {
         slug: post.node.fields.slug,
         previous,
         next,
+      },
+    })
+  })
+
+  const blogNote = path.resolve(`./src/templates/blog-note.jsx`)
+  const blogNoteResult = await graphql(
+    `
+      {
+        allMdx(
+          sort: { fields: [frontmatter___date], order: DESC }
+          filter: {fileAbsolutePath: {regex: "/\\/note\\//"}}
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+              }
+            }
+          }
+        }
+      }
+    `
+  )
+
+  if (result.errors) {
+    throw result.errors
+  }
+
+  const notes = blogNoteResult.data.allMdx.edges
+
+  notes.forEach((note, index) => {
+    createPage({
+      path: `note${note.node.fields.slug}`,
+      component: blogNote,
+      context: {
+        slug: note.node.fields.slug,
       },
     })
   })

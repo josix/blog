@@ -1,0 +1,11 @@
+.header__title {
+  @apply font-serif mb-0 mt-2 text-4xl md:text-5xl ;
+}
+
+.header__date {
+  @apply mb-5;
+}
+
+.backlink__description {
+  @apply text-sm mb-4;
+}

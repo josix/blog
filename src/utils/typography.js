@@ -8,6 +8,7 @@ Wordpress2016.overrideThemeStyles = (config) => {
     },
     "a": {
       boxShadow: `none`,
+      color: "#945a47",
     },
     "body": {
       backgroundColor: "#FEFCFC",

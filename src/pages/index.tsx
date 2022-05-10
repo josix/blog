@@ -52,7 +52,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
                 }}
               />
             </section>
-            <Link className="post__link" to={node.fields.slug}>
+            <Link className="post__link" to={`post${node.fields.slug}`}>
                 read more
             </Link>
             <hr className="post__divider"/>
@@ -72,7 +72,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }, filter: {fileAbsolutePath: {regex: "/\\/blog\\//"}}) {
       edges {
         node {
           excerpt
