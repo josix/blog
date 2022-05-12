@@ -1,0 +1,42 @@
+name: sync-notes
+
+on:
+  push:
+    branches:
+      - master
+
+  schedule:
+    - cron: "0 0 12 * *"
+
+jobs:
+  sync-notes:
+    runs-on: ubuntu-latest
+    name: "Sync latest notes"
+    steps:
+      - name: "Check out"
+        uses: actions/checkout@v2
+      
+      - name: Checkout submodules
+        run: |
+          git submodule update --init --recursive
+          ls
+          cd content/note
+          git pull origin main
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: sync with josix-kg ${{ env.LATEST_COMMIT_ID }}
+          branch: latest-note
+          title: 'Sync with latest notes'
+          body: |
+            Sync with latest notes
+          labels: |
+            sync-notess
+            automation
+
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
