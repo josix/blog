@@ -1,0 +1,44 @@
+name: sync-notes
+
+on:
+  push:
+    branches:
+      - master
+
+  schedule:
+    - cron: "0 0 12 * *"
+
+jobs:
+  sync-notes:
+    runs-on: ubuntu-latest
+    name: "Sync latest notes"
+    steps:
+      - name: "Check out"
+        uses: actions/checkout@v2
+        with:
+            submodules: 'true'
+            token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          commit-message: sync with josix-kg ${{ env.LATEST_COMMIT_ID }}
+          committer: GitHub <noreply@github.com>
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          base: master
+          branch: latest-note
+          delete-branch: false
+          title: 'Sync with latest notes'
+          body: |
+            Sync with latest notes
+          draft: true
+          labels: |
+            sync-notess
+            automation
+
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
