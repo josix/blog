@@ -18,7 +18,7 @@ exports.createPages = async ({
         allMdx(
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
-          filter: {fileAbsolutePath: {regex: "/\\/blog\\//"}}
+          filter: {fileAbsolutePath: {regex: "/\\/post\\//"}}
         ) {
           edges {
             node {
