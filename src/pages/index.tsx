@@ -72,7 +72,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }, filter: {fileAbsolutePath: {regex: "/\\/blog\\//"}}) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }, filter: {fileAbsolutePath: {regex: "/\\/post\\//"}}) {
       edges {
         node {
           excerpt
