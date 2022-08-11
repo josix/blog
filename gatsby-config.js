@@ -35,7 +35,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/note`,
-        ignore: [`**/_*/**`, `**/Permanent/**`],
+        ignore: [`**/_*/**`, `**/Permanent/**`, `**/README.md`],
         name: `note`,
       },
     },
