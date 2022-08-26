@@ -85,6 +85,7 @@ Python 中處處是有 dictionary 使用的痕跡，如 `globals()`、`locals()`
 
 ### Dynamic Resizing
 針對上述第二點，面對的問題是如何避免放過多的項目到每個 bucket 當中，Dynamic Resizing 透過每當 dictionary 進行 insertion 時會檢查自身的 load factor （項目數量 / bucket 數量），超過 2/3 時會依照設定的 `GROWTH_RATE` 重新配置一個更大的 dictionary ，有了更大的 dictionary 項目便減少了被放置在同一個 bucket 的機會，因此效能便不會降低。
+
 > GROWTH_RATE 的設定：
  Python 3.4.0 - 3.6.0 設定新配置的 dict 大小*為已使用大小 \* 2 + 已配置大小 /2*)
 > Python 3.6.0 - 3.8.0 設定為*已使用大小 \* 3*
@@ -101,6 +102,7 @@ Python 中處處是有 dictionary 使用的痕跡，如 `globals()`、`locals()`
 [],
 [(38617469636359399, 'tim', 'red')]]
 ```
+
 這麼做的好處是，當面臨 hashmap resizing，若將每個 key 都重新再計算一次 hash 是會很花時間的，因此， Python dictionary 的實作選擇犧牲更多的空間將以計算過的 hash value cache 存放至 hashtable 中，因此在 resizing 階段便可以跳過計算 hash value 的階段，直接計算 `hashvalue % n_bucket` 取得要存放的位置，將可以提升許多速度。
 ```Python
 def faster_resize(self, n):
