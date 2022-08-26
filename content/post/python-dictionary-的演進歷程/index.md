@@ -89,6 +89,8 @@ Python 中處處是有 dictionary 使用的痕跡，如 `globals()`、`locals()`
 > GROWTH_RATE 的設定：
  Python 3.4.0 - 3.6.0 設定新配置的 dict 大小*為已使用大小 \* 2 + 已配置大小 /2*)
 > Python 3.6.0 - 3.8.0 設定為*已使用大小 \* 3*
+
+
 ### Caching the Hash Value
 與教科書所教授不同的是，實作上除了將 key, value 放入 hashtable 以外，也會將 hash value 也一併存入：
 ```python
