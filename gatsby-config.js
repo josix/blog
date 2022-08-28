@@ -7,9 +7,12 @@ module.exports = {
     image: `blog-icon.png`,
     author: {
       name: `Josix`,
-      summary: ` 興趣是沒事把玩各式各樣的 FOSS ，喜愛專研技術、參與社群交流，努力實踐原子習慣及建立自己的生活系統，讓生活與工作都更有趣`,
+      summary: `Hi, I'm Josix, a software engineer. I'm obsessed with building tools and love to learn new things. Besides coding,
+      I like to do some hacking stuff for my daily life, like building knowledge management systems, habit tracking systems, financial management systems, etc.
+      Applying knowledge and experience to solve problems and make things more convenient is my passion, and I'm always enjoying it.`,
     },
-    description: `這裡是我的筆記部落格，你可以找到一些技術分享或讀書筆記，同時這裡也是我的第二大腦，我將會把我的知識記錄在這裡，也許其中有你想要的資訊`,
+    description: `This is my personal blog, mainly focusing on software development, programming, and some of my learning notes.
+    Hope you enjoy it and find something useful here.`,
     siteUrl: `https://josix.tw/`,
     social: {
       twitter: `josixisoj`,

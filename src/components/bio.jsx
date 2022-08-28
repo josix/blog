@@ -76,7 +76,7 @@ const Bio = ({webDescription}) => {
         </a>
       </div>
       <p>
-        Hi, I'm <strong>{author.name}</strong>，{author.summary}
+        {author.summary}
       </p>
       {webDescription && <p>{description}</p>}
     </div>
