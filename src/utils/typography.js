@@ -10,6 +10,10 @@ Wordpress2016.overrideThemeStyles = (config) => {
       boxShadow: `none`,
       color: "#945a47",
     },
+    "a:hover": {
+      textDecoration: "underline",
+      textUnderlineOffset: "4px",
+    },
     "body": {
       backgroundColor: "#FEFCFC",
     }
