@@ -7,12 +7,13 @@ module.exports = {
     image: `blog-icon.png`,
     author: {
       name: `Josix`,
-      summary: `Hi, I'm Josix, a software engineer. I'm obsessed with building tools and love to learn new things. Besides coding,
-      I like to do some hacking stuff for my daily life, like building knowledge management systems, habit tracking systems, financial management systems, etc.
-      Applying knowledge and experience to solve problems and make things more convenient is my passion, and I'm always enjoying it.`,
+      summary: `Hi, I'm Josix, a software engineer. I love building tools and learning new things.
+      In addition to coding, I enjoy hacking to improve my daily life. For example, I've built knowledge management systems, habit tracking systems,
+      and financial management systems. I'm passionate about using my knowledge and experience to solve problems and make things more convenient,
+      and I always enjoy doing it.` ,
     },
-    description: `This is my personal blog, mainly focusing on software development, programming, and some of my learning notes.
-    Hope you enjoy it and find something useful here.`,
+    description: `This is my personal blog, where I write about software development, programming, and some of my learning notes.
+    I hope you enjoy it and find something useful here.`,
     siteUrl: `https://josix.tw/`,
     social: {
       twitter: `josixisoj`,
