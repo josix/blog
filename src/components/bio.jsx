@@ -71,6 +71,9 @@ const Bio = ({webDescription}) => {
         <a className="bio__icon" href={`https://github.com/${social.github}`}>
           <i className="fab fa-github"></i>
         </a>
+        <a className="bio__icon" href="https://note.josix.tw">
+          <i className="fas fa-book"></i>
+        </a>
         <a className="bio__icon" href={`mailto:${social.email}`}>
           <i className="fas fa-envelope"></i>
         </a>
