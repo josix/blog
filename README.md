@@ -1,7 +1,7 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
+  <a href="https://github.com/josix/blog/actions/workflows/sync-notes.yml">
+    <img alt="Gatsby" src="https://github.com/josix/blog/actions/workflows/sync-notes.yml/badge.svg"/>
   </a>
 </p>
 <h1 align="center">
