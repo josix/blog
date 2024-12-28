@@ -9,7 +9,8 @@ module.exports = title => {
         'content/note/.git/**',
         'content/_private/**',
         'content/note/.gitignore',
-        'content/note/README.md'
+        'content/note/README.md',
+        'content/note/random-thoughts/aider-brain/presentations/**',
       ]
     }).filter(file => file.match(title));
   if (filePaths.length > 0) {
