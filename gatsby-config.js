@@ -1,5 +1,5 @@
-const remarkMath = require('remark-math')
-const remarkHtmlKatex = require('remark-html-katex')
+const remarkMath = require("remark-math")
+const remarkHtmlKatex = require("remark-html-katex")
 
 module.exports = {
   siteMetadata: {
@@ -10,7 +10,7 @@ module.exports = {
       summary: `Hi, I'm Josix, a software engineer. I love building tools and learning new things.
       In addition to coding, I enjoy hacking to improve my daily life. For example, I've built knowledge management systems, habit tracking systems,
       and financial management systems. I'm passionate about using my knowledge and experience to solve problems and make things more convenient,
-      and I always enjoy doing it.` ,
+      and I always enjoy doing it.`,
     },
     description: `This is my personal blog, where I write about software development, programming, and some of my learning notes.
     I hope you enjoy it and find something useful here.`,
@@ -21,7 +21,8 @@ module.exports = {
       email: `josixwang@gmail.com`,
     },
   },
-  plugins: [{
+  plugins: [
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/post`,
@@ -39,7 +40,12 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/note`,
-        ignore: [`**/_*/**`, `**/Permanent/**`, `**/README.md`, `**/Recent Notes.md`],
+        ignore: [
+          `**/_*/**`,
+          `**/Permanent/**`,
+          `**/README.md`,
+          `**/Recent Notes.md`,
+        ],
         name: `note`,
       },
     },
@@ -73,7 +79,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-mailchimp',
+      resolve: "gatsby-plugin-mailchimp",
       options: {
         endpoint: `https://netlify.us10.list-manage.com/subscribe/post?u=66248ae68ca6c226e7755c377&amp;id=82f129ef96`, // string; add your MC list endpoint here; see instructions below
         timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
@@ -102,40 +108,29 @@ module.exports = {
               }
             }
         }`,
-        resolveSiteUrl: ({
-          site,
-          allSitePage
-        }) => {
+        resolveSiteUrl: ({ site, allSitePage }) => {
           //Alternativly, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
           return site.siteMetadata.siteUrl
         },
-        resolvePages: ({
-          site,
-          allSitePage: { nodes: allPages },
-        }) => {
+        resolvePages: ({ site, allSitePage: { nodes: allPages } }) => {
           return allPages.map(node => {
-            return { path: node.path, siteUrl: site.siteMetadata.siteUrl}
+            return { path: node.path, siteUrl: site.siteMetadata.siteUrl }
           })
         },
-        serialize: ({
-          path, siteUrl
-        }) => {
+        serialize: ({ path, siteUrl }) => {
           return {
             url: `${siteUrl}${path}`,
             changefreq: `daily`,
             priority: 0.7,
           }
-        }
-      }
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
-        remarkPlugins: [
-          remarkMath,
-          remarkHtmlKatex,
-        ],
+        remarkPlugins: [remarkMath, remarkHtmlKatex],
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-autolink-headers`,
@@ -162,6 +157,7 @@ module.exports = {
             },
           },
           `gatsby-remark-prismjs`,
+          `gatsby-remark-reading-time`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
           {
@@ -183,6 +179,6 @@ module.exports = {
         types: ["Mdx"],
       },
     },
-    `gatsby-plugin-catch-links`
+    `gatsby-plugin-catch-links`,
   ],
 }

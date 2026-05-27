@@ -2,7 +2,8 @@
 import "typeface-montserrat"
 import "typeface-merriweather"
 
-import "prismjs/themes/prism.css"
-import { wrapPageElement as wrap } from './root-wrapper';
+import "./styles/themes.css"
+import "./styles/prism-themes.css"
+import { wrapPageElement as wrap } from "./root-wrapper"
 
-export const wrapPageElement = wrap;
+export const wrapPageElement = wrap

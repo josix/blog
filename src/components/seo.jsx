@@ -85,9 +85,14 @@ const SEO = ({ description, lang, meta, title }) => {
         },
       ].concat(meta)}
     >
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"></link>
-      <link href="https://unpkg.com/octomments/build/ocs-ui.min.css" rel="stylesheet"></link>
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG_ID}`}></script>
+      <link
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      ></link>
+<script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG_ID}`}
+      ></script>
       <script>
         {`
           window.dataLayer = window.dataLayer || [];
@@ -103,14 +108,20 @@ const SEO = ({ description, lang, meta, title }) => {
           }
         `}
       </style>
-      <link href="https://fonts.googleapis.com/css?family=Comforter" rel="stylesheet"/>
-      <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet"/>
+      <link
+        href="https://fonts.googleapis.com/css?family=Comforter"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css?family=Merriweather"
+        rel="stylesheet"
+      />
     </Helmet>
   )
 }
 
 SEO.defaultProps = {
-  lang: `zh-Hant`,
+  lang: `zh-Hant-TW`,
   meta: [],
   description: ``,
 }

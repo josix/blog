@@ -1,12 +1,12 @@
 import Typography from "typography"
 import Wordpress2016 from "typography-theme-wordpress-2016"
 
-Wordpress2016.overrideThemeStyles = (config) => {
+Wordpress2016.overrideThemeStyles = config => {
   return {
-    "h1": {
+    h1: {
       fontWeight: "400",
     },
-    "a": {
+    a: {
       boxShadow: `none`,
       color: "#945a47",
     },
@@ -14,9 +14,9 @@ Wordpress2016.overrideThemeStyles = (config) => {
       textDecoration: "underline",
       textUnderlineOffset: "4px",
     },
-    "body": {
+    body: {
       backgroundColor: "#FEFCFC",
-    }
+    },
   }
 }
 

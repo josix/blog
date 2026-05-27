@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from "react"
 import { navigate, graphql } from "gatsby"
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from "@emotion/core"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -14,14 +14,19 @@ const NotFoundPage = ({ data, location }) => {
         <SEO title="404: Not Found" />
         <h1>Empty Note</h1>
         <p>There's no content in this note currently.</p>
-        <button css={{
-          border: "solid 1px #737373",
-          borderRadius: 5,
-          outline: "none",
-          cursor: "pointer",
-          fontWeight: 300,
-          backgroundColor: "transparent"
-        }} onClick={() => navigate(-1)}>Go back</button>
+        <button
+          css={{
+            border: "solid 1px #737373",
+            borderRadius: 5,
+            outline: "none",
+            cursor: "pointer",
+            fontWeight: 300,
+            backgroundColor: "transparent",
+          }}
+          onClick={() => navigate(-1)}
+        >
+          Go back
+        </button>
       </Layout>
     )
   }

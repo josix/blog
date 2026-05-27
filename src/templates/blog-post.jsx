@@ -1,38 +1,39 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Link, graphql } from "gatsby"
-import { css, jsx } from '@emotion/core'
-import Octomments from 'octomments'
-import OctommentsRenderer from 'octomments-renderer'
+import { css, jsx } from "@emotion/core"
+// TODO(giscus-migration): import Octomments from 'octomments'
+// TODO(giscus-migration): import OctommentsRenderer from 'octomments-renderer'
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import TOC from "../components/toc"
 import { rhythm, scale } from "../utils/typography"
-import { link as linkStyle, navLink as navLinkStyle } from "../../styles/link.js"
+import {
+  link as linkStyle,
+  navLink as navLinkStyle,
+} from "../../styles/link.js"
 import "../../styles/pages/blog-post.css"
 
 const styles = {
   buttonContainer: {
     display: "flex",
-    flexDirection: 'column',
-    alignItems: 'center',
+    flexDirection: "column",
+    alignItems: "center",
     margin: 6,
   },
   shareButton: {
-    border: "solid 1px #737373",
     borderRadius: 5,
     outline: "none",
     cursor: "pointer",
     fontWeight: 300,
     padding: "5px 45px",
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
   },
   popupText: {
-    color: "#2d2d2de8",
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
   },
   link: linkStyle,
   navLink: navLinkStyle,
@@ -40,24 +41,26 @@ const styles = {
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.mdx
   const siteTitle = data.site.siteMetadata.title
+  const author = data.site.siteMetadata.author
   const { previous, next } = pageContext
-  const {
-    frontmatter,
-    tableOfContents,
-    body
-  } = post;
+  const { frontmatter, tableOfContents, fields, body } = post
 
-  const [shareSucceed, setShareSucceed] = useState(false);
-  useEffect(() => {
-    Octomments({
-     github: {
-       owner: 'josix',
-       repo: 'blog',
-     },
-     issueNumber: 28,
-     renderer: [OctommentsRenderer, '#comments']
-   }).init();
- }, []);
+  const readingTime =
+    fields && fields.readingTime ? fields.readingTime : { text: "" }
+
+  // TODO(giscus-migration): Octomments init removed; replaced by giscus
+  // useEffect(() => {
+  //   Octomments({
+  //    github: {
+  //      owner: 'josix',
+  //      repo: 'blog',
+  //    },
+  //    issueNumber: 28,
+  //    renderer: [OctommentsRenderer, '#comments']
+  //  }).init();
+  // }, []);
+
+  const [shareSucceed, setShareSucceed] = useState(false)
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
@@ -79,12 +82,15 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
               ...scale(-1 / 5),
               display: `block`,
               marginBottom: rhythm(1),
+              color: "var(--text-secondary)",
             }}
           >
-            {frontmatter.date}
+            {author && author.name ? `${author.name} · ` : ""}
+            Published <time dateTime={frontmatter.dateIso}>{frontmatter.date}</time>
+            {readingTime.text ? ` · ${readingTime.text}` : ""}
           </p>
         </header>
-        {/* {tableOfContents.items && <TOC items={tableOfContents.items} />} */}
+        {tableOfContents.items && <TOC items={tableOfContents.items} />}
         <div css={styles.link}>
           <MDXRenderer>{body}</MDXRenderer>
         </div>
@@ -121,11 +127,12 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </li>
         </ul>
       </nav>
-      <div style={styles.buttonContainer} >
+      <div style={styles.buttonContainer}>
         <button
+          className="border-subtle text-secondary"
           style={styles.shareButton}
           onClick={async () => {
-            const navigator = window.navigator;
+            const navigator = window.navigator
             const shareData = {
               title: frontmatter.title,
               text: `${frontmatter.title}`,
@@ -134,26 +141,31 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             if (navigator.share) {
               try {
                 await navigator.share(shareData)
-              } catch(err) {
-                console.error('Error: ' + err)
+              } catch (err) {
+                console.error("Error: " + err)
               }
             } else {
-              navigator.clipboard.writeText(location.href)
-              .then(() => {
-                setShareSucceed(true)
-                setTimeout(() => setShareSucceed(false), 800)
-              })
-              .catch(err => console.error('Error: ' + err))
+              navigator.clipboard
+                .writeText(location.href)
+                .then(() => {
+                  setShareSucceed(true)
+                  setTimeout(() => setShareSucceed(false), 800)
+                })
+                .catch(err => console.error("Error: " + err))
             }
           }}
         >
           分享這篇文章 <i className="fa fa-share-alt" aria-hidden="true"></i>
         </button>
-        {shareSucceed && <span style={styles.popupText}>已複製網址至剪貼簿! 🙌</span>}
+        {shareSucceed && (
+          <span className="text-secondary" style={styles.popupText}>
+            已複製網址至剪貼簿! 🙌
+          </span>
+        )}
       </div>
       <footer>
         <Bio webDescription={false} />
-        <div id="comments" />
+        {/* TODO(giscus-migration): <div id="comments" /> */}
       </footer>
     </Layout>
   )
@@ -166,6 +178,9 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author {
+          name
+        }
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {
@@ -175,9 +190,15 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        dateIso: date
         description
       }
       tableOfContents(maxDepth: 3)
+      fields {
+        readingTime {
+          text
+        }
+      }
     }
   }
 `

@@ -16,13 +16,13 @@ const styles = {
   socialMediaIcon: {
     margin: 5,
     marginRight: rhythm(1 / 5),
-  }
+  },
 }
 
-const Bio = ({webDescription}) => {
+const Bio = ({ webDescription }) => {
   const data = useStaticQuery(graphql`
     query BioQuery {
-      avatar: file(absolutePath: {regex: "/profile-pic.jpg/"}) {
+      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
         childImageSharp {
           gatsbyImageData(width: 50, height: 50, layout: FIXED)
         }
@@ -51,7 +51,7 @@ const Bio = ({webDescription}) => {
       style={{
         display: `flex`,
         marginBottom: rhythm(1),
-        flexDirection: 'column',
+        flexDirection: "column",
       }}
     >
       <div className="bio__header">
@@ -66,7 +66,7 @@ const Bio = ({webDescription}) => {
           }}
         />
         <a className="bio__icon" href={`https://twitter.com/${social.twitter}`}>
-            <i className="fab fa-twitter"></i>
+          <i className="fab fa-twitter"></i>
         </a>
         <a className="bio__icon" href={`https://github.com/${social.github}`}>
           <i className="fab fa-github"></i>
@@ -78,9 +78,7 @@ const Bio = ({webDescription}) => {
           <i className="fas fa-envelope"></i>
         </a>
       </div>
-      <p>
-        {author.summary}
-      </p>
+      <p>{author.summary}</p>
       {webDescription && <p>{description}</p>}
     </div>
   )

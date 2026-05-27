@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from "@emotion/core"
 
 export const link = css`
   a {
@@ -7,7 +7,7 @@ export const link = css`
   }
   a:hover {
     text-decoration: underline;
-}
+  }
 `
 export const navLink = css`
   a {

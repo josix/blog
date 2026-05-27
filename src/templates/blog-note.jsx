@@ -10,12 +10,7 @@ import "../../styles/pages/blog-note.css"
 const BlogNoteTemplate = ({ data, location }) => {
   const note = data.mdx
   const siteTitle = data.site.siteMetadata.title
-  const {
-    frontmatter,
-    body,
-    inboundReferences,
-    outboundReferences,
-  } = note; 
+  const { frontmatter, body, inboundReferences, outboundReferences } = note
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
@@ -35,48 +30,54 @@ const BlogNoteTemplate = ({ data, location }) => {
 
       <footer>
         <div className="backlinks-wrapper">
-          {
-            inboundReferences && inboundReferences.length > 0 &&
+          {inboundReferences && inboundReferences.length > 0 && (
             <div className="links-wrapper">
-                <h3>提及 <i>{frontmatter.title}</i> 的筆記</h3>
-              {
-                inboundReferences.map(({ frontmatter, fields }) => {
-                  return (
-                    <div className="backlink" key={fields.slug} >
-                      <Link className="backlink__title" to={`/note${fields.slug}`}>{frontmatter.title}</Link>
-                      {
-                        frontmatter.description &&
-                        <p class="backlink__description">
+              <h3>
+                提及 <i>{frontmatter.title}</i> 的筆記
+              </h3>
+              {inboundReferences.map(({ frontmatter, fields }) => {
+                return (
+                  <div className="backlink" key={fields.slug}>
+                    <Link
+                      className="backlink__title"
+                      to={`/note${fields.slug}`}
+                    >
+                      {frontmatter.title}
+                    </Link>
+                    {frontmatter.description && (
+                      <p className="backlink__description">
                         {frontmatter.description}
-                        </p>
-                      }
-                    </div>
-                  );
-                })
-              }
+                      </p>
+                    )}
+                  </div>
+                )
+              })}
             </div>
-          }
-          {
-            outboundReferences && outboundReferences.length > 0 &&
+          )}
+          {outboundReferences && outboundReferences.length > 0 && (
             <div className="backlinks-wrapper__links-wrapper">
-              <h3><i>{frontmatter.title}</i> 中提及的筆記</h3>
-              {
-                outboundReferences.map(({ frontmatter, fields }) => {
-                  return (
-                    <div className="backlink" key={fields.slug}>
-                      <Link className="backlink__title" to={`/note${fields.slug}`}>{frontmatter.title}</Link>
-                      {
-                        frontmatter.description &&
-                        <p class="backlink__description">
-                          {frontmatter.description}
-                        </p>
-                      }
-                    </div>
-                  );
-                })
-              }
+              <h3>
+                <i>{frontmatter.title}</i> 中提及的筆記
+              </h3>
+              {outboundReferences.map(({ frontmatter, fields }) => {
+                return (
+                  <div className="backlink" key={fields.slug}>
+                    <Link
+                      className="backlink__title"
+                      to={`/note${fields.slug}`}
+                    >
+                      {frontmatter.title}
+                    </Link>
+                    {frontmatter.description && (
+                      <p className="backlink__description">
+                        {frontmatter.description}
+                      </p>
+                    )}
+                  </div>
+                )
+              })}
             </div>
-          }
+          )}
         </div>
       </footer>
     </Layout>
