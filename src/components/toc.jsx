@@ -9,26 +9,28 @@ const styles = {
   toc: css`
     display: flex;
     flex-direction: column;
-    position: fixed;
+    position: static;
     color: var(--text-secondary);
-    right: 12%;
-    top: 18%;
-    max-height: 100vh;
-    width: 255px;
+    width: 100%;
+    max-height: 30vh;
     list-style-type: none;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 0.75rem;
+    border: 1px solid var(--border-subtle);
     border-radius: 5px;
+    margin-bottom: 25px;
+    background-color: var(--bg-elevated);
 
-    @media (max-width: 770px) {
-      position: static;
-      width: 100%;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px,
-        rgb(51, 51, 51) 0px 0px 0px 2px;
-      padding: 0.75rem;
-      margin-bottom: 25px;
-      max-height: 30vh;
+    @media (min-width: 1500px) {
+      position: fixed;
+      right: 1rem;
+      top: 18%;
+      width: 200px;
+      max-height: 70vh;
+      margin-bottom: 0;
+      background-color: transparent;
+      border: none;
     }
   `,
   ul: {

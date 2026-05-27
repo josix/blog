@@ -44,7 +44,10 @@ const ThemeToggle = () => {
   const baseBtn = {
     padding: "0.25rem 0.4rem",
     background: "transparent",
-    border: "1px solid var(--border-subtle)",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "var(--border-subtle)",
+    borderRadius: "4px",
     color: "var(--text-secondary)",
     cursor: "pointer",
     display: "inline-flex",

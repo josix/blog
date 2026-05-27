@@ -12,32 +12,32 @@
   @apply mb-7 mt-3 mx-auto;
   @apply font-bold text-2xl;
   font-family: "Merriweather", serif;
-  color: hsla(0, 0%, 0%, 1);
+  color: var(--text-primary);
 }
 
 .note__date {
   @apply font-normal text-base;
   font-family: "Merriweather", serif;
-  color: hsla(0, 0%, 38%, 1);
+  color: var(--text-secondary);
 }
 
 .note__body {
   @apply mb-4;
   @apply font-normal text-lg;
   font-family: "Merriweather", serif;
-  color: hsla(0, 0%, 0%, 1);
+  color: var(--text-primary);
   line-height: 36.76px;
 }
 
 .note__link {
   @apply font-normal text-lg;
   font-family: "Merriweather", serif;
-  color: hsla(214, 50%, 55%, 1)
+  color: var(--accent);
 }
 
 .note__link:hover {
   @apply underline;
-  color: #203e88;
+  color: var(--accent);
 }
 
 .note__divider {

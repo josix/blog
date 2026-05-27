@@ -45,6 +45,15 @@ body {
   border-radius: 2px;
 }
 
+:root[data-theme='dark'] blockquote,
+:root[data-theme='dark'] blockquote * {
+  color: var(--text-secondary);
+}
+
+:root[data-theme='dark'] blockquote {
+  border-left-color: var(--border-subtle);
+}
+
 .skip-link {
   position: absolute;
   left: -9999px;

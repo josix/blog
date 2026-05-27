@@ -25,6 +25,10 @@ const styles = {
     margin: 6,
   },
   shareButton: {
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "var(--border-subtle)",
+    color: "var(--text-secondary)",
     borderRadius: 5,
     outline: "none",
     cursor: "pointer",
@@ -33,6 +37,7 @@ const styles = {
     backgroundColor: "transparent",
   },
   popupText: {
+    color: "var(--text-secondary)",
     backgroundColor: "transparent",
   },
   link: linkStyle,
@@ -129,7 +134,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
       </nav>
       <div style={styles.buttonContainer}>
         <button
-          className="border-subtle text-secondary"
           style={styles.shareButton}
           onClick={async () => {
             const navigator = window.navigator
@@ -158,9 +162,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           分享這篇文章 <i className="fa fa-share-alt" aria-hidden="true"></i>
         </button>
         {shareSucceed && (
-          <span className="text-secondary" style={styles.popupText}>
-            已複製網址至剪貼簿! 🙌
-          </span>
+          <span style={styles.popupText}>已複製網址至剪貼簿! 🙌</span>
         )}
       </div>
       <footer>
